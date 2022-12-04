@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blue.DataAccess", "Blue.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blue.Common", "Blue.Common\Blue.Common.csproj", "{80051511-FC64-4A3B-A970-40E8090CEA97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blue.Business", "Blue.Business\Blue.Business.csproj", "{A9EE1353-AE8F-4CB7-ABB8-0A423695C23B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blue.Logging", "Blue.Logging\Blue.Logging.csproj", "{64218AB5-A985-4B3F-B5FE-513718094FC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{80051511-FC64-4A3B-A970-40E8090CEA97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80051511-FC64-4A3B-A970-40E8090CEA97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80051511-FC64-4A3B-A970-40E8090CEA97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9EE1353-AE8F-4CB7-ABB8-0A423695C23B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9EE1353-AE8F-4CB7-ABB8-0A423695C23B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9EE1353-AE8F-4CB7-ABB8-0A423695C23B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9EE1353-AE8F-4CB7-ABB8-0A423695C23B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64218AB5-A985-4B3F-B5FE-513718094FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64218AB5-A985-4B3F-B5FE-513718094FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64218AB5-A985-4B3F-B5FE-513718094FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64218AB5-A985-4B3F-B5FE-513718094FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
