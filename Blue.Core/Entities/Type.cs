@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    public partial class Type
+    public partial class Type : Base<Type>, IEntity
     {
         public Guid Id { get; set; }
         public string? Name { get; set; }

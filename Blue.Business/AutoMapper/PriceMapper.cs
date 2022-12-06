@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Blue.Business.AutoMapper
+﻿namespace Blue.Business
 {
-    internal class PriceMapper
+    public class PriceMapper
     {
+
     }
 }

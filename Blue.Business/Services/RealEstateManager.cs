@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Blue.Business.Services
+﻿namespace Blue.Business
 {
-    internal class RealEstateManager
+    public class RealEstateManager
     {
+
     }
 }

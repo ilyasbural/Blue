@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blue.Business.AutoMapper
+namespace Blue.Core.DataTransfer
 {
-    internal class TypeManager
+    internal class RealEstateDetailAnyDataTransfer
     {
     }
 }
