@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Blue.Core.DataTransfer
+﻿namespace Blue.Core
 {
-    internal class RealEstateInsertDataTransfer
+    public class RealEstateInsertDataTransfer
     {
     }
 }

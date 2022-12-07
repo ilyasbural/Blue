@@ -2,7 +2,7 @@
 {
     using Core;
     using DataAccess;
-    //using FluentValidation;
+    using FluentValidation;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -10,50 +10,44 @@
     {
         public static IServiceCollection LoadServices(this IServiceCollection Service)
         {
-            //Service.AddDbContext<DbContext>();
-            //Service.AddDbContext<MiyloContext>();
+            Service.AddDbContext<DbContext>();
+            Service.AddDbContext<BlueContext>();
 
-            //Service.AddScoped<IFriendRepository, FriendRepositoryEF>();
-            //Service.AddScoped<ILanguageDetailRepository, LanguageDetailRepositoryEF>();
-            //Service.AddScoped<ILanguageRepository, LanguageRepositoryEF>();
-            //Service.AddScoped<IManagementDetailRepository, ManagementDetailRepositoryEF>();
-            //Service.AddScoped<IManagementRepository, ManagementRepositoryEF>();
-            //Service.AddScoped<IRegionRepository, RegionRepositoryEF>();
-            //Service.AddScoped<IScheduleDetailRepository, ScheduleDetailRepositoryEF>();
-            //Service.AddScoped<IScheduleRepository, ScheduleRepositoryEF>();
-            //Service.AddScoped<IScheduleTypeRepository, ScheduleTypeRepositoryEF>();
-            //Service.AddScoped<IUserDetailRepository, UserDetailRepositoryEF>();
-            //Service.AddScoped<IUserRepository, UserRepositoryEF>();
-            //Service.AddScoped<IUserPictureRepository, UserPictureRepositoryEF>();
-            //Service.AddScoped<IUserSettingsRepository, UserSettingsRepositoryEF>();
+            Service.AddScoped<ICityRepository, CityRepositoryEF>();
+            Service.AddScoped<IDistrictRepository, DistrictRepositoryEF>();
+            Service.AddScoped<IFurnitureRepository, FurnitureRepositoryEF>();
+            Service.AddScoped<IManagementRepository, ManagementRepositoryEF>();
+            Service.AddScoped<IPictureRepository, PictureRepositoryEF>();
+            Service.AddScoped<IPriceRepository, PriceRepositoryEF>();
+            Service.AddScoped<IRealEstateDetailRepository, RealEstateDetailRepositoryEF>();
+            Service.AddScoped<IRealEstateRepository, RealEstateRepositoryEF>();
+            Service.AddScoped<ISizeRepository, SizeRepositoryEF>();
+            Service.AddScoped<ITypeRepository, TypeRepositoryEF>();
+            Service.AddScoped<IWarmingRepository, WarmingRepositoryEF>();
 
-            //Service.AddScoped<IValidator<Friend>, FriendValidator>();
-            //Service.AddScoped<IValidator<LanguageDetail>, LanguageDetailValidator>();
-            //Service.AddScoped<IValidator<Language>, LanguageValidator>();
-            //Service.AddScoped<IValidator<ManagementDetail>, ManagementDetailValidator>();
-            //Service.AddScoped<IValidator<Management>, ManagementValidator>();
-            //Service.AddScoped<IValidator<Region>, RegionValidator>();
-            //Service.AddScoped<IValidator<ScheduleDetail>, ScheduleDetailValidator>();
-            //Service.AddScoped<IValidator<Schedule>, ScheduleValidator>();
-            //Service.AddScoped<IValidator<ScheduleType>, ScheduleTypeValidator>();
-            //Service.AddScoped<IValidator<UserDetail>, UserDetailValidator>();
-            //Service.AddScoped<IValidator<User>, UserValidator>();
-            //Service.AddScoped<IValidator<UserPicture>, UserPictureValidator>();
-            //Service.AddScoped<IValidator<UserSettings>, UserSettingsValidator>();
+            Service.AddScoped<IValidator<City>, CityValidator>();
+            Service.AddScoped<IValidator<District>, DistrictValidator>();
+            Service.AddScoped<IValidator<Furniture>, FurnitureValidator>();
+            Service.AddScoped<IValidator<Management>, ManagementValidator>();
+            Service.AddScoped<IValidator<Picture>, PictureValidator>();
+            Service.AddScoped<IValidator<Price>, PriceValidator>();
+            Service.AddScoped<IValidator<RealEstateDetail>, RealEstateDetailValidator>();
+            Service.AddScoped<IValidator<RealEstate>, RealEstateValidator>();
+            Service.AddScoped<IValidator<Size>, SizeValidator>();
+            Service.AddScoped<IValidator<Type>, TypeValidator>();
+            Service.AddScoped<IValidator<Warming>, WarmingValidator>();
 
-            //Service.AddScoped<IFriendService, FriendManager>();
-            //Service.AddScoped<ILanguageDetailService, LanguageDetailManager>();
-            //Service.AddScoped<ILanguageService, LanguageManager>();
-            //Service.AddScoped<IManagementDetailService, ManagementDetailManager>();
-            //Service.AddScoped<IManagementService, ManagementManager>();
-            //Service.AddScoped<IRegionService, RegionManager>();
-            //Service.AddScoped<IScheduleDetailService, ScheduleDetailManager>();
-            //Service.AddScoped<IScheduleService, ScheduleManager>();
-            //Service.AddScoped<IScheduleTypeService, ScheduleTypeManager>();
-            //Service.AddScoped<IUserDetailService, UserDetailManager>();
-            //Service.AddScoped<IUserService, UserManager>();
-            //Service.AddScoped<IUserPictureService, UserPictureManager>();
-            //Service.AddScoped<IUserSettingsService, UserSettingsManager>();
+            Service.AddScoped<ICityService, CityManager>();
+            Service.AddScoped<IDistrictService, DistrictManager>();
+            Service.AddScoped<IFurnitureService, FurnitureManager>();
+            Service.AddScoped<IManagementService, ManagementManager>();
+            Service.AddScoped<IPictureService, PictureManager>();
+            Service.AddScoped<IPriceService, PriceManager>();
+            Service.AddScoped<IRealEstateDetailService, RealEstateDetailManager>();
+            Service.AddScoped<IRealEstateService, RealEstateManager>();
+            Service.AddScoped<ISizeService, SizeManager>();
+            Service.AddScoped<ITypeService, TypeManager>();
+            Service.AddScoped<IWarmingService, WarmingManager>();
 
             return Service;
         }

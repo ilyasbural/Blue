@@ -1,6 +1,6 @@
 ﻿namespace Blue.Business
 {
-    public class SizeManager
+    public class SizeManager : Core.ISizeService
     {
 
     }

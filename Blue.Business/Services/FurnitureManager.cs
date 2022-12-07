@@ -1,6 +1,6 @@
 ﻿namespace Blue.Business
 {
-    public class FurnitureManager
+    public class FurnitureManager : Core.IFurnitureService
     {
 
     }

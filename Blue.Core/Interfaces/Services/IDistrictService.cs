@@ -1,6 +1,7 @@
 ﻿namespace Blue.Core
 {
-    internal interface IDistrictService
+    public interface IDistrictService
     {
+
     }
 }

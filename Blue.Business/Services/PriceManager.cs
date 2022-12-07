@@ -1,6 +1,6 @@
 ﻿namespace Blue.Business
 {
-    public class PriceManager
+    public class PriceManager : Core.IPriceService
     {
 
     }

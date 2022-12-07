@@ -1,6 +1,6 @@
 ﻿namespace Blue.DataAccess
 {
-    public class WarmingRepositoryEF
+    public class WarmingRepositoryEF : Core.IWarmingRepository
     {
 
     }

@@ -1,6 +1,6 @@
 ﻿namespace Blue.DataAccess
 {
-    public class SizeRepositoryEF
+    public class SizeRepositoryEF : Core.ISizeRepository
     {
 
     }

@@ -1,6 +1,6 @@
 ﻿namespace Blue.Business
 {
-    public class RealEstateManager
+    public class RealEstateManager : Core.IRealEstateService
     {
 
     }

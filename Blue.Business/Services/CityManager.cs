@@ -1,6 +1,6 @@
 ﻿namespace Blue.Business
 {
-    public class CityManager
+    public class CityManager : Core.ICityService
     {
 
     }

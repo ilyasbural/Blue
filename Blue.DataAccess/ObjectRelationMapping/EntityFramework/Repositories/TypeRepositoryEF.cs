@@ -1,6 +1,6 @@
 ﻿namespace Blue.DataAccess
 {
-    public class TypeRepositoryEF
+    public class TypeRepositoryEF : Core.ITypeRepository
     {
 
     }

@@ -1,7 +1,15 @@
 ﻿namespace Blue.Business
 {
-    internal class PictureValidator
-    {
+    using Core;
+    using FluentValidation;
 
+    public class PictureValidator : AbstractValidator<Picture>
+    {
+        public PictureValidator()
+        {
+            RuleFor(x => x.RegisterDate).NotEmpty().WithMessage("RegisterDate can not be null");
+            RuleFor(x => x.UpdateDate).NotEmpty().WithMessage("UpdateDate can not be null");
+            RuleFor(x => x.IsActive).NotEmpty().WithMessage("IsActive can not be null");
+        }
     }
 }

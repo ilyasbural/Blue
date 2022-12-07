@@ -1,6 +1,6 @@
 ﻿namespace Blue.Business
 {
-    public class ManagementManager
+    public class ManagementManager : Core.IManagementService
     {
 
     }

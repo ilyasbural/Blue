@@ -1,6 +1,6 @@
 ﻿namespace Blue.DataAccess
 {
-    public class DistrictRepositoryEF
+    public class DistrictRepositoryEF : Core.IDistrictRepository
     {
 
     }

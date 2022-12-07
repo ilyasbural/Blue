@@ -1,6 +1,6 @@
 ﻿namespace Blue.DataAccess
 {
-    public class PriceRepositoryEF
+    public class PriceRepositoryEF : Core.IPriceRepository
     {
 
     }

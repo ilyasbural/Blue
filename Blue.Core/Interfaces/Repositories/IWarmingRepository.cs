@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    internal interface IWarmingRepository
+    public interface IWarmingRepository
     {
 
     }

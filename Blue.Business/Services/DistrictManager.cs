@@ -1,6 +1,6 @@
 ﻿namespace Blue.Business
 {
-    public class DistrictManager
+    public class DistrictManager : Core.IDistrictService
     {
 
     }

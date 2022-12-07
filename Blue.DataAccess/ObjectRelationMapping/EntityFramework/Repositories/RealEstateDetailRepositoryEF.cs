@@ -1,6 +1,6 @@
 ﻿namespace Blue.DataAccess
 {
-    public class RealEstateDetailRepositoryEF
+    public class RealEstateDetailRepositoryEF : Core.IRealEstateDetailRepository
     {
 
     }

@@ -1,6 +1,6 @@
 ﻿namespace Blue.Business
 {
-    public class TypeManager
+    public class TypeManager : Core.ITypeService
     {
 
     }
