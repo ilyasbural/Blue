@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    public interface IDistrictRepository
+    public interface IDistrictRepository : IRepository<District>
     {
 
     }

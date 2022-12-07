@@ -1,7 +1,10 @@
 ﻿namespace Blue.DataAccess
 {
-    public class ManagementRepositoryEF : Core.IManagementRepository
+    public class ManagementRepositoryEF : RepositoryBase<Core.Management>, Core.IManagementRepository
     {
+        public ManagementRepositoryEF(Microsoft.EntityFrameworkCore.DbContext dbContext) : base(dbContext)
+        {
 
+        }
     }
 }
