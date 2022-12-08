@@ -1,6 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class PictureSelectDataTransfer
+    public class PictureSelectDataTransfer : DataTransferBase<PictureSelectDataTransfer>
     {
+
     }
 }

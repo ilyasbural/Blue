@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    public interface ICityRepository
+    public interface ICityRepository : IRepository<City>
     {
 
     }

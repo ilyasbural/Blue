@@ -1,6 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class WarmingSelectDataTransfer
+    public class WarmingSelectDataTransfer : DataTransferBase<WarmingSelectDataTransfer>
     {
+
     }
 }

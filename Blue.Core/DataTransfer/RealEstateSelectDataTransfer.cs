@@ -1,6 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class RealEstateSelectDataTransfer
+    public class RealEstateSelectDataTransfer : DataTransferBase<RealEstateSelectDataTransfer>
     {
+
     }
 }

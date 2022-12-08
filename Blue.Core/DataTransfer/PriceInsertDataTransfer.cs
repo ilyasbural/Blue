@@ -1,6 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class PriceInsertDataTransfer
+    public class PriceInsertDataTransfer : DataTransferBase<PriceInsertDataTransfer>
     {
+
     }
 }

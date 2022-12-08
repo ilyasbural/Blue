@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    public class CityUpdateDataTransfer
+    public class CityUpdateDataTransfer : DataTransferBase<CityUpdateDataTransfer>
     {
 
     }

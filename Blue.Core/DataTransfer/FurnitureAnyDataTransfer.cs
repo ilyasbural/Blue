@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    public class FurnitureAnyDataTransfer
+    public class FurnitureAnyDataTransfer : DataTransferBase<FurnitureAnyDataTransfer>
     {
 
     }

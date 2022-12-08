@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    public class DistrictDeleteDataTransfer
+    public class DistrictDeleteDataTransfer : DataTransferBase<DistrictDeleteDataTransfer>
     {
 
     }

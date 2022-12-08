@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Blue.Core.Base
+﻿namespace Blue.Core
 {
-    internal class ServiceBase
+    public abstract class ServiceBase<T>
     {
+
     }
 }

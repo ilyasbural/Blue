@@ -1,6 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class SizeInsertDataTransfer
+    public class SizeInsertDataTransfer : DataTransferBase<SizeInsertDataTransfer>
     {
+
     }
 }
