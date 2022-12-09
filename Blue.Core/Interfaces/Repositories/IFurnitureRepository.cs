@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    public interface IFurnitureRepository
+    public interface IFurnitureRepository : IRepository<Furniture>
     {
 
     }

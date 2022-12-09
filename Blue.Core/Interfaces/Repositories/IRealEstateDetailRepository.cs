@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    public interface IRealEstateDetailRepository
+    public interface IRealEstateDetailRepository : IRepository<RealEstateDetail>
     {
 
     }

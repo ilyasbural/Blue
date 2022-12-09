@@ -13,7 +13,7 @@
             DbContext = dbContext;
         }
 
-        public async Task AddAsync(T Entity)
+        public async Task InsertAsync(T Entity)
         {
             await DbContext.Set<T>().AddAsync(Entity);
         }

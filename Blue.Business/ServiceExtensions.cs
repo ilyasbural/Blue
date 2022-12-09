@@ -37,17 +37,17 @@
             Service.AddScoped<IValidator<Type>, TypeValidator>();
             Service.AddScoped<IValidator<Warming>, WarmingValidator>();
 
-            Service.AddScoped<ICityService, CityManager>();
-            Service.AddScoped<IDistrictService, DistrictManager>();
-            Service.AddScoped<IFurnitureService, FurnitureManager>();
-            Service.AddScoped<IManagementService, ManagementManager>();
-            Service.AddScoped<IPictureService, PictureManager>();
-            Service.AddScoped<IPriceService, PriceManager>();
-            Service.AddScoped<IRealEstateDetailService, RealEstateDetailManager>();
-            Service.AddScoped<IRealEstateService, RealEstateManager>();
+            //Service.AddScoped<ICityService, CityManager>();
+            //Service.AddScoped<IDistrictService, DistrictManager>();
+            //Service.AddScoped<IFurnitureService, FurnitureManager>();
+            //Service.AddScoped<IManagementService, ManagementManager>();
+            //Service.AddScoped<IPictureService, PictureManager>();
+            //Service.AddScoped<IPriceService, PriceManager>();
+            //Service.AddScoped<IRealEstateDetailService, RealEstateDetailManager>();
+            //Service.AddScoped<IRealEstateService, RealEstateManager>();
             Service.AddScoped<ISizeService, SizeManager>();
-            Service.AddScoped<ITypeService, TypeManager>();
-            Service.AddScoped<IWarmingService, WarmingManager>();
+            //Service.AddScoped<ITypeService, TypeManager>();
+            //Service.AddScoped<IWarmingService, WarmingManager>();
 
             return Service;
         }

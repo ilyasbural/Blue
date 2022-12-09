@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    public interface IPictureRepository
+    public interface IPictureRepository : IRepository<Picture>
     {
 
     }
