@@ -2,6 +2,6 @@
 {
     public class ManagementWebResponse : WebResponseBase<ManagementWebResponse>
     {
-
+        public Management Management { get; set; }
     }
 }

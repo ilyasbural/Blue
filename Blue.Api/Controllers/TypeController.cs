@@ -1,11 +1,71 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Blue.Api.Controllers
+﻿namespace Blue.Api.Controllers
 {
-    [Route("api/[controller]")]
+    using Core;
+    using Microsoft.AspNetCore.Mvc;
+
     [ApiController]
     public class TypeController : ControllerBase
     {
+        private readonly ITypeService Service;
+        public TypeController(ITypeService service)
+        {
+            Service = service;
+        }
+
+        [HttpPost]
+        [Route("api/type")]
+        public async Task<TypeWebResponse> Create([FromBody] TypeInsertDataTransfer Model)
+        {
+            TypeServiceResponse typeServiceResponse = await Service.InsertAsync(Model);
+            return new TypeWebResponse { Type = typeServiceResponse.Type };
+        }
+
+        [HttpPut]
+        [Route("api/type")]
+        public async Task<TypeWebResponse> Update([FromBody] TypeUpdateDataTransfer Model)
+        {
+            TypeServiceResponse typeServiceResponse = await Service.UpdateAsync(Model);
+            return new TypeWebResponse
+            {
+
+
+            };
+        }
+
+        [HttpDelete]
+        [Route("api/type")]
+        public async Task<TypeWebResponse> Delete([FromBody] TypeDeleteDataTransfer Model)
+        {
+            TypeServiceResponse typeServiceResponse = await Service.DeleteAsync(Model);
+            return new TypeWebResponse
+            {
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/type")]
+        public async Task<TypeWebResponse> Get([FromBody] TypeSelectDataTransfer Model)
+        {
+            TypeServiceResponse typeServiceResponse = await Service.SelectAsync(Model);
+            return new TypeWebResponse
+            {
+
+
+            };
+        }
+
+        [HttpGet]
+        [Route("api/type/{id}")]
+        public async Task<TypeWebResponse> Get([FromBody] TypeAnyDataTransfer Model)
+        {
+            TypeServiceResponse typeServiceResponse = await Service.AnySelectAsync(Model);
+            return new TypeWebResponse
+            {
+
+
+            };
+        }
     }
 }
