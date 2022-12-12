@@ -21,12 +21,29 @@
 
         public async Task<FurnitureServiceResponse> InsertAsync(FurnitureInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
+            Furniture furniture = Mapper.Map<Furniture>(Model);
+            furniture.Id = Guid.NewGuid();
+            furniture.RegisterDate = DateTime.Now;
+            furniture.UpdateDate = DateTime.Now;
+            furniture.IsActive = true;
+
+            await UnitOfWork.Furniture.InsertAsync(furniture);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new FurnitureServiceResponse { Furniture = furniture };
         }
 
         public async Task<FurnitureServiceResponse> UpdateAsync(FurnitureUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Furniture> DataSource = await UnitOfWork.Furniture.SelectAsync(x => x.Id == Model.Id);
+            Furniture furniture = Mapper.Map<Furniture>(DataSource[0]);
+            furniture.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.Furniture.UpdateAsync(furniture);
+            await UnitOfWork.SaveChangesAsync();
+
+            FurnitureServiceResponse furnitureServiceResponse = Mapper.Map<FurnitureServiceResponse>(furniture);
+            return new FurnitureServiceResponse { };
         }
 
         public async Task<FurnitureServiceResponse> DeleteAsync(FurnitureDeleteDataTransfer Model)

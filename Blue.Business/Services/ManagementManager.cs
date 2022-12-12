@@ -21,12 +21,29 @@
 
         public async Task<ManagementServiceResponse> InsertAsync(ManagementInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
+            Management management = Mapper.Map<Management>(Model);
+            management.Id = Guid.NewGuid();
+            management.RegisterDate = DateTime.Now;
+            management.UpdateDate = DateTime.Now;
+            management.IsActive = true;
+
+            await UnitOfWork.Management.InsertAsync(management);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new ManagementServiceResponse { Management = management };
         }
 
         public async Task<ManagementServiceResponse> UpdateAsync(ManagementUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Management> DataSource = await UnitOfWork.Management.SelectAsync(x => x.Id == Model.Id);
+            Management management = Mapper.Map<Management>(DataSource[0]);
+            management.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.Management.UpdateAsync(management);
+            await UnitOfWork.SaveChangesAsync();
+
+            ManagementServiceResponse announceResponse = Mapper.Map<ManagementServiceResponse>(management);
+            return new ManagementServiceResponse {   };
         }
 
         public async Task<ManagementServiceResponse> DeleteAsync(ManagementDeleteDataTransfer Model)

@@ -21,12 +21,29 @@
 
         public async Task<TypeServiceResponse> InsertAsync(TypeInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
+            Type type = Mapper.Map<Type>(Model);
+            type.Id = Guid.NewGuid();
+            type.RegisterDate = DateTime.Now;
+            type.UpdateDate = DateTime.Now;
+            type.IsActive = true;
+
+            await UnitOfWork.Type.InsertAsync(type);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new TypeServiceResponse { Type = type };
         }
 
         public async Task<TypeServiceResponse> UpdateAsync(TypeUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Type> DataSource = await UnitOfWork.Type.SelectAsync(x => x.Id == Model.Id);
+            Type type = Mapper.Map<Type>(DataSource[0]);
+            type.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.Type.UpdateAsync(type);
+            await UnitOfWork.SaveChangesAsync();
+
+            TypeServiceResponse typeServiceResponse = Mapper.Map<TypeServiceResponse>(type);
+            return new TypeServiceResponse {   };
         }
 
         public async Task<TypeServiceResponse> DeleteAsync(TypeDeleteDataTransfer Model)

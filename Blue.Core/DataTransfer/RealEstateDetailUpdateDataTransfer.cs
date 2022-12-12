@@ -2,6 +2,6 @@
 {
     public class RealEstateDetailUpdateDataTransfer : DataTransferBase<RealEstateDetailUpdateDataTransfer>
     {
-
+        public Guid Id { get; set; }
     }
 }

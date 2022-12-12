@@ -21,12 +21,29 @@
 
         public async Task<PriceServiceResponse> InsertAsync(PriceInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
+            Price price = Mapper.Map<Price>(Model);
+            price.Id = Guid.NewGuid();
+            price.RegisterDate = DateTime.Now;
+            price.UpdateDate = DateTime.Now;
+            price.IsActive = true;
+
+            await UnitOfWork.Price.InsertAsync(price);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new PriceServiceResponse { Price = price };
         }
 
         public async Task<PriceServiceResponse> UpdateAsync(PriceUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Price> DataSource = await UnitOfWork.Price.SelectAsync(x => x.Id == Model.Id);
+            Price price = Mapper.Map<Price>(DataSource[0]);
+            price.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.Price.UpdateAsync(price);
+            await UnitOfWork.SaveChangesAsync();
+
+            PriceServiceResponse priceServiceResponse = Mapper.Map<PriceServiceResponse>(price);
+            return new PriceServiceResponse { };
         }
 
         public async Task<PriceServiceResponse> DeleteAsync(PriceDeleteDataTransfer Model)

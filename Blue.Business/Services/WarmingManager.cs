@@ -21,12 +21,29 @@
 
         public async Task<WarmingServiceResponse> InsertAsync(WarmingInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
+            Warming warming = Mapper.Map<Warming>(Model);
+            warming.Id = Guid.NewGuid();
+            warming.RegisterDate = DateTime.Now;
+            warming.UpdateDate = DateTime.Now;
+            warming.IsActive = true;
+
+            await UnitOfWork.Warming.InsertAsync(warming);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new WarmingServiceResponse { Warming = warming };
         }
 
         public async Task<WarmingServiceResponse> UpdateAsync(WarmingUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Warming> DataSource = await UnitOfWork.Warming.SelectAsync(x => x.Id == Model.Id);
+            Warming warming = Mapper.Map<Warming>(DataSource[0]);
+            warming.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.Warming.UpdateAsync(warming);
+            await UnitOfWork.SaveChangesAsync();
+
+            WarmingServiceResponse warmingServiceResponse = Mapper.Map<WarmingServiceResponse>(warming);
+            return new WarmingServiceResponse { };
         }
 
         public async Task<WarmingServiceResponse> DeleteAsync(WarmingDeleteDataTransfer Model)

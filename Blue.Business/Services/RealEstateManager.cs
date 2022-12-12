@@ -21,12 +21,29 @@
 
         public async Task<RealEstateServiceResponse> InsertAsync(RealEstateInsertDataTransfer Model)
         {
-            throw new NotImplementedException();
+            RealEstate realEstate = Mapper.Map<RealEstate>(Model);
+            realEstate.Id = Guid.NewGuid();
+            realEstate.RegisterDate = DateTime.Now;
+            realEstate.UpdateDate = DateTime.Now;
+            realEstate.IsActive = true;
+
+            await UnitOfWork.RealEstate.InsertAsync(realEstate);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new RealEstateServiceResponse { RealEstate = realEstate };
         }
 
         public async Task<RealEstateServiceResponse> UpdateAsync(RealEstateUpdateDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<RealEstate> DataSource = await UnitOfWork.RealEstate.SelectAsync(x => x.Id == Model.Id);
+            RealEstate realEstate = Mapper.Map<RealEstate>(DataSource[0]);
+            realEstate.UpdateDate = DateTime.Now;
+
+            await UnitOfWork.RealEstate.UpdateAsync(realEstate);
+            await UnitOfWork.SaveChangesAsync();
+
+            RealEstateServiceResponse announceResponse = Mapper.Map<RealEstateServiceResponse>(realEstate);
+            return new RealEstateServiceResponse { };
         }
 
         public async Task<RealEstateServiceResponse> DeleteAsync(RealEstateDeleteDataTransfer Model)
