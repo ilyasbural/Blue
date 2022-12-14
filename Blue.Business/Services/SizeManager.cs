@@ -28,9 +28,13 @@
             size.IsActive = true;
 
             await UnitOfWork.Size.InsertAsync(size);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new SizeServiceResponse { Single = size };
+            return new SizeServiceResponse 
+            { 
+                Single = size,
+                Success = result 
+            };
         }
 
         public async Task<SizeServiceResponse> UpdateAsync(SizeUpdateDataTransfer Model)
@@ -40,9 +44,13 @@
             size.UpdateDate = DateTime.Now;
 
             await UnitOfWork.Size.UpdateAsync(size);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new SizeServiceResponse { Single = size };
+            return new SizeServiceResponse
+            {
+                Single = size,
+                Success = result
+            };
         }
 
         public async Task<SizeServiceResponse> DeleteAsync(SizeDeleteDataTransfer Model)
@@ -51,19 +59,25 @@
             Size size = Mapper.Map<Size>(dataSource[0]);
 
             await UnitOfWork.Size.DeleteAsync(size);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new SizeServiceResponse {     };
+            return new SizeServiceResponse
+            {
+                Success = result
+            };
         }
 
         public async Task<SizeServiceResponse> SelectAsync(SizeSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Size> DataSource = await UnitOfWork.Size.SelectAsync(x => x.IsActive == true);
+            return new SizeServiceResponse { List = DataSource };
         }
 
         public async Task<SizeServiceResponse> AnySelectAsync(SizeAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            SizeServiceResponse response = new SizeServiceResponse();
+            response.IsAvailable = await UnitOfWork.Size.AnySelectAsync(x => x.Id == Model.Id);
+            return response;
         }
     }
 }

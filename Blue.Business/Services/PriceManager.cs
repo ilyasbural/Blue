@@ -28,9 +28,13 @@
             price.IsActive = true;
 
             await UnitOfWork.Price.InsertAsync(price);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PriceServiceResponse { Single = price };
+            return new PriceServiceResponse 
+            { 
+                Single = price, 
+                Success = result 
+            };
         }
 
         public async Task<PriceServiceResponse> UpdateAsync(PriceUpdateDataTransfer Model)
@@ -40,9 +44,13 @@
             price.UpdateDate = DateTime.Now;
 
             await UnitOfWork.Price.UpdateAsync(price);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PriceServiceResponse { Single = price };
+            return new PriceServiceResponse
+            {
+                Single = price,
+                Success = result
+            };
         }
 
         public async Task<PriceServiceResponse> DeleteAsync(PriceDeleteDataTransfer Model)
@@ -51,19 +59,25 @@
             Price price = Mapper.Map<Price>(dataSource[0]);
 
             await UnitOfWork.Price.DeleteAsync(price);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PriceServiceResponse {        };
+            return new PriceServiceResponse
+            {
+                Success = result
+            };
         }
 
         public async Task<PriceServiceResponse> SelectAsync(PriceSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Price> DataSource = await UnitOfWork.Price.SelectAsync(x => x.IsActive == true);
+            return new PriceServiceResponse { List = DataSource };
         }
 
         public async Task<PriceServiceResponse> AnySelectAsync(PriceAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            PriceServiceResponse response = new PriceServiceResponse();
+            response.IsAvailable = await UnitOfWork.Price.AnySelectAsync(x => x.Id == Model.Id);
+            return response;
         }
     }
 }

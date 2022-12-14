@@ -28,9 +28,13 @@
             district.IsActive = true;
 
             await UnitOfWork.District.InsertAsync(district);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new DistrictServiceResponse { Single = district };
+            return new DistrictServiceResponse 
+            { 
+                Single = district, 
+                Success = result 
+            };
         }
 
         public async Task<DistrictServiceResponse> UpdateAsync(DistrictUpdateDataTransfer Model)
@@ -40,9 +44,13 @@
             district.UpdateDate = DateTime.Now;
 
             await UnitOfWork.District.UpdateAsync(district);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new DistrictServiceResponse { Single = district };
+            return new DistrictServiceResponse
+            {
+                Single = district,
+                Success = result
+            };
         }
 
         public async Task<DistrictServiceResponse> DeleteAsync(DistrictDeleteDataTransfer Model)
@@ -51,19 +59,22 @@
             District district = Mapper.Map<District>(dataSource[0]);
 
             await UnitOfWork.District.DeleteAsync(district);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new DistrictServiceResponse {         };
+            return new DistrictServiceResponse { Success = result };
         }
 
         public async Task<DistrictServiceResponse> SelectAsync(DistrictSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<District> DataSource = await UnitOfWork.District.SelectAsync(x => x.IsActive == true);
+            return new DistrictServiceResponse { List = DataSource };
         }
 
         public async Task<DistrictServiceResponse> AnySelectAsync(DistrictAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            DistrictServiceResponse response = new DistrictServiceResponse();
+            response.IsAvailable = await UnitOfWork.City.AnySelectAsync(x => x.Id == Model.Id);
+            return response;
         }
     }
 }

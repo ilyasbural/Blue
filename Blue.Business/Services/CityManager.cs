@@ -28,9 +28,13 @@
             city.IsActive = true;
 
             await UnitOfWork.City.InsertAsync(city);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new CityServiceResponse { Single = city };
+            return new CityServiceResponse 
+            { 
+                Single = city, 
+                Success = result 
+            };
         }
 
         public async Task<CityServiceResponse> UpdateAsync(CityUpdateDataTransfer Model)
@@ -40,9 +44,13 @@
             city.UpdateDate = DateTime.Now;
 
             await UnitOfWork.City.UpdateAsync(city);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new CityServiceResponse { Single = city };
+            return new CityServiceResponse
+            {
+                Single = city,
+                Success = result
+            };
         }
 
         public async Task<CityServiceResponse> DeleteAsync(CityDeleteDataTransfer Model)
@@ -51,10 +59,13 @@
             City city = Mapper.Map<City>(dataSource[0]);
 
             await UnitOfWork.City.DeleteAsync(city);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            CityServiceResponse Response = Mapper.Map<CityServiceResponse>(city);
-            return new CityServiceResponse {    };
+            return new CityServiceResponse
+            {
+                Single = city,
+                Success = result
+            };
         }
 
         public async Task<CityServiceResponse> SelectAsync(CitySelectDataTransfer Model)
@@ -65,12 +76,9 @@
 
         public async Task<CityServiceResponse> AnySelectAsync(CityAnyDataTransfer Model)
         {
-            CityServiceResponse Response = new CityServiceResponse();
-            await UnitOfWork.City.AnySelectAsync(x => x.Id == Model.Id);
-            //Response.IsAvailable = await UnitOfWork.City.AnyAsync(x => x.Id == Model.Id);
-            //Response.Message = "Found";
-            //Response.IsSuccess = true;
-            return Response;
+            CityServiceResponse response = new CityServiceResponse();
+            response.IsAvailable = await UnitOfWork.City.AnySelectAsync(x => x.Id == Model.Id);
+            return response;
         }
     }
 }

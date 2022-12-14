@@ -28,9 +28,13 @@
             picture.IsActive = true;
 
             await UnitOfWork.Picture.InsertAsync(picture);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PictureServiceResponse { Single = picture };
+            return new PictureServiceResponse 
+            { 
+                Single = picture, 
+                Success = result 
+            };
         }
 
         public async Task<PictureServiceResponse> UpdateAsync(PictureUpdateDataTransfer Model)
@@ -40,9 +44,13 @@
             picture.UpdateDate = DateTime.Now;
 
             await UnitOfWork.Picture.UpdateAsync(picture);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PictureServiceResponse { Single = picture };
+            return new PictureServiceResponse
+            {
+                Single = picture,
+                Success = result
+            };
         }
 
         public async Task<PictureServiceResponse> DeleteAsync(PictureDeleteDataTransfer Model)
@@ -51,19 +59,25 @@
             Picture picture = Mapper.Map<Picture>(dataSource[0]);
 
             await UnitOfWork.Picture.DeleteAsync(picture);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PictureServiceResponse {          };
+            return new PictureServiceResponse
+            {
+                Success = result
+            };
         }
 
         public async Task<PictureServiceResponse> SelectAsync(PictureSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Picture> DataSource = await UnitOfWork.Picture.SelectAsync(x => x.IsActive == true);
+            return new PictureServiceResponse { List = DataSource };
         }
 
         public async Task<PictureServiceResponse> AnySelectAsync(PictureAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            PictureServiceResponse response = new PictureServiceResponse();
+            response.IsAvailable = await UnitOfWork.Picture.AnySelectAsync(x => x.Id == Model.Id);
+            return response;
         }
     }
 }

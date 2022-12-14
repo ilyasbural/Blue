@@ -28,9 +28,13 @@
             realEstate.IsActive = true;
 
             await UnitOfWork.RealEstate.InsertAsync(realEstate);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new RealEstateServiceResponse { Single = realEstate };
+            return new RealEstateServiceResponse 
+            { 
+                Single = realEstate, 
+                Success = result 
+            };
         }
 
         public async Task<RealEstateServiceResponse> UpdateAsync(RealEstateUpdateDataTransfer Model)
@@ -40,9 +44,13 @@
             realEstate.UpdateDate = DateTime.Now;
 
             await UnitOfWork.RealEstate.UpdateAsync(realEstate);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new RealEstateServiceResponse { Single = realEstate };
+            return new RealEstateServiceResponse
+            {
+                Single = realEstate,
+                Success = result
+            };
         }
 
         public async Task<RealEstateServiceResponse> DeleteAsync(RealEstateDeleteDataTransfer Model)
@@ -51,19 +59,25 @@
             RealEstate realEstate = Mapper.Map<RealEstate>(dataSource[0]);
 
             await UnitOfWork.RealEstate.DeleteAsync(realEstate);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new RealEstateServiceResponse {       };
+            return new RealEstateServiceResponse
+            {
+                Success = result
+            };
         }
 
         public async Task<RealEstateServiceResponse> SelectAsync(RealEstateSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<RealEstate> DataSource = await UnitOfWork.RealEstate.SelectAsync(x => x.IsActive == true);
+            return new RealEstateServiceResponse { List = DataSource };
         }
 
         public async Task<RealEstateServiceResponse> AnySelectAsync(RealEstateAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            RealEstateServiceResponse response = new RealEstateServiceResponse();
+            response.IsAvailable = await UnitOfWork.RealEstate.AnySelectAsync(x => x.Id == Model.Id);
+            return response;
         }
     }
 }

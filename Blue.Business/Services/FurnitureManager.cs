@@ -28,9 +28,13 @@
             furniture.IsActive = true;
 
             await UnitOfWork.Furniture.InsertAsync(furniture);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new FurnitureServiceResponse { Single = furniture };
+            return new FurnitureServiceResponse 
+            { 
+                Single = furniture, 
+                Success = result 
+            };
         }
 
         public async Task<FurnitureServiceResponse> UpdateAsync(FurnitureUpdateDataTransfer Model)
@@ -40,9 +44,13 @@
             furniture.UpdateDate = DateTime.Now;
 
             await UnitOfWork.Furniture.UpdateAsync(furniture);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new FurnitureServiceResponse { Single = furniture };
+            return new FurnitureServiceResponse
+            {
+                Single = furniture,
+                Success = result
+            };
         }
 
         public async Task<FurnitureServiceResponse> DeleteAsync(FurnitureDeleteDataTransfer Model)
@@ -51,19 +59,25 @@
             Furniture furniture = Mapper.Map<Furniture>(dataSource[0]);
 
             await UnitOfWork.Furniture.DeleteAsync(furniture);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new FurnitureServiceResponse {        };
+            return new FurnitureServiceResponse
+            {
+                Success = result
+            };
         }
 
         public async Task<FurnitureServiceResponse> SelectAsync(FurnitureSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Furniture> DataSource = await UnitOfWork.Furniture.SelectAsync(x => x.IsActive == true);
+            return new FurnitureServiceResponse { List = DataSource };
         }
 
         public async Task<FurnitureServiceResponse> AnySelectAsync(FurnitureAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            FurnitureServiceResponse response = new FurnitureServiceResponse();
+            response.IsAvailable = await UnitOfWork.Furniture.AnySelectAsync(x => x.Id == Model.Id);
+            return response;
         }
     }
 }

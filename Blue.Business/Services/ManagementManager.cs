@@ -28,9 +28,13 @@
             management.IsActive = true;
 
             await UnitOfWork.Management.InsertAsync(management);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementServiceResponse { Single = management };
+            return new ManagementServiceResponse 
+            { 
+                Single = management, 
+                Success = result 
+            };
         }
 
         public async Task<ManagementServiceResponse> UpdateAsync(ManagementUpdateDataTransfer Model)
@@ -40,9 +44,13 @@
             management.UpdateDate = DateTime.Now;
 
             await UnitOfWork.Management.UpdateAsync(management);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementServiceResponse { Single = management };
+            return new ManagementServiceResponse
+            {
+                Single = management,
+                Success = result
+            };
         }
 
         public async Task<ManagementServiceResponse> DeleteAsync(ManagementDeleteDataTransfer Model)
@@ -51,19 +59,25 @@
             Management management = Mapper.Map<Management>(dataSource[0]);
 
             await UnitOfWork.Management.DeleteAsync(management);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementServiceResponse {         };
+            return new ManagementServiceResponse
+            {
+                Success = result
+            };
         }
 
         public async Task<ManagementServiceResponse> SelectAsync(ManagementSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Management> DataSource = await UnitOfWork.Management.SelectAsync(x => x.IsActive == true);
+            return new ManagementServiceResponse { List = DataSource };
         }
 
         public async Task<ManagementServiceResponse> AnySelectAsync(ManagementAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            ManagementServiceResponse response = new ManagementServiceResponse();
+            response.IsAvailable = await UnitOfWork.Management.AnySelectAsync(x => x.Id == Model.Id);
+            return response;
         }
     }
 }

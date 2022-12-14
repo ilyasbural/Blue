@@ -28,9 +28,13 @@
             warming.IsActive = true;
 
             await UnitOfWork.Warming.InsertAsync(warming);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new WarmingServiceResponse { Single = warming };
+            return new WarmingServiceResponse 
+            { 
+                Single = warming, 
+                Success = result 
+            };
         }
 
         public async Task<WarmingServiceResponse> UpdateAsync(WarmingUpdateDataTransfer Model)
@@ -40,9 +44,13 @@
             warming.UpdateDate = DateTime.Now;
 
             await UnitOfWork.Warming.UpdateAsync(warming);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new WarmingServiceResponse { Single = warming };
+            return new WarmingServiceResponse
+            {
+                Single = warming,
+                Success = result
+            };
         }
 
         public async Task<WarmingServiceResponse> DeleteAsync(WarmingDeleteDataTransfer Model)
@@ -51,19 +59,25 @@
             Warming warming = Mapper.Map<Warming>(dataSource[0]);
 
             await UnitOfWork.Warming.DeleteAsync(warming);
-            await UnitOfWork.SaveChangesAsync();
+            int result = await UnitOfWork.SaveChangesAsync();
 
-            return new WarmingServiceResponse {      };
+            return new WarmingServiceResponse
+            {
+                Success = result
+            };
         }
 
         public async Task<WarmingServiceResponse> SelectAsync(WarmingSelectDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Warming> DataSource = await UnitOfWork.Warming.SelectAsync(x => x.IsActive == true);
+            return new WarmingServiceResponse { List = DataSource };
         }
 
         public async Task<WarmingServiceResponse> AnySelectAsync(WarmingAnyDataTransfer Model)
         {
-            throw new NotImplementedException();
+            WarmingServiceResponse response = new WarmingServiceResponse();
+            response.IsAvailable = await UnitOfWork.Warming.AnySelectAsync(x => x.Id == Model.Id);
+            return response;
         }
     }
 }
