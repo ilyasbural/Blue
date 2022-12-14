@@ -17,7 +17,7 @@
         public async Task<RealEstateWebResponse> Create([FromBody] RealEstateInsertDataTransfer Model)
         {
             RealEstateServiceResponse realEstateServiceResponse = await Service.InsertAsync(Model);
-            return new RealEstateWebResponse { RealEstate = realEstateServiceResponse.RealEstate };
+            return new RealEstateWebResponse { Single = realEstateServiceResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<RealEstateWebResponse> Update([FromBody] RealEstateUpdateDataTransfer Model)
         {
             RealEstateServiceResponse realEstateServiceResponse = await Service.UpdateAsync(Model);
-            return new RealEstateWebResponse
-            {
-
-
-            };
+            return new RealEstateWebResponse { Single = realEstateServiceResponse.Single };
         }
 
         [HttpDelete]
@@ -49,11 +45,7 @@
         public async Task<RealEstateWebResponse> Get([FromBody] RealEstateSelectDataTransfer Model)
         {
             RealEstateServiceResponse realEstateServiceResponse = await Service.SelectAsync(Model);
-            return new RealEstateWebResponse
-            {
-
-
-            };
+            return new RealEstateWebResponse { List = realEstateServiceResponse.List };
         }
 
         [HttpGet]
@@ -61,11 +53,7 @@
         public async Task<RealEstateWebResponse> Get([FromBody] RealEstateAnyDataTransfer Model)
         {
             RealEstateServiceResponse realEstateServiceResponse = await Service.AnySelectAsync(Model);
-            return new RealEstateWebResponse
-            {
-
-
-            };
+            return new RealEstateWebResponse { Single = realEstateServiceResponse.Single };
         }
     }
 }

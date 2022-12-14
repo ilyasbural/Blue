@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class CityWebResponse : WebResponseBase<CityWebResponse>
+    public class CityWebResponse : WebResponseBase<City>
     {
-        public City City { get; set; }
+        
     }
 }

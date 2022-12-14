@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class ManagementServiceResponse : ServiceResponseBase<ManagementServiceResponse>
+    public class ManagementServiceResponse : ServiceResponseBase<Management>
     {
-        public Management Management { get; set; }
+
     }
 }

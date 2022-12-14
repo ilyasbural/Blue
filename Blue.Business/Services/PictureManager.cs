@@ -30,7 +30,7 @@
             await UnitOfWork.Picture.InsertAsync(picture);
             await UnitOfWork.SaveChangesAsync();
 
-            return new PictureServiceResponse { Picture = picture };
+            return new PictureServiceResponse { Single = picture };
         }
 
         public async Task<PictureServiceResponse> UpdateAsync(PictureUpdateDataTransfer Model)
@@ -42,13 +42,18 @@
             await UnitOfWork.Picture.UpdateAsync(picture);
             await UnitOfWork.SaveChangesAsync();
 
-            PictureServiceResponse pictureServiceResponse = Mapper.Map<PictureServiceResponse>(picture);
-            return new PictureServiceResponse { };
+            return new PictureServiceResponse { Single = picture };
         }
 
         public async Task<PictureServiceResponse> DeleteAsync(PictureDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Picture> dataSource = await UnitOfWork.Picture.SelectAsync(x => x.Id == Model.Id);
+            Picture picture = Mapper.Map<Picture>(dataSource[0]);
+
+            await UnitOfWork.Picture.DeleteAsync(picture);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new PictureServiceResponse {          };
         }
 
         public async Task<PictureServiceResponse> SelectAsync(PictureSelectDataTransfer Model)

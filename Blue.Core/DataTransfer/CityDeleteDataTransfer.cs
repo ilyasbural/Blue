@@ -2,6 +2,6 @@
 {
     public class CityDeleteDataTransfer : DataTransferBase<CityDeleteDataTransfer>
     {
-
+        public Guid Id { get; set; }
     }
 }

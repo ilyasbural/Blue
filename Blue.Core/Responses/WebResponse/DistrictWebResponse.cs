@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class DistrictWebResponse : WebResponseBase<DistrictWebResponse>
+    public class DistrictWebResponse : WebResponseBase<District>
     {
-        public District District { get; set; }
+
     }
 }

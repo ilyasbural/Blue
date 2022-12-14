@@ -17,7 +17,7 @@
         public async Task<PictureWebResponse> Create([FromBody] PictureInsertDataTransfer Model)
         {
             PictureServiceResponse pictureServiceResponse = await Service.InsertAsync(Model);
-            return new PictureWebResponse { Picture = pictureServiceResponse.Picture };
+            return new PictureWebResponse { Single = pictureServiceResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<PictureWebResponse> Update([FromBody] PictureUpdateDataTransfer Model)
         {
             PictureServiceResponse pictureServiceResponse = await Service.UpdateAsync(Model);
-            return new PictureWebResponse
-            {
-
-
-            };
+            return new PictureWebResponse { Single = pictureServiceResponse.Single };
         }
 
         [HttpDelete]
@@ -49,11 +45,7 @@
         public async Task<PictureWebResponse> Get([FromBody] PictureSelectDataTransfer Model)
         {
             PictureServiceResponse pictureServiceResponse = await Service.SelectAsync(Model);
-            return new PictureWebResponse
-            {
-
-
-            };
+            return new PictureWebResponse { List = pictureServiceResponse.List };
         }
 
         [HttpGet]
@@ -61,11 +53,7 @@
         public async Task<PictureWebResponse> Get([FromBody] PictureAnyDataTransfer Model)
         {
             PictureServiceResponse pictureServiceResponse = await Service.AnySelectAsync(Model);
-            return new PictureWebResponse
-            {
-
-
-            };
+            return new PictureWebResponse { Single = pictureServiceResponse.Single };
         }
     }
 }

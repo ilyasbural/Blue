@@ -30,7 +30,7 @@
             await UnitOfWork.RealEstateDetail.InsertAsync(realEstateDetail);
             await UnitOfWork.SaveChangesAsync();
 
-            return new RealEstateDetailServiceResponse { RealEstateDetail = realEstateDetail };
+            return new RealEstateDetailServiceResponse { Single = realEstateDetail };
         }
 
         public async Task<RealEstateDetailServiceResponse> UpdateAsync(RealEstateDetailUpdateDataTransfer Model)
@@ -42,13 +42,18 @@
             await UnitOfWork.RealEstateDetail.UpdateAsync(realEstateDetail);
             await UnitOfWork.SaveChangesAsync();
 
-            RealEstateDetailServiceResponse realEstateDetailServiceResponse = Mapper.Map<RealEstateDetailServiceResponse>(realEstateDetail);
-            return new RealEstateDetailServiceResponse { };
+            return new RealEstateDetailServiceResponse { Single = realEstateDetail };
         }
 
         public async Task<RealEstateDetailServiceResponse> DeleteAsync(RealEstateDetailDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<RealEstateDetail> dataSource = await UnitOfWork.RealEstateDetail.SelectAsync(x => x.Id == Model.Id);
+            RealEstateDetail realEstateDetail = Mapper.Map<RealEstateDetail>(dataSource[0]);
+
+            await UnitOfWork.RealEstateDetail.DeleteAsync(realEstateDetail);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new RealEstateDetailServiceResponse {        };
         }
 
         public async Task<RealEstateDetailServiceResponse> SelectAsync(RealEstateDetailSelectDataTransfer Model)

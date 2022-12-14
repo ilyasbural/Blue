@@ -16,20 +16,16 @@
         [Route("api/city")]
         public async Task<CityWebResponse> Create([FromBody] CityInsertDataTransfer Model)
         {
-            CityServiceResponse announceResponse = await Service.InsertAsync(Model);
-            return new CityWebResponse { City = announceResponse.City };
+            CityServiceResponse cityServiceResponse = await Service.InsertAsync(Model);
+            return new CityWebResponse { Single = cityServiceResponse.Single };
         }
 
         [HttpPut]
         [Route("api/city")]
         public async Task<CityWebResponse> Update([FromBody] CityUpdateDataTransfer Model)
         {
-            CityServiceResponse announceResponse = await Service.UpdateAsync(Model);
-            return new CityWebResponse
-            {
-
-
-            };
+            CityServiceResponse cityServiceResponse = await Service.UpdateAsync(Model);
+            return new CityWebResponse { Single = cityServiceResponse.Single };
         }
 
         [HttpDelete]
@@ -49,11 +45,7 @@
         public async Task<CityWebResponse> Get([FromBody] CitySelectDataTransfer Model)
         {
             CityServiceResponse announceResponse = await Service.SelectAsync(Model);
-            return new CityWebResponse
-            {
-
-
-            };
+            return new CityWebResponse { List = announceResponse.List };
         }
 
         [HttpGet]
@@ -61,11 +53,7 @@
         public async Task<CityWebResponse> Get([FromBody] CityAnyDataTransfer Model)
         {
             CityServiceResponse announceResponse = await Service.AnySelectAsync(Model);
-            return new CityWebResponse
-            {
-
-
-            };
+            return new CityWebResponse { Single = announceResponse.Single };
         }
     }
 }

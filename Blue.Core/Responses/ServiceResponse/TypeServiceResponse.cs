@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class TypeServiceResponse : ServiceResponseBase<TypeServiceResponse>
+    public class TypeServiceResponse : ServiceResponseBase<Type>
     {
-        public Type Type { get; set; }
+
     }
 }

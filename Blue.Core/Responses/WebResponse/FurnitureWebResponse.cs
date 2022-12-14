@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class FurnitureWebResponse : WebResponseBase<FurnitureWebResponse>
+    public class FurnitureWebResponse : WebResponseBase<Furniture>
     {
-        public Furniture Furniture { get; set; }
+       
     }
 }

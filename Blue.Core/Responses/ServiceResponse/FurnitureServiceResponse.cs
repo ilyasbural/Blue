@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class FurnitureServiceResponse : ServiceResponseBase<FurnitureServiceResponse>
+    public class FurnitureServiceResponse : ServiceResponseBase<Furniture>
     {
-        public Furniture Furniture { get; set; }
+        
     }
 }

@@ -24,6 +24,7 @@
             Service.AddScoped<ISizeRepository, SizeRepositoryEF>();
             Service.AddScoped<ITypeRepository, TypeRepositoryEF>();
             Service.AddScoped<IWarmingRepository, WarmingRepositoryEF>();
+            Service.AddScoped<IUnitOfWork, UnitOfWork>();
 
             Service.AddScoped<IValidator<City>, CityValidator>();
             Service.AddScoped<IValidator<District>, DistrictValidator>();

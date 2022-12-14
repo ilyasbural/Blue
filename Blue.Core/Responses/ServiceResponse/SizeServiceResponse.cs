@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class SizeServiceResponse : ServiceResponseBase<SizeServiceResponse>
+    public class SizeServiceResponse : ServiceResponseBase<Size>
     {
-        public Size Size { get; set; }
+
     }
 }

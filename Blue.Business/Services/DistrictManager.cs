@@ -30,7 +30,7 @@
             await UnitOfWork.District.InsertAsync(district);
             await UnitOfWork.SaveChangesAsync();
 
-            return new DistrictServiceResponse { District = district };
+            return new DistrictServiceResponse { Single = district };
         }
 
         public async Task<DistrictServiceResponse> UpdateAsync(DistrictUpdateDataTransfer Model)
@@ -42,13 +42,18 @@
             await UnitOfWork.District.UpdateAsync(district);
             await UnitOfWork.SaveChangesAsync();
 
-            DistrictServiceResponse districtServiceResponse = Mapper.Map<DistrictServiceResponse>(district);
-            return new DistrictServiceResponse {   };
+            return new DistrictServiceResponse { Single = district };
         }
 
         public async Task<DistrictServiceResponse> DeleteAsync(DistrictDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<District> dataSource = await UnitOfWork.District.SelectAsync(x => x.Id == Model.Id);
+            District district = Mapper.Map<District>(dataSource[0]);
+
+            await UnitOfWork.District.DeleteAsync(district);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new DistrictServiceResponse {         };
         }
 
         public async Task<DistrictServiceResponse> SelectAsync(DistrictSelectDataTransfer Model)

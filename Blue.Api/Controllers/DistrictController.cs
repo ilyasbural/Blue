@@ -17,7 +17,7 @@
         public async Task<DistrictWebResponse> Create([FromBody] DistrictInsertDataTransfer Model)
         {
             DistrictServiceResponse districtServiceResponse = await Service.InsertAsync(Model);
-            return new DistrictWebResponse { District = districtServiceResponse.District };
+            return new DistrictWebResponse { Single = districtServiceResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<DistrictWebResponse> Update([FromBody] DistrictUpdateDataTransfer Model)
         {
             DistrictServiceResponse districtServiceResponse = await Service.UpdateAsync(Model);
-            return new DistrictWebResponse
-            {
-
-
-            };
+            return new DistrictWebResponse { Single = districtServiceResponse.Single };
         }
 
         [HttpDelete]
@@ -49,11 +45,7 @@
         public async Task<DistrictWebResponse> Get([FromBody] DistrictSelectDataTransfer Model)
         {
             DistrictServiceResponse districtServiceResponse = await Service.SelectAsync(Model);
-            return new DistrictWebResponse
-            {
-
-
-            };
+            return new DistrictWebResponse { List = districtServiceResponse.List };
         }
 
         [HttpGet]
@@ -61,11 +53,7 @@
         public async Task<DistrictWebResponse> Get([FromBody] DistrictAnyDataTransfer Model)
         {
             DistrictServiceResponse districtServiceResponse = await Service.AnySelectAsync(Model);
-            return new DistrictWebResponse
-            {
-
-
-            };
+            return new DistrictWebResponse { Single = districtServiceResponse.Single };
         }
     }
 }

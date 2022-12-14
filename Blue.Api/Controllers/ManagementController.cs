@@ -17,7 +17,7 @@
         public async Task<ManagementWebResponse> Create([FromBody] ManagementInsertDataTransfer Model)
         {
             ManagementServiceResponse managementServiceResponse = await Service.InsertAsync(Model);
-            return new ManagementWebResponse { Management = managementServiceResponse.Management };
+            return new ManagementWebResponse { Single = managementServiceResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<ManagementWebResponse> Update([FromBody] ManagementUpdateDataTransfer Model)
         {
             ManagementServiceResponse managementServiceResponse = await Service.UpdateAsync(Model);
-            return new ManagementWebResponse
-            {
-
-
-            };
+            return new ManagementWebResponse { Single = managementServiceResponse.Single };
         }
 
         [HttpDelete]
@@ -49,11 +45,7 @@
         public async Task<ManagementWebResponse> Get([FromBody] ManagementSelectDataTransfer Model)
         {
             ManagementServiceResponse managementServiceResponse = await Service.SelectAsync(Model);
-            return new ManagementWebResponse
-            {
-
-
-            };
+            return new ManagementWebResponse { List = managementServiceResponse.List };
         }
 
         [HttpGet]
@@ -61,11 +53,7 @@
         public async Task<ManagementWebResponse> Get([FromBody] ManagementAnyDataTransfer Model)
         {
             ManagementServiceResponse managementServiceResponse = await Service.AnySelectAsync(Model);
-            return new ManagementWebResponse
-            {
-
-
-            };
+            return new ManagementWebResponse { Single = managementServiceResponse.Single };
         }
     }
 }

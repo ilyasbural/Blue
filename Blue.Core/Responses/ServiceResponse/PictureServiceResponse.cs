@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class PictureServiceResponse : ServiceResponseBase<PictureServiceResponse>
+    public class PictureServiceResponse : ServiceResponseBase<Picture>
     {
-        public Picture Picture { get; set; }
+
     }
 }

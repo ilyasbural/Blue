@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class SizeWebResponse : WebResponseBase<SizeWebResponse>
+    public class SizeWebResponse : WebResponseBase<Size>
     {
-        public Size Size { get; set; }
+        
     }
 }

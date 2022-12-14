@@ -17,7 +17,7 @@
         public async Task<PriceWebResponse> Create([FromBody] PriceInsertDataTransfer Model)
         {
             PriceServiceResponse priceServiceResponse = await Service.InsertAsync(Model);
-            return new PriceWebResponse { Price = priceServiceResponse.Price };
+            return new PriceWebResponse { Single = priceServiceResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<PriceWebResponse> Update([FromBody] PriceUpdateDataTransfer Model)
         {
             PriceServiceResponse priceServiceResponse = await Service.UpdateAsync(Model);
-            return new PriceWebResponse
-            {
-
-
-            };
+            return new PriceWebResponse { Single = priceServiceResponse.Single };
         }
 
         [HttpDelete]
@@ -49,11 +45,7 @@
         public async Task<PriceWebResponse> Get([FromBody] PriceSelectDataTransfer Model)
         {
             PriceServiceResponse priceServiceResponse = await Service.SelectAsync(Model);
-            return new PriceWebResponse
-            {
-
-
-            };
+            return new PriceWebResponse { List = priceServiceResponse.List };
         }
 
         [HttpGet]
@@ -61,11 +53,7 @@
         public async Task<PriceWebResponse> Get([FromBody] PriceAnyDataTransfer Model)
         {
             PriceServiceResponse priceServiceResponse = await Service.AnySelectAsync(Model);
-            return new PriceWebResponse
-            {
-
-
-            };
+            return new PriceWebResponse { Single = priceServiceResponse.Single };
         }
     }
 }

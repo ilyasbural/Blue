@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class PriceServiceResponse : ServiceResponseBase<PriceServiceResponse>
+    public class PriceServiceResponse : ServiceResponseBase<Price>
     {
-        public Price Price { get; set; }
+
     }
 }

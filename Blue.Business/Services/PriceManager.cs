@@ -30,7 +30,7 @@
             await UnitOfWork.Price.InsertAsync(price);
             await UnitOfWork.SaveChangesAsync();
 
-            return new PriceServiceResponse { Price = price };
+            return new PriceServiceResponse { Single = price };
         }
 
         public async Task<PriceServiceResponse> UpdateAsync(PriceUpdateDataTransfer Model)
@@ -42,13 +42,18 @@
             await UnitOfWork.Price.UpdateAsync(price);
             await UnitOfWork.SaveChangesAsync();
 
-            PriceServiceResponse priceServiceResponse = Mapper.Map<PriceServiceResponse>(price);
-            return new PriceServiceResponse { };
+            return new PriceServiceResponse { Single = price };
         }
 
         public async Task<PriceServiceResponse> DeleteAsync(PriceDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Price> dataSource = await UnitOfWork.Price.SelectAsync(x => x.Id == Model.Id);
+            Price price = Mapper.Map<Price>(dataSource[0]);
+
+            await UnitOfWork.Price.DeleteAsync(price);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new PriceServiceResponse {        };
         }
 
         public async Task<PriceServiceResponse> SelectAsync(PriceSelectDataTransfer Model)

@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class TypeWebResponse : WebResponseBase<TypeWebResponse>
+    public class TypeWebResponse : WebResponseBase<Type>
     {
-        public Type Type { get; set; }
+
     }
 }

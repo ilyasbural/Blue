@@ -30,7 +30,7 @@
             await UnitOfWork.Furniture.InsertAsync(furniture);
             await UnitOfWork.SaveChangesAsync();
 
-            return new FurnitureServiceResponse { Furniture = furniture };
+            return new FurnitureServiceResponse { Single = furniture };
         }
 
         public async Task<FurnitureServiceResponse> UpdateAsync(FurnitureUpdateDataTransfer Model)
@@ -42,13 +42,18 @@
             await UnitOfWork.Furniture.UpdateAsync(furniture);
             await UnitOfWork.SaveChangesAsync();
 
-            FurnitureServiceResponse furnitureServiceResponse = Mapper.Map<FurnitureServiceResponse>(furniture);
-            return new FurnitureServiceResponse { };
+            return new FurnitureServiceResponse { Single = furniture };
         }
 
         public async Task<FurnitureServiceResponse> DeleteAsync(FurnitureDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Furniture> dataSource = await UnitOfWork.Furniture.SelectAsync(x => x.Id == Model.Id);
+            Furniture furniture = Mapper.Map<Furniture>(dataSource[0]);
+
+            await UnitOfWork.Furniture.DeleteAsync(furniture);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new FurnitureServiceResponse {        };
         }
 
         public async Task<FurnitureServiceResponse> SelectAsync(FurnitureSelectDataTransfer Model)

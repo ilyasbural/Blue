@@ -30,7 +30,7 @@
             await UnitOfWork.Size.InsertAsync(size);
             await UnitOfWork.SaveChangesAsync();
 
-            return new SizeServiceResponse { Size = size };
+            return new SizeServiceResponse { Single = size };
         }
 
         public async Task<SizeServiceResponse> UpdateAsync(SizeUpdateDataTransfer Model)
@@ -42,13 +42,18 @@
             await UnitOfWork.Size.UpdateAsync(size);
             await UnitOfWork.SaveChangesAsync();
 
-            SizeServiceResponse announceResponse = Mapper.Map<SizeServiceResponse>(size);
-            return new SizeServiceResponse { };
+            return new SizeServiceResponse { Single = size };
         }
 
         public async Task<SizeServiceResponse> DeleteAsync(SizeDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Size> dataSource = await UnitOfWork.Size.SelectAsync(x => x.Id == Model.Id);
+            Size size = Mapper.Map<Size>(dataSource[0]);
+
+            await UnitOfWork.Size.DeleteAsync(size);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new SizeServiceResponse {     };
         }
 
         public async Task<SizeServiceResponse> SelectAsync(SizeSelectDataTransfer Model)

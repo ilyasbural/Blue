@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class DistrictServiceResponse : ServiceResponseBase<DistrictServiceResponse>
+    public class DistrictServiceResponse : ServiceResponseBase<District>
     {
-        public District District { get; set; }
+
     }
 }

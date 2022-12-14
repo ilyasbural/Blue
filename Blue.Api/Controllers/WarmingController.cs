@@ -17,7 +17,7 @@
         public async Task<WarmingWebResponse> Create([FromBody] WarmingInsertDataTransfer Model)
         {
             WarmingServiceResponse warmingServiceResponse = await Service.InsertAsync(Model);
-            return new WarmingWebResponse { Warming = warmingServiceResponse.Warming };
+            return new WarmingWebResponse { Single = warmingServiceResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<WarmingWebResponse> Update([FromBody] WarmingUpdateDataTransfer Model)
         {
             WarmingServiceResponse warmingServiceResponse = await Service.UpdateAsync(Model);
-            return new WarmingWebResponse
-            {
-
-
-            };
+            return new WarmingWebResponse { Single = warmingServiceResponse.Single };
         }
 
         [HttpDelete]
@@ -49,11 +45,7 @@
         public async Task<WarmingWebResponse> Get([FromBody] WarmingSelectDataTransfer Model)
         {
             WarmingServiceResponse warmingServiceResponse = await Service.SelectAsync(Model);
-            return new WarmingWebResponse
-            {
-
-
-            };
+            return new WarmingWebResponse { List = warmingServiceResponse.List };
         }
 
         [HttpGet]
@@ -61,11 +53,7 @@
         public async Task<WarmingWebResponse> Get([FromBody] WarmingAnyDataTransfer Model)
         {
             WarmingServiceResponse warmingServiceResponse = await Service.AnySelectAsync(Model);
-            return new WarmingWebResponse
-            {
-
-
-            };
+            return new WarmingWebResponse { Single = warmingServiceResponse.Single };
         }
     }
 }

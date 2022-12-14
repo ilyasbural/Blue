@@ -30,7 +30,7 @@
             await UnitOfWork.Management.InsertAsync(management);
             await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementServiceResponse { Management = management };
+            return new ManagementServiceResponse { Single = management };
         }
 
         public async Task<ManagementServiceResponse> UpdateAsync(ManagementUpdateDataTransfer Model)
@@ -42,13 +42,18 @@
             await UnitOfWork.Management.UpdateAsync(management);
             await UnitOfWork.SaveChangesAsync();
 
-            ManagementServiceResponse announceResponse = Mapper.Map<ManagementServiceResponse>(management);
-            return new ManagementServiceResponse {   };
+            return new ManagementServiceResponse { Single = management };
         }
 
         public async Task<ManagementServiceResponse> DeleteAsync(ManagementDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Management> dataSource = await UnitOfWork.Management.SelectAsync(x => x.Id == Model.Id);
+            Management management = Mapper.Map<Management>(dataSource[0]);
+
+            await UnitOfWork.Management.DeleteAsync(management);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new ManagementServiceResponse {         };
         }
 
         public async Task<ManagementServiceResponse> SelectAsync(ManagementSelectDataTransfer Model)

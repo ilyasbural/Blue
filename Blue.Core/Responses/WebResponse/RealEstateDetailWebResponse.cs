@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class RealEstateDetailWebResponse : WebResponseBase<RealEstateDetailWebResponse>
+    public class RealEstateDetailWebResponse : WebResponseBase<RealEstateDetail>
     {
-        public RealEstateDetail RealEstateDetail { get; set; }
+
     }
 }

@@ -17,7 +17,7 @@
         public async Task<SizeWebResponse> Create([FromBody] SizeInsertDataTransfer Model)
         {
             SizeServiceResponse sizeServiceResponse = await Service.InsertAsync(Model);
-            return new SizeWebResponse { Size = sizeServiceResponse.Size };
+            return new SizeWebResponse { Single = sizeServiceResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<SizeWebResponse> Update([FromBody] SizeUpdateDataTransfer Model)
         {
             SizeServiceResponse sizeServiceResponse = await Service.UpdateAsync(Model);
-            return new SizeWebResponse
-            {
-
-
-            };
+            return new SizeWebResponse { Single = sizeServiceResponse.Single };
         }
 
         [HttpDelete]
@@ -49,11 +45,7 @@
         public async Task<SizeWebResponse> Get([FromBody] SizeSelectDataTransfer Model)
         {
             SizeServiceResponse sizeServiceResponse = await Service.SelectAsync(Model);
-            return new SizeWebResponse
-            {
-
-
-            };
+            return new SizeWebResponse { List = sizeServiceResponse.List };
         }
 
         [HttpGet]
@@ -61,11 +53,7 @@
         public async Task<SizeWebResponse> Get([FromBody] SizeAnyDataTransfer Model)
         {
             SizeServiceResponse sizeServiceResponse = await Service.AnySelectAsync(Model);
-            return new SizeWebResponse
-            {
-
-
-            };
+            return new SizeWebResponse { Single = sizeServiceResponse.Single };
         }
     }
 }

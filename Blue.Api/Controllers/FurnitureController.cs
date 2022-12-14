@@ -17,7 +17,7 @@
         public async Task<FurnitureWebResponse> Create([FromBody] FurnitureInsertDataTransfer Model)
         {
             FurnitureServiceResponse furnitureServiceResponse = await Service.InsertAsync(Model);
-            return new FurnitureWebResponse { Furniture = furnitureServiceResponse.Furniture };
+            return new FurnitureWebResponse { Single = furnitureServiceResponse.Single };
         }
 
         [HttpPut]
@@ -25,11 +25,7 @@
         public async Task<FurnitureWebResponse> Update([FromBody] FurnitureUpdateDataTransfer Model)
         {
             FurnitureServiceResponse furnitureServiceResponse = await Service.UpdateAsync(Model);
-            return new FurnitureWebResponse
-            {
-
-
-            };
+            return new FurnitureWebResponse { Single = furnitureServiceResponse.Single };
         }
 
         [HttpDelete]
@@ -49,11 +45,7 @@
         public async Task<FurnitureWebResponse> Get([FromBody] FurnitureSelectDataTransfer Model)
         {
             FurnitureServiceResponse furnitureServiceResponse = await Service.SelectAsync(Model);
-            return new FurnitureWebResponse
-            {
-
-
-            };
+            return new FurnitureWebResponse { List = furnitureServiceResponse.List };
         }
 
         [HttpGet]
@@ -61,11 +53,7 @@
         public async Task<FurnitureWebResponse> Get([FromBody] FurnitureAnyDataTransfer Model)
         {
             FurnitureServiceResponse furnitureServiceResponse = await Service.AnySelectAsync(Model);
-            return new FurnitureWebResponse
-            {
-
-
-            };
+            return new FurnitureWebResponse { Single = furnitureServiceResponse.Single };
         }
     }
 }

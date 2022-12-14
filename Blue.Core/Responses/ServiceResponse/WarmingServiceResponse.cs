@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public class WarmingServiceResponse : ServiceResponseBase<WarmingServiceResponse>
+    public class WarmingServiceResponse : ServiceResponseBase<Warming>
     {
-        public Warming Warming { get; set; }
+        
     }
 }

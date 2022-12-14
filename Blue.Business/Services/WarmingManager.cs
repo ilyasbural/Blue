@@ -30,7 +30,7 @@
             await UnitOfWork.Warming.InsertAsync(warming);
             await UnitOfWork.SaveChangesAsync();
 
-            return new WarmingServiceResponse { Warming = warming };
+            return new WarmingServiceResponse { Single = warming };
         }
 
         public async Task<WarmingServiceResponse> UpdateAsync(WarmingUpdateDataTransfer Model)
@@ -42,13 +42,18 @@
             await UnitOfWork.Warming.UpdateAsync(warming);
             await UnitOfWork.SaveChangesAsync();
 
-            WarmingServiceResponse warmingServiceResponse = Mapper.Map<WarmingServiceResponse>(warming);
-            return new WarmingServiceResponse { };
+            return new WarmingServiceResponse { Single = warming };
         }
 
         public async Task<WarmingServiceResponse> DeleteAsync(WarmingDeleteDataTransfer Model)
         {
-            throw new NotImplementedException();
+            List<Warming> dataSource = await UnitOfWork.Warming.SelectAsync(x => x.Id == Model.Id);
+            Warming warming = Mapper.Map<Warming>(dataSource[0]);
+
+            await UnitOfWork.Warming.DeleteAsync(warming);
+            await UnitOfWork.SaveChangesAsync();
+
+            return new WarmingServiceResponse {      };
         }
 
         public async Task<WarmingServiceResponse> SelectAsync(WarmingSelectDataTransfer Model)
