@@ -2,10 +2,10 @@
 {
     public interface IManagementService
     {
-        Task<ManagementServiceResponse> InsertAsync(ManagementInsertDataTransfer Model);
-        Task<ManagementServiceResponse> UpdateAsync(ManagementUpdateDataTransfer Model);
-        Task<ManagementServiceResponse> DeleteAsync(ManagementDeleteDataTransfer Model);
-        Task<ManagementServiceResponse> SelectAsync(ManagementSelectDataTransfer Model);
-        Task<ManagementServiceResponse> AnySelectAsync(ManagementAnyDataTransfer Model);
+        Task<Response<Management>> InsertAsync(ManagementInsertDataTransfer Model);
+        Task<Response<Management>> UpdateAsync(ManagementUpdateDataTransfer Model);
+        Task<Response<Management>> DeleteAsync(ManagementDeleteDataTransfer Model);
+        Task<Response<Management>> SelectAsync(ManagementSelectDataTransfer Model);
+        Task<Response<Management>> AnySelectAsync(ManagementAnyDataTransfer Model);
     }
 }

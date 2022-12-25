@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<WarmingServiceResponse> InsertAsync(WarmingInsertDataTransfer Model)
+        public async Task<Response<Warming>> InsertAsync(WarmingInsertDataTransfer Model)
         {
             Warming warming = Mapper.Map<Warming>(Model);
             warming.Id = Guid.NewGuid();
@@ -30,14 +30,18 @@
             await UnitOfWork.Warming.InsertAsync(warming);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new WarmingServiceResponse 
-            { 
-                Single = warming, 
-                Success = result 
+            return new Response<Warming>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<WarmingServiceResponse> UpdateAsync(WarmingUpdateDataTransfer Model)
+        public async Task<Response<Warming>> UpdateAsync(WarmingUpdateDataTransfer Model)
         {
             List<Warming> DataSource = await UnitOfWork.Warming.SelectAsync(x => x.Id == Model.Id);
             Warming warming = Mapper.Map<Warming>(DataSource[0]);
@@ -46,14 +50,18 @@
             await UnitOfWork.Warming.UpdateAsync(warming);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new WarmingServiceResponse
+            return new Response<Warming>
             {
-                Single = warming,
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<WarmingServiceResponse> DeleteAsync(WarmingDeleteDataTransfer Model)
+        public async Task<Response<Warming>> DeleteAsync(WarmingDeleteDataTransfer Model)
         {
             List<Warming> dataSource = await UnitOfWork.Warming.SelectAsync(x => x.Id == Model.Id);
             Warming warming = Mapper.Map<Warming>(dataSource[0]);
@@ -61,23 +69,45 @@
             await UnitOfWork.Warming.DeleteAsync(warming);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new WarmingServiceResponse
+            return new Response<Warming>
             {
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<WarmingServiceResponse> SelectAsync(WarmingSelectDataTransfer Model)
+        public async Task<Response<Warming>> SelectAsync(WarmingSelectDataTransfer Model)
         {
             List<Warming> DataSource = await UnitOfWork.Warming.SelectAsync(x => x.IsActive == true);
-            return new WarmingServiceResponse { List = DataSource };
+            return new Response<Warming>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
-        public async Task<WarmingServiceResponse> AnySelectAsync(WarmingAnyDataTransfer Model)
+        public async Task<Response<Warming>> AnySelectAsync(WarmingAnyDataTransfer Model)
         {
-            WarmingServiceResponse response = new WarmingServiceResponse();
-            response.IsAvailable = await UnitOfWork.Warming.AnySelectAsync(x => x.Id == Model.Id);
-            return response;
+            //WarmingServiceResponse response = new WarmingServiceResponse();
+            await UnitOfWork.Warming.SelectAsync(x => x.Id == Model.Id);
+            //return response;
+            return new Response<Warming>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
     }
 }

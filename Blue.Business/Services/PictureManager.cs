@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<PictureServiceResponse> InsertAsync(PictureInsertDataTransfer Model)
+        public async Task<Response<Picture>> InsertAsync(PictureInsertDataTransfer Model)
         {
             Picture picture = Mapper.Map<Picture>(Model);
             picture.Id = Guid.NewGuid();
@@ -30,14 +30,18 @@
             await UnitOfWork.Picture.InsertAsync(picture);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PictureServiceResponse 
-            { 
-                Single = picture, 
-                Success = result 
+            return new Response<Picture>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<PictureServiceResponse> UpdateAsync(PictureUpdateDataTransfer Model)
+        public async Task<Response<Picture>> UpdateAsync(PictureUpdateDataTransfer Model)
         {
             List<Picture> DataSource = await UnitOfWork.Picture.SelectAsync(x => x.Id == Model.Id);
             Picture picture = Mapper.Map<Picture>(DataSource[0]);
@@ -46,14 +50,18 @@
             await UnitOfWork.Picture.UpdateAsync(picture);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PictureServiceResponse
+            return new Response<Picture>
             {
-                Single = picture,
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<PictureServiceResponse> DeleteAsync(PictureDeleteDataTransfer Model)
+        public async Task<Response<Picture>> DeleteAsync(PictureDeleteDataTransfer Model)
         {
             List<Picture> dataSource = await UnitOfWork.Picture.SelectAsync(x => x.Id == Model.Id);
             Picture picture = Mapper.Map<Picture>(dataSource[0]);
@@ -61,23 +69,45 @@
             await UnitOfWork.Picture.DeleteAsync(picture);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PictureServiceResponse
+            return new Response<Picture>
             {
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<PictureServiceResponse> SelectAsync(PictureSelectDataTransfer Model)
+        public async Task<Response<Picture>> SelectAsync(PictureSelectDataTransfer Model)
         {
             List<Picture> DataSource = await UnitOfWork.Picture.SelectAsync(x => x.IsActive == true);
-            return new PictureServiceResponse { List = DataSource };
+            return new Response<Picture>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
-        public async Task<PictureServiceResponse> AnySelectAsync(PictureAnyDataTransfer Model)
+        public async Task<Response<Picture>> AnySelectAsync(PictureAnyDataTransfer Model)
         {
-            PictureServiceResponse response = new PictureServiceResponse();
-            response.IsAvailable = await UnitOfWork.Picture.AnySelectAsync(x => x.Id == Model.Id);
-            return response;
+            //PictureServiceResponse response = new PictureServiceResponse();
+            await UnitOfWork.Picture.SelectAsync(x => x.Id == Model.Id);
+            //return response;
+            return new Response<Picture>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
     }
 }

@@ -6,7 +6,7 @@
     [ApiController]
     public class TypeController : ControllerBase
     {
-        private readonly ITypeService Service;
+        readonly ITypeService Service;
         public TypeController(ITypeService service)
         {
             Service = service;
@@ -14,46 +14,72 @@
 
         [HttpPost]
         [Route("api/type")]
-        public async Task<TypeWebResponse> Create([FromBody] TypeInsertDataTransfer Model)
+        public async Task<Response<Type>> Create([FromBody] TypeInsertDataTransfer Model)
         {
-            TypeServiceResponse typeServiceResponse = await Service.InsertAsync(Model);
-            return new TypeWebResponse { Single = typeServiceResponse.Single };
+            Response<Type> Response = await Service.InsertAsync(Model);
+            return new Response<Type>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpPut]
         [Route("api/type")]
-        public async Task<TypeWebResponse> Update([FromBody] TypeUpdateDataTransfer Model)
+        public async Task<Response<Type>> Update([FromBody] TypeUpdateDataTransfer Model)
         {
-            TypeServiceResponse typeServiceResponse = await Service.UpdateAsync(Model);
-            return new TypeWebResponse { Single = typeServiceResponse.Single };
+            Response<Type> Response = await Service.UpdateAsync(Model);
+            return new Response<Type>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpDelete]
         [Route("api/type")]
-        public async Task<TypeWebResponse> Delete([FromBody] TypeDeleteDataTransfer Model)
+        public async Task<Response<Type>> Delete([FromBody] TypeDeleteDataTransfer Model)
         {
-            TypeServiceResponse typeServiceResponse = await Service.DeleteAsync(Model);
-            return new TypeWebResponse
+            Response<Type> Response = await Service.DeleteAsync(Model);
+            return new Response<Type>
             {
-
-
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
         [HttpGet]
         [Route("api/type")]
-        public async Task<TypeWebResponse> Get([FromBody] TypeSelectDataTransfer Model)
+        public async Task<Response<Type>> Get([FromBody] TypeSelectDataTransfer Model)
         {
-            TypeServiceResponse typeServiceResponse = await Service.SelectAsync(Model);
-            return new TypeWebResponse { List = typeServiceResponse.List };
+            Response<Type> Response = await Service.SelectAsync(Model);
+            return new Response<Type>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpGet]
         [Route("api/type/{id}")]
-        public async Task<TypeWebResponse> Get([FromBody] TypeAnyDataTransfer Model)
+        public async Task<Response<Type>> Get([FromBody] TypeAnyDataTransfer Model)
         {
-            TypeServiceResponse typeServiceResponse = await Service.AnySelectAsync(Model);
-            return new TypeWebResponse { Single = typeServiceResponse.Single };
+            Response<Type> Response = await Service.AnySelectAsync(Model);
+            return new Response<Type>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
     }
 }

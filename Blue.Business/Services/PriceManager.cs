@@ -3,8 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
 
     public class PriceManager : BusinessObjectBase<Price>, IPriceService
     {
@@ -19,7 +17,7 @@
             Validator = validator;
         }
 
-        public async Task<PriceServiceResponse> InsertAsync(PriceInsertDataTransfer Model)
+        public async Task<Response<Price>> InsertAsync(PriceInsertDataTransfer Model)
         {
             Price price = Mapper.Map<Price>(Model);
             price.Id = Guid.NewGuid();
@@ -30,14 +28,18 @@
             await UnitOfWork.Price.InsertAsync(price);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PriceServiceResponse 
-            { 
-                Single = price, 
-                Success = result 
+            return new Response<Price>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<PriceServiceResponse> UpdateAsync(PriceUpdateDataTransfer Model)
+        public async Task<Response<Price>> UpdateAsync(PriceUpdateDataTransfer Model)
         {
             List<Price> DataSource = await UnitOfWork.Price.SelectAsync(x => x.Id == Model.Id);
             Price price = Mapper.Map<Price>(DataSource[0]);
@@ -46,14 +48,18 @@
             await UnitOfWork.Price.UpdateAsync(price);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PriceServiceResponse
+            return new Response<Price>
             {
-                Single = price,
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<PriceServiceResponse> DeleteAsync(PriceDeleteDataTransfer Model)
+        public async Task<Response<Price>> DeleteAsync(PriceDeleteDataTransfer Model)
         {
             List<Price> dataSource = await UnitOfWork.Price.SelectAsync(x => x.Id == Model.Id);
             Price price = Mapper.Map<Price>(dataSource[0]);
@@ -61,23 +67,45 @@
             await UnitOfWork.Price.DeleteAsync(price);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new PriceServiceResponse
+            return new Response<Price>
             {
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<PriceServiceResponse> SelectAsync(PriceSelectDataTransfer Model)
+        public async Task<Response<Price>> SelectAsync(PriceSelectDataTransfer Model)
         {
             List<Price> DataSource = await UnitOfWork.Price.SelectAsync(x => x.IsActive == true);
-            return new PriceServiceResponse { List = DataSource };
+            return new Response<Price>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
-        public async Task<PriceServiceResponse> AnySelectAsync(PriceAnyDataTransfer Model)
+        public async Task<Response<Price>> AnySelectAsync(PriceAnyDataTransfer Model)
         {
-            PriceServiceResponse response = new PriceServiceResponse();
-            response.IsAvailable = await UnitOfWork.Price.AnySelectAsync(x => x.Id == Model.Id);
-            return response;
+            //PriceServiceResponse response = new PriceServiceResponse();
+            await UnitOfWork.Price.SelectAsync(x => x.Id == Model.Id);
+            //return response;
+            return new Response<Price>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
     }
 }

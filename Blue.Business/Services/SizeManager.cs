@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<SizeServiceResponse> InsertAsync(SizeInsertDataTransfer Model)
+        public async Task<Response<Size>> InsertAsync(SizeInsertDataTransfer Model)
         {
             Size size = Mapper.Map<Size>(Model);
             size.Id = Guid.NewGuid();
@@ -30,14 +30,18 @@
             await UnitOfWork.Size.InsertAsync(size);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new SizeServiceResponse 
-            { 
-                Single = size,
-                Success = result 
+            return new Response<Size>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<SizeServiceResponse> UpdateAsync(SizeUpdateDataTransfer Model)
+        public async Task<Response<Size>> UpdateAsync(SizeUpdateDataTransfer Model)
         {
             List<Size> DataSource = await UnitOfWork.Size.SelectAsync(x => x.Id == Model.Id);
             Size size = Mapper.Map<Size>(DataSource[0]);
@@ -46,14 +50,18 @@
             await UnitOfWork.Size.UpdateAsync(size);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new SizeServiceResponse
+            return new Response<Size>
             {
-                Single = size,
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<SizeServiceResponse> DeleteAsync(SizeDeleteDataTransfer Model)
+        public async Task<Response<Size>> DeleteAsync(SizeDeleteDataTransfer Model)
         {
             List<Size> dataSource = await UnitOfWork.Size.SelectAsync(x => x.Id == Model.Id);
             Size size = Mapper.Map<Size>(dataSource[0]);
@@ -61,23 +69,45 @@
             await UnitOfWork.Size.DeleteAsync(size);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new SizeServiceResponse
+            return new Response<Size>
             {
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<SizeServiceResponse> SelectAsync(SizeSelectDataTransfer Model)
+        public async Task<Response<Size>> SelectAsync(SizeSelectDataTransfer Model)
         {
             List<Size> DataSource = await UnitOfWork.Size.SelectAsync(x => x.IsActive == true);
-            return new SizeServiceResponse { List = DataSource };
+            return new Response<Size>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
-        public async Task<SizeServiceResponse> AnySelectAsync(SizeAnyDataTransfer Model)
+        public async Task<Response<Size>> AnySelectAsync(SizeAnyDataTransfer Model)
         {
-            SizeServiceResponse response = new SizeServiceResponse();
-            response.IsAvailable = await UnitOfWork.Size.AnySelectAsync(x => x.Id == Model.Id);
-            return response;
+            //SizeServiceResponse response = new SizeServiceResponse();
+            await UnitOfWork.Size.SelectAsync(x => x.Id == Model.Id);
+            //return response;
+            return new Response<Size>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
     }
 }

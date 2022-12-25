@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<FurnitureServiceResponse> InsertAsync(FurnitureInsertDataTransfer Model)
+        public async Task<Response<Furniture>> InsertAsync(FurnitureInsertDataTransfer Model)
         {
             Furniture furniture = Mapper.Map<Furniture>(Model);
             furniture.Id = Guid.NewGuid();
@@ -30,14 +30,18 @@
             await UnitOfWork.Furniture.InsertAsync(furniture);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new FurnitureServiceResponse 
-            { 
-                Single = furniture, 
-                Success = result 
+            return new Response<Furniture>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<FurnitureServiceResponse> UpdateAsync(FurnitureUpdateDataTransfer Model)
+        public async Task<Response<Furniture>> UpdateAsync(FurnitureUpdateDataTransfer Model)
         {
             List<Furniture> DataSource = await UnitOfWork.Furniture.SelectAsync(x => x.Id == Model.Id);
             Furniture furniture = Mapper.Map<Furniture>(DataSource[0]);
@@ -46,14 +50,18 @@
             await UnitOfWork.Furniture.UpdateAsync(furniture);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new FurnitureServiceResponse
+            return new Response<Furniture>
             {
-                Single = furniture,
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<FurnitureServiceResponse> DeleteAsync(FurnitureDeleteDataTransfer Model)
+        public async Task<Response<Furniture>> DeleteAsync(FurnitureDeleteDataTransfer Model)
         {
             List<Furniture> dataSource = await UnitOfWork.Furniture.SelectAsync(x => x.Id == Model.Id);
             Furniture furniture = Mapper.Map<Furniture>(dataSource[0]);
@@ -61,23 +69,45 @@
             await UnitOfWork.Furniture.DeleteAsync(furniture);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new FurnitureServiceResponse
+            return new Response<Furniture>
             {
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<FurnitureServiceResponse> SelectAsync(FurnitureSelectDataTransfer Model)
+        public async Task<Response<Furniture>> SelectAsync(FurnitureSelectDataTransfer Model)
         {
             List<Furniture> DataSource = await UnitOfWork.Furniture.SelectAsync(x => x.IsActive == true);
-            return new FurnitureServiceResponse { List = DataSource };
+            return new Response<Furniture>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
-        public async Task<FurnitureServiceResponse> AnySelectAsync(FurnitureAnyDataTransfer Model)
+        public async Task<Response<Furniture>> AnySelectAsync(FurnitureAnyDataTransfer Model)
         {
-            FurnitureServiceResponse response = new FurnitureServiceResponse();
-            response.IsAvailable = await UnitOfWork.Furniture.AnySelectAsync(x => x.Id == Model.Id);
-            return response;
+            //FurnitureServiceResponse response = new FurnitureServiceResponse();
+            await UnitOfWork.Furniture.SelectAsync(x => x.Id == Model.Id);
+            //return response;
+            return new Response<Furniture>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
     }
 }

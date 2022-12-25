@@ -6,7 +6,7 @@
     [ApiController]
     public class ManagementController : ControllerBase
     {
-        private readonly IManagementService Service;
+        readonly IManagementService Service;
         public ManagementController(IManagementService service)
         {
             Service = service;
@@ -14,46 +14,72 @@
 
         [HttpPost]
         [Route("api/management")]
-        public async Task<ManagementWebResponse> Create([FromBody] ManagementInsertDataTransfer Model)
+        public async Task<Response<Management>> Create([FromBody] ManagementInsertDataTransfer Model)
         {
-            ManagementServiceResponse managementServiceResponse = await Service.InsertAsync(Model);
-            return new ManagementWebResponse { Single = managementServiceResponse.Single };
+            Response<Management> Response = await Service.InsertAsync(Model);
+            return new Response<Management>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpPut]
         [Route("api/management")]
-        public async Task<ManagementWebResponse> Update([FromBody] ManagementUpdateDataTransfer Model)
+        public async Task<Response<Management>> Update([FromBody] ManagementUpdateDataTransfer Model)
         {
-            ManagementServiceResponse managementServiceResponse = await Service.UpdateAsync(Model);
-            return new ManagementWebResponse { Single = managementServiceResponse.Single };
+            Response<Management> Response = await Service.UpdateAsync(Model);
+            return new Response<Management>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpDelete]
         [Route("api/management")]
-        public async Task<ManagementWebResponse> Delete([FromBody] ManagementDeleteDataTransfer Model)
+        public async Task<Response<Management>> Delete([FromBody] ManagementDeleteDataTransfer Model)
         {
-            ManagementServiceResponse managementServiceResponse = await Service.DeleteAsync(Model);
-            return new ManagementWebResponse
+            Response<Management> Response = await Service.DeleteAsync(Model);
+            return new Response<Management>
             {
-
-
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
         [HttpGet]
         [Route("api/management")]
-        public async Task<ManagementWebResponse> Get([FromBody] ManagementSelectDataTransfer Model)
+        public async Task<Response<Management>> Get([FromBody] ManagementSelectDataTransfer Model)
         {
-            ManagementServiceResponse managementServiceResponse = await Service.SelectAsync(Model);
-            return new ManagementWebResponse { List = managementServiceResponse.List };
+            Response<Management> Response = await Service.SelectAsync(Model);
+            return new Response<Management>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpGet]
         [Route("api/management/{id}")]
-        public async Task<ManagementWebResponse> Get([FromBody] ManagementAnyDataTransfer Model)
+        public async Task<Response<Management>> Get([FromBody] ManagementAnyDataTransfer Model)
         {
-            ManagementServiceResponse managementServiceResponse = await Service.AnySelectAsync(Model);
-            return new ManagementWebResponse { Single = managementServiceResponse.Single };
+            Response<Management> Response = await Service.AnySelectAsync(Model);
+            return new Response<Management>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
     }
 }

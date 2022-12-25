@@ -6,7 +6,7 @@
     [ApiController]
     public class DistrictController : ControllerBase
     {
-        private readonly IDistrictService Service;
+        readonly IDistrictService Service;
         public DistrictController(IDistrictService service)
         {
             Service = service;
@@ -14,46 +14,72 @@
 
         [HttpPost]
         [Route("api/district")]
-        public async Task<DistrictWebResponse> Create([FromBody] DistrictInsertDataTransfer Model)
+        public async Task<Response<District>> Create([FromBody] DistrictInsertDataTransfer Model)
         {
-            DistrictServiceResponse districtServiceResponse = await Service.InsertAsync(Model);
-            return new DistrictWebResponse { Single = districtServiceResponse.Single };
+            Response<District> Response = await Service.InsertAsync(Model);
+            return new Response<District>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpPut]
         [Route("api/district")]
-        public async Task<DistrictWebResponse> Update([FromBody] DistrictUpdateDataTransfer Model)
+        public async Task<Response<District>> Update([FromBody] DistrictUpdateDataTransfer Model)
         {
-            DistrictServiceResponse districtServiceResponse = await Service.UpdateAsync(Model);
-            return new DistrictWebResponse { Single = districtServiceResponse.Single };
+            Response<District> Response = await Service.UpdateAsync(Model);
+            return new Response<District>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpDelete]
         [Route("api/district")]
-        public async Task<DistrictWebResponse> Delete([FromBody] DistrictDeleteDataTransfer Model)
+        public async Task<Response<District>> Delete([FromBody] DistrictDeleteDataTransfer Model)
         {
-            DistrictServiceResponse districtServiceResponse = await Service.DeleteAsync(Model);
-            return new DistrictWebResponse
+            Response<District> Response = await Service.DeleteAsync(Model);
+            return new Response<District>
             {
-
-
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
         [HttpGet]
         [Route("api/district")]
-        public async Task<DistrictWebResponse> Get([FromBody] DistrictSelectDataTransfer Model)
+        public async Task<Response<District>> Get([FromBody] DistrictSelectDataTransfer Model)
         {
-            DistrictServiceResponse districtServiceResponse = await Service.SelectAsync(Model);
-            return new DistrictWebResponse { List = districtServiceResponse.List };
+            Response<District> Response = await Service.SelectAsync(Model);
+            return new Response<District>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpGet]
         [Route("api/district/{id}")]
-        public async Task<DistrictWebResponse> Get([FromBody] DistrictAnyDataTransfer Model)
+        public async Task<Response<District>> Get([FromBody] DistrictAnyDataTransfer Model)
         {
-            DistrictServiceResponse districtServiceResponse = await Service.AnySelectAsync(Model);
-            return new DistrictWebResponse { Single = districtServiceResponse.Single };
+            Response<District> Response = await Service.AnySelectAsync(Model);
+            return new Response<District>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
     }
 }

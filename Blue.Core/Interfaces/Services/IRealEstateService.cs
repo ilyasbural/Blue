@@ -2,10 +2,10 @@
 {
     public interface IRealEstateService
     {
-        Task<RealEstateServiceResponse> InsertAsync(RealEstateInsertDataTransfer Model);
-        Task<RealEstateServiceResponse> UpdateAsync(RealEstateUpdateDataTransfer Model);
-        Task<RealEstateServiceResponse> DeleteAsync(RealEstateDeleteDataTransfer Model);
-        Task<RealEstateServiceResponse> SelectAsync(RealEstateSelectDataTransfer Model);
-        Task<RealEstateServiceResponse> AnySelectAsync(RealEstateAnyDataTransfer Model);
+        Task<Response<RealEstate>> InsertAsync(RealEstateInsertDataTransfer Model);
+        Task<Response<RealEstate>> UpdateAsync(RealEstateUpdateDataTransfer Model);
+        Task<Response<RealEstate>> DeleteAsync(RealEstateDeleteDataTransfer Model);
+        Task<Response<RealEstate>> SelectAsync(RealEstateSelectDataTransfer Model);
+        Task<Response<RealEstate>> AnySelectAsync(RealEstateAnyDataTransfer Model);
     }
 }

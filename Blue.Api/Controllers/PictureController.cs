@@ -6,7 +6,7 @@
     [ApiController]
     public class PictureController : ControllerBase
     {
-        private readonly IPictureService Service;
+        readonly IPictureService Service;
         public PictureController(IPictureService service)
         {
             Service = service;
@@ -14,46 +14,72 @@
 
         [HttpPost]
         [Route("api/picture")]
-        public async Task<PictureWebResponse> Create([FromBody] PictureInsertDataTransfer Model)
+        public async Task<Response<Picture>> Create([FromBody] PictureInsertDataTransfer Model)
         {
-            PictureServiceResponse pictureServiceResponse = await Service.InsertAsync(Model);
-            return new PictureWebResponse { Single = pictureServiceResponse.Single };
+            Response<Picture> Response = await Service.InsertAsync(Model);
+            return new Response<Picture>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpPut]
         [Route("api/picture")]
-        public async Task<PictureWebResponse> Update([FromBody] PictureUpdateDataTransfer Model)
+        public async Task<Response<Picture>> Update([FromBody] PictureUpdateDataTransfer Model)
         {
-            PictureServiceResponse pictureServiceResponse = await Service.UpdateAsync(Model);
-            return new PictureWebResponse { Single = pictureServiceResponse.Single };
+            Response<Picture> Response = await Service.UpdateAsync(Model);
+            return new Response<Picture>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpDelete]
         [Route("api/picture")]
-        public async Task<PictureWebResponse> Delete([FromBody] PictureDeleteDataTransfer Model)
+        public async Task<Response<Picture>> Delete([FromBody] PictureDeleteDataTransfer Model)
         {
-            PictureServiceResponse pictureServiceResponse = await Service.DeleteAsync(Model);
-            return new PictureWebResponse
+            Response<Picture> Response = await Service.DeleteAsync(Model);
+            return new Response<Picture>
             {
-
-
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
         [HttpGet]
         [Route("api/picture")]
-        public async Task<PictureWebResponse> Get([FromBody] PictureSelectDataTransfer Model)
+        public async Task<Response<Picture>> Get([FromBody] PictureSelectDataTransfer Model)
         {
-            PictureServiceResponse pictureServiceResponse = await Service.SelectAsync(Model);
-            return new PictureWebResponse { List = pictureServiceResponse.List };
+            Response<Picture> Response = await Service.SelectAsync(Model);
+            return new Response<Picture>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpGet]
         [Route("api/picture/{id}")]
-        public async Task<PictureWebResponse> Get([FromBody] PictureAnyDataTransfer Model)
+        public async Task<Response<Picture>> Get([FromBody] PictureAnyDataTransfer Model)
         {
-            PictureServiceResponse pictureServiceResponse = await Service.AnySelectAsync(Model);
-            return new PictureWebResponse { Single = pictureServiceResponse.Single };
+            Response<Picture> Response = await Service.AnySelectAsync(Model);
+            return new Response<Picture>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
     }
 }

@@ -6,7 +6,7 @@
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly ICityService Service;
+        readonly ICityService Service;
         public CityController(ICityService service)
         {
             Service = service;
@@ -14,46 +14,72 @@
 
         [HttpPost]
         [Route("api/city")]
-        public async Task<CityWebResponse> Create([FromBody] CityInsertDataTransfer Model)
+        public async Task<Response<City>> Create([FromBody] CityInsertDataTransfer Model)
         {
-            CityServiceResponse cityServiceResponse = await Service.InsertAsync(Model);
-            return new CityWebResponse { Single = cityServiceResponse.Single };
+            Response<City> Response = await Service.InsertAsync(Model);
+            return new Response<City>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpPut]
         [Route("api/city")]
-        public async Task<CityWebResponse> Update([FromBody] CityUpdateDataTransfer Model)
+        public async Task<Response<City>> Update([FromBody] CityUpdateDataTransfer Model)
         {
-            CityServiceResponse cityServiceResponse = await Service.UpdateAsync(Model);
-            return new CityWebResponse { Single = cityServiceResponse.Single };
+            Response<City> Response = await Service.UpdateAsync(Model);
+            return new Response<City>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpDelete]
         [Route("api/city")]
-        public async Task<CityWebResponse> Delete([FromBody] CityDeleteDataTransfer Model)
+        public async Task<Response<City>> Delete([FromBody] CityDeleteDataTransfer Model)
         {
-            CityServiceResponse announceResponse = await Service.DeleteAsync(Model);
-            return new CityWebResponse
+            Response<City> Response = await Service.DeleteAsync(Model);
+            return new Response<City>
             {
-
-
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
         [HttpGet]
         [Route("api/city")]
-        public async Task<CityWebResponse> Get([FromBody] CitySelectDataTransfer Model)
+        public async Task<Response<City>> Get([FromBody] CitySelectDataTransfer Model)
         {
-            CityServiceResponse announceResponse = await Service.SelectAsync(Model);
-            return new CityWebResponse { List = announceResponse.List };
+            Response<City> Response = await Service.SelectAsync(Model);
+            return new Response<City>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpGet]
         [Route("api/city/{id}")]
-        public async Task<CityWebResponse> Get([FromBody] CityAnyDataTransfer Model)
+        public async Task<Response<City>> Get([FromBody] CityAnyDataTransfer Model)
         {
-            CityServiceResponse announceResponse = await Service.AnySelectAsync(Model);
-            return new CityWebResponse { Single = announceResponse.Single };
+            Response<City> Response = await Service.AnySelectAsync(Model);
+            return new Response<City>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
     }
 }

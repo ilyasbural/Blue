@@ -6,7 +6,7 @@
 
     public abstract class RepositoryBase<T> : IRepository<T> where T : class, IEntity, new()
     {
-        protected DbContext DbContext { get; set; }
+        DbContext DbContext { get; set; }
         public RepositoryBase(DbContext dbContext)
         {
             DbContext = dbContext;
@@ -30,11 +30,6 @@
         public async Task<List<T>> SelectAsync(Expression<Func<T, bool>> Predicate)
         {
             return await DbContext.Set<T>().Where(Predicate).ToListAsync<T>();
-        }
-
-        public async Task<bool> AnySelectAsync(Expression<Func<T, bool>> Predicate)
-        {
-            return await DbContext.Set<T>().AnyAsync(Predicate);
         }
     }
 }

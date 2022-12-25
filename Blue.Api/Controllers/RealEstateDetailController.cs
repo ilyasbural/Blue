@@ -6,7 +6,7 @@
     [ApiController]
     public class RealEstateDetailController : ControllerBase
     {
-        private readonly IRealEstateDetailService Service;
+        readonly IRealEstateDetailService Service;
         public RealEstateDetailController(IRealEstateDetailService service)
         {
             Service = service;
@@ -14,46 +14,72 @@
 
         [HttpPost]
         [Route("api/realestatedetail")]
-        public async Task<RealEstateDetailWebResponse> Create([FromBody] RealEstateDetailInsertDataTransfer Model)
+        public async Task<Response<RealEstateDetail>> Create([FromBody] RealEstateDetailInsertDataTransfer Model)
         {
-            RealEstateDetailServiceResponse realEstateDetailServiceResponse = await Service.InsertAsync(Model);
-            return new RealEstateDetailWebResponse { Single = realEstateDetailServiceResponse.Single };
+            Response<RealEstateDetail> Response = await Service.InsertAsync(Model);
+            return new Response<RealEstateDetail>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpPut]
         [Route("api/realestatedetail")]
-        public async Task<RealEstateDetailWebResponse> Update([FromBody] RealEstateDetailUpdateDataTransfer Model)
+        public async Task<Response<RealEstateDetail>> Update([FromBody] RealEstateDetailUpdateDataTransfer Model)
         {
-            RealEstateDetailServiceResponse realEstateDetailServiceResponse = await Service.UpdateAsync(Model);
-            return new RealEstateDetailWebResponse { Single = realEstateDetailServiceResponse.Single };
+            Response<RealEstateDetail> Response = await Service.UpdateAsync(Model);
+            return new Response<RealEstateDetail>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpDelete]
         [Route("api/realestatedetail")]
-        public async Task<RealEstateDetailWebResponse> Delete([FromBody] RealEstateDetailDeleteDataTransfer Model)
+        public async Task<Response<RealEstateDetail>> Delete([FromBody] RealEstateDetailDeleteDataTransfer Model)
         {
-            RealEstateDetailServiceResponse realEstateDetailServiceResponse = await Service.DeleteAsync(Model);
-            return new RealEstateDetailWebResponse
+            Response<RealEstateDetail> Response = await Service.DeleteAsync(Model);
+            return new Response<RealEstateDetail>
             {
-
-
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
         [HttpGet]
         [Route("api/realestatedetail")]
-        public async Task<RealEstateDetailWebResponse> Get([FromBody] RealEstateDetailSelectDataTransfer Model)
+        public async Task<Response<RealEstateDetail>> Get([FromBody] RealEstateDetailSelectDataTransfer Model)
         {
-            RealEstateDetailServiceResponse realEstateDetailServiceResponse = await Service.SelectAsync(Model);
-            return new RealEstateDetailWebResponse { List = realEstateDetailServiceResponse.List };
+            Response<RealEstateDetail> Response = await Service.SelectAsync(Model);
+            return new Response<RealEstateDetail>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpGet]
         [Route("api/realestatedetail/{id}")]
-        public async Task<RealEstateDetailWebResponse> Get([FromBody] RealEstateDetailAnyDataTransfer Model)
+        public async Task<Response<RealEstateDetail>> Get([FromBody] RealEstateDetailAnyDataTransfer Model)
         {
-            RealEstateDetailServiceResponse realEstateDetailServiceResponse = await Service.AnySelectAsync(Model);
-            return new RealEstateDetailWebResponse { Single = realEstateDetailServiceResponse.Single };
+            Response<RealEstateDetail> Response = await Service.AnySelectAsync(Model);
+            return new Response<RealEstateDetail>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
     }
 }

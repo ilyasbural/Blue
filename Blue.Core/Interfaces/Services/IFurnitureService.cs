@@ -2,10 +2,10 @@
 {
     public interface IFurnitureService
     {
-        Task<FurnitureServiceResponse> InsertAsync(FurnitureInsertDataTransfer Model);
-        Task<FurnitureServiceResponse> UpdateAsync(FurnitureUpdateDataTransfer Model);
-        Task<FurnitureServiceResponse> DeleteAsync(FurnitureDeleteDataTransfer Model);
-        Task<FurnitureServiceResponse> SelectAsync(FurnitureSelectDataTransfer Model);
-        Task<FurnitureServiceResponse> AnySelectAsync(FurnitureAnyDataTransfer Model);
+        Task<Response<Furniture>> InsertAsync(FurnitureInsertDataTransfer Model);
+        Task<Response<Furniture>> UpdateAsync(FurnitureUpdateDataTransfer Model);
+        Task<Response<Furniture>> DeleteAsync(FurnitureDeleteDataTransfer Model);
+        Task<Response<Furniture>> SelectAsync(FurnitureSelectDataTransfer Model);
+        Task<Response<Furniture>> AnySelectAsync(FurnitureAnyDataTransfer Model);
     }
 }

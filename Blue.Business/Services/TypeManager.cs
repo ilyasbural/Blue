@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<TypeServiceResponse> InsertAsync(TypeInsertDataTransfer Model)
+        public async Task<Response<Type>> InsertAsync(TypeInsertDataTransfer Model)
         {
             Type type = Mapper.Map<Type>(Model);
             type.Id = Guid.NewGuid();
@@ -30,14 +30,18 @@
             await UnitOfWork.Type.InsertAsync(type);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new TypeServiceResponse 
-            { 
-                Single = type, 
-                Success = result 
+            return new Response<Type>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<TypeServiceResponse> UpdateAsync(TypeUpdateDataTransfer Model)
+        public async Task<Response<Type>> UpdateAsync(TypeUpdateDataTransfer Model)
         {
             List<Type> DataSource = await UnitOfWork.Type.SelectAsync(x => x.Id == Model.Id);
             Type type = Mapper.Map<Type>(DataSource[0]);
@@ -46,14 +50,18 @@
             await UnitOfWork.Type.UpdateAsync(type);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new TypeServiceResponse
+            return new Response<Type>
             {
-                Single = type,
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<TypeServiceResponse> DeleteAsync(TypeDeleteDataTransfer Model)
+        public async Task<Response<Type>> DeleteAsync(TypeDeleteDataTransfer Model)
         {
             List<Type> dataSource = await UnitOfWork.Type.SelectAsync(x => x.Id == Model.Id);
             Type type = Mapper.Map<Type>(dataSource[0]);
@@ -61,23 +69,45 @@
             await UnitOfWork.Type.DeleteAsync(type);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new TypeServiceResponse
+            return new Response<Type>
             {
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<TypeServiceResponse> SelectAsync(TypeSelectDataTransfer Model)
+        public async Task<Response<Type>> SelectAsync(TypeSelectDataTransfer Model)
         {
             List<Type> DataSource = await UnitOfWork.Type.SelectAsync(x => x.IsActive == true);
-            return new TypeServiceResponse { List = DataSource };
+            return new Response<Type>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
-        public async Task<TypeServiceResponse> AnySelectAsync(TypeAnyDataTransfer Model)
+        public async Task<Response<Type>> AnySelectAsync(TypeAnyDataTransfer Model)
         {
-            TypeServiceResponse response = new TypeServiceResponse();
-            response.IsAvailable = await UnitOfWork.Type.AnySelectAsync(x => x.Id == Model.Id);
-            return response;
+            //TypeServiceResponse response = new TypeServiceResponse();
+            await UnitOfWork.Type.SelectAsync(x => x.Id == Model.Id);
+            //return response;
+            return new Response<Type>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
     }
 }

@@ -6,7 +6,7 @@
     [ApiController]
     public class PriceController : ControllerBase
     {
-        private readonly IPriceService Service;
+        readonly IPriceService Service;
         public PriceController(IPriceService service)
         {
             Service = service;
@@ -14,46 +14,72 @@
 
         [HttpPost]
         [Route("api/price")]
-        public async Task<PriceWebResponse> Create([FromBody] PriceInsertDataTransfer Model)
+        public async Task<Response<Price>> Create([FromBody] PriceInsertDataTransfer Model)
         {
-            PriceServiceResponse priceServiceResponse = await Service.InsertAsync(Model);
-            return new PriceWebResponse { Single = priceServiceResponse.Single };
+            Response<Price> Response = await Service.InsertAsync(Model);
+            return new Response<Price>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpPut]
         [Route("api/price")]
-        public async Task<PriceWebResponse> Update([FromBody] PriceUpdateDataTransfer Model)
+        public async Task<Response<Price>> Update([FromBody] PriceUpdateDataTransfer Model)
         {
-            PriceServiceResponse priceServiceResponse = await Service.UpdateAsync(Model);
-            return new PriceWebResponse { Single = priceServiceResponse.Single };
+            Response<Price> Response = await Service.UpdateAsync(Model);
+            return new Response<Price>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpDelete]
         [Route("api/price")]
-        public async Task<PriceWebResponse> Delete([FromBody] PriceDeleteDataTransfer Model)
+        public async Task<Response<Price>> Delete([FromBody] PriceDeleteDataTransfer Model)
         {
-            PriceServiceResponse priceServiceResponse = await Service.DeleteAsync(Model);
-            return new PriceWebResponse
+            Response<Price> Response = await Service.DeleteAsync(Model);
+            return new Response<Price>
             {
-
-
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
         [HttpGet]
         [Route("api/price")]
-        public async Task<PriceWebResponse> Get([FromBody] PriceSelectDataTransfer Model)
+        public async Task<Response<Price>> Get([FromBody] PriceSelectDataTransfer Model)
         {
-            PriceServiceResponse priceServiceResponse = await Service.SelectAsync(Model);
-            return new PriceWebResponse { List = priceServiceResponse.List };
+            Response<Price> Response = await Service.SelectAsync(Model);
+            return new Response<Price>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpGet]
         [Route("api/price/{id}")]
-        public async Task<PriceWebResponse> Get([FromBody] PriceAnyDataTransfer Model)
+        public async Task<Response<Price>> Get([FromBody] PriceAnyDataTransfer Model)
         {
-            PriceServiceResponse priceServiceResponse = await Service.AnySelectAsync(Model);
-            return new PriceWebResponse { Single = priceServiceResponse.Single };
+            Response<Price> Response = await Service.AnySelectAsync(Model);
+            return new Response<Price>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
     }
 }

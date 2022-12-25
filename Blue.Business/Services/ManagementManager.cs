@@ -19,7 +19,7 @@
             Validator = validator;
         }
 
-        public async Task<ManagementServiceResponse> InsertAsync(ManagementInsertDataTransfer Model)
+        public async Task<Response<Management>> InsertAsync(ManagementInsertDataTransfer Model)
         {
             Management management = Mapper.Map<Management>(Model);
             management.Id = Guid.NewGuid();
@@ -30,14 +30,18 @@
             await UnitOfWork.Management.InsertAsync(management);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementServiceResponse 
-            { 
-                Single = management, 
-                Success = result 
+            return new Response<Management>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ManagementServiceResponse> UpdateAsync(ManagementUpdateDataTransfer Model)
+        public async Task<Response<Management>> UpdateAsync(ManagementUpdateDataTransfer Model)
         {
             List<Management> DataSource = await UnitOfWork.Management.SelectAsync(x => x.Id == Model.Id);
             Management management = Mapper.Map<Management>(DataSource[0]);
@@ -46,14 +50,18 @@
             await UnitOfWork.Management.UpdateAsync(management);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementServiceResponse
+            return new Response<Management>
             {
-                Single = management,
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ManagementServiceResponse> DeleteAsync(ManagementDeleteDataTransfer Model)
+        public async Task<Response<Management>> DeleteAsync(ManagementDeleteDataTransfer Model)
         {
             List<Management> dataSource = await UnitOfWork.Management.SelectAsync(x => x.Id == Model.Id);
             Management management = Mapper.Map<Management>(dataSource[0]);
@@ -61,23 +69,45 @@
             await UnitOfWork.Management.DeleteAsync(management);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new ManagementServiceResponse
+            return new Response<Management>
             {
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<ManagementServiceResponse> SelectAsync(ManagementSelectDataTransfer Model)
+        public async Task<Response<Management>> SelectAsync(ManagementSelectDataTransfer Model)
         {
             List<Management> DataSource = await UnitOfWork.Management.SelectAsync(x => x.IsActive == true);
-            return new ManagementServiceResponse { List = DataSource };
+            return new Response<Management>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
-        public async Task<ManagementServiceResponse> AnySelectAsync(ManagementAnyDataTransfer Model)
+        public async Task<Response<Management>> AnySelectAsync(ManagementAnyDataTransfer Model)
         {
-            ManagementServiceResponse response = new ManagementServiceResponse();
-            response.IsAvailable = await UnitOfWork.Management.AnySelectAsync(x => x.Id == Model.Id);
-            return response;
+            //ManagementServiceResponse response = new ManagementServiceResponse();
+            await UnitOfWork.Management.SelectAsync(x => x.Id == Model.Id);
+            //return response;
+            return new Response<Management>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
     }
 }

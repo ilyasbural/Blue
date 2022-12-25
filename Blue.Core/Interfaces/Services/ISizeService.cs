@@ -2,10 +2,10 @@
 {
     public interface ISizeService
     {
-        Task<SizeServiceResponse> InsertAsync(SizeInsertDataTransfer Model);
-        Task<SizeServiceResponse> UpdateAsync(SizeUpdateDataTransfer Model);
-        Task<SizeServiceResponse> DeleteAsync(SizeDeleteDataTransfer Model);
-        Task<SizeServiceResponse> SelectAsync(SizeSelectDataTransfer Model);
-        Task<SizeServiceResponse> AnySelectAsync(SizeAnyDataTransfer Model);
+        Task<Response<Size>> InsertAsync(SizeInsertDataTransfer Model);
+        Task<Response<Size>> UpdateAsync(SizeUpdateDataTransfer Model);
+        Task<Response<Size>> DeleteAsync(SizeDeleteDataTransfer Model);
+        Task<Response<Size>> SelectAsync(SizeSelectDataTransfer Model);
+        Task<Response<Size>> AnySelectAsync(SizeAnyDataTransfer Model);
     }
 }

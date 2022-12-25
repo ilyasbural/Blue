@@ -2,10 +2,10 @@
 {
     public interface ITypeService
     {
-        Task<TypeServiceResponse> InsertAsync(TypeInsertDataTransfer Model);
-        Task<TypeServiceResponse> UpdateAsync(TypeUpdateDataTransfer Model);
-        Task<TypeServiceResponse> DeleteAsync(TypeDeleteDataTransfer Model);
-        Task<TypeServiceResponse> SelectAsync(TypeSelectDataTransfer Model);
-        Task<TypeServiceResponse> AnySelectAsync(TypeAnyDataTransfer Model);
+        Task<Response<Type>> InsertAsync(TypeInsertDataTransfer Model);
+        Task<Response<Type>> UpdateAsync(TypeUpdateDataTransfer Model);
+        Task<Response<Type>> DeleteAsync(TypeDeleteDataTransfer Model);
+        Task<Response<Type>> SelectAsync(TypeSelectDataTransfer Model);
+        Task<Response<Type>> AnySelectAsync(TypeAnyDataTransfer Model);
     }
 }

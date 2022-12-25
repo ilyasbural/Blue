@@ -6,7 +6,7 @@
     [ApiController]
     public class SizeController : ControllerBase
     {
-        private readonly ISizeService Service;
+        readonly ISizeService Service;
         public SizeController(ISizeService service)
         {
             Service = service;
@@ -14,46 +14,72 @@
 
         [HttpPost]
         [Route("api/size")]
-        public async Task<SizeWebResponse> Create([FromBody] SizeInsertDataTransfer Model)
+        public async Task<Response<Size>> Create([FromBody] SizeInsertDataTransfer Model)
         {
-            SizeServiceResponse sizeServiceResponse = await Service.InsertAsync(Model);
-            return new SizeWebResponse { Single = sizeServiceResponse.Single };
+            Response<Size> Response = await Service.InsertAsync(Model);
+            return new Response<Size>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpPut]
         [Route("api/size")]
-        public async Task<SizeWebResponse> Update([FromBody] SizeUpdateDataTransfer Model)
+        public async Task<Response<Size>> Update([FromBody] SizeUpdateDataTransfer Model)
         {
-            SizeServiceResponse sizeServiceResponse = await Service.UpdateAsync(Model);
-            return new SizeWebResponse { Single = sizeServiceResponse.Single };
+            Response<Size> Response = await Service.UpdateAsync(Model);
+            return new Response<Size>
+            {
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpDelete]
         [Route("api/size")]
-        public async Task<SizeWebResponse> Delete([FromBody] SizeDeleteDataTransfer Model)
+        public async Task<Response<Size>> Delete([FromBody] SizeDeleteDataTransfer Model)
         {
-            SizeServiceResponse sizeServiceResponse = await Service.DeleteAsync(Model);
-            return new SizeWebResponse
+            Response<Size> Response = await Service.DeleteAsync(Model);
+            return new Response<Size>
             {
-
-
+                Message = Response.Message,
+                Data = Response.Data,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
             };
         }
 
         [HttpGet]
         [Route("api/size")]
-        public async Task<SizeWebResponse> Get([FromBody] SizeSelectDataTransfer Model)
+        public async Task<Response<Size>> Get([FromBody] SizeSelectDataTransfer Model)
         {
-            SizeServiceResponse sizeServiceResponse = await Service.SelectAsync(Model);
-            return new SizeWebResponse { List = sizeServiceResponse.List };
+            Response<Size> Response = await Service.SelectAsync(Model);
+            return new Response<Size>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
 
         [HttpGet]
         [Route("api/size/{id}")]
-        public async Task<SizeWebResponse> Get([FromBody] SizeAnyDataTransfer Model)
+        public async Task<Response<Size>> Get([FromBody] SizeAnyDataTransfer Model)
         {
-            SizeServiceResponse sizeServiceResponse = await Service.AnySelectAsync(Model);
-            return new SizeWebResponse { Single = sizeServiceResponse.Single };
+            Response<Size> Response = await Service.AnySelectAsync(Model);
+            return new Response<Size>
+            {
+                Message = Response.Message,
+                Collection = Response.Collection,
+                Success = Response.Success,
+                IsValidationError = Response.IsValidationError
+            };
         }
     }
 }

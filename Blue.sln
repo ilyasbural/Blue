@@ -11,11 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blue.Common", "Blue.Common\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blue.Business", "Blue.Business\Blue.Business.csproj", "{A9EE1353-AE8F-4CB7-ABB8-0A423695C23B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blue.Logging", "Blue.Logging\Blue.Logging.csproj", "{64218AB5-A985-4B3F-B5FE-513718094FC7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blue.Api", "Blue.Api\Blue.Api.csproj", "{DD78E4F4-D4F6-4605-8D9D-A2EDAE1C1714}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blue.Platform", "Blue.Platform\Blue.Platform.csproj", "{13BA4472-D18D-4FC8-BFF8-A50A78277B40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blue.Platform", "Blue.Platform\Blue.Platform.csproj", "{13BA4472-D18D-4FC8-BFF8-A50A78277B40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +37,6 @@ Global
 		{A9EE1353-AE8F-4CB7-ABB8-0A423695C23B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9EE1353-AE8F-4CB7-ABB8-0A423695C23B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9EE1353-AE8F-4CB7-ABB8-0A423695C23B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64218AB5-A985-4B3F-B5FE-513718094FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64218AB5-A985-4B3F-B5FE-513718094FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64218AB5-A985-4B3F-B5FE-513718094FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64218AB5-A985-4B3F-B5FE-513718094FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD78E4F4-D4F6-4605-8D9D-A2EDAE1C1714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD78E4F4-D4F6-4605-8D9D-A2EDAE1C1714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD78E4F4-D4F6-4605-8D9D-A2EDAE1C1714}.Release|Any CPU.ActiveCfg = Release|Any CPU

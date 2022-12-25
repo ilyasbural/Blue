@@ -2,10 +2,10 @@
 {
     public interface IDistrictService
     {
-        Task<DistrictServiceResponse> InsertAsync(DistrictInsertDataTransfer Model);
-        Task<DistrictServiceResponse> UpdateAsync(DistrictUpdateDataTransfer Model);
-        Task<DistrictServiceResponse> DeleteAsync(DistrictDeleteDataTransfer Model);
-        Task<DistrictServiceResponse> SelectAsync(DistrictSelectDataTransfer Model);
-        Task<DistrictServiceResponse> AnySelectAsync(DistrictAnyDataTransfer Model);
+        Task<Response<District>> InsertAsync(DistrictInsertDataTransfer Model);
+        Task<Response<District>> UpdateAsync(DistrictUpdateDataTransfer Model);
+        Task<Response<District>> DeleteAsync(DistrictDeleteDataTransfer Model);
+        Task<Response<District>> SelectAsync(DistrictSelectDataTransfer Model);
+        Task<Response<District>> AnySelectAsync(DistrictAnyDataTransfer Model);
     }
 }

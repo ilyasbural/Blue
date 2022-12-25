@@ -2,10 +2,10 @@
 {
     public interface ICityService
     {
-        Task<CityServiceResponse> InsertAsync(CityInsertDataTransfer Model);
-        Task<CityServiceResponse> UpdateAsync(CityUpdateDataTransfer Model);
-        Task<CityServiceResponse> DeleteAsync(CityDeleteDataTransfer Model);
-        Task<CityServiceResponse> SelectAsync(CitySelectDataTransfer Model);
-        Task<CityServiceResponse> AnySelectAsync(CityAnyDataTransfer Model);
+        Task<Response<City>> InsertAsync(CityInsertDataTransfer Model);
+        Task<Response<City>> UpdateAsync(CityUpdateDataTransfer Model);
+        Task<Response<City>> DeleteAsync(CityDeleteDataTransfer Model);
+        Task<Response<City>> SelectAsync(CitySelectDataTransfer Model);
+        Task<Response<City>> AnySelectAsync(CityAnyDataTransfer Model);
     }
 }

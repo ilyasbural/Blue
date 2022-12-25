@@ -3,8 +3,6 @@
     using Core;
     using AutoMapper;
     using FluentValidation;
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
 
     public class DistrictManager : BusinessObjectBase<District>, IDistrictService
     {
@@ -19,7 +17,7 @@
             Validator = validator;
         }
 
-        public async Task<DistrictServiceResponse> InsertAsync(DistrictInsertDataTransfer Model)
+        public async Task<Response<District>> InsertAsync(DistrictInsertDataTransfer Model)
         {
             District district = Mapper.Map<District>(Model);
             district.Id = Guid.NewGuid();
@@ -30,14 +28,18 @@
             await UnitOfWork.District.InsertAsync(district);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new DistrictServiceResponse 
-            { 
-                Single = district, 
-                Success = result 
+            return new Response<District>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<DistrictServiceResponse> UpdateAsync(DistrictUpdateDataTransfer Model)
+        public async Task<Response<District>> UpdateAsync(DistrictUpdateDataTransfer Model)
         {
             List<District> DataSource = await UnitOfWork.District.SelectAsync(x => x.Id == Model.Id);
             District district = Mapper.Map<District>(DataSource[0]);
@@ -46,14 +48,18 @@
             await UnitOfWork.District.UpdateAsync(district);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new DistrictServiceResponse
+            return new Response<District>
             {
-                Single = district,
-                Success = result
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
             };
         }
 
-        public async Task<DistrictServiceResponse> DeleteAsync(DistrictDeleteDataTransfer Model)
+        public async Task<Response<District>> DeleteAsync(DistrictDeleteDataTransfer Model)
         {
             List<District> dataSource = await UnitOfWork.District.SelectAsync(x => x.Id == Model.Id);
             District district = Mapper.Map<District>(dataSource[0]);
@@ -61,20 +67,45 @@
             await UnitOfWork.District.DeleteAsync(district);
             int result = await UnitOfWork.SaveChangesAsync();
 
-            return new DistrictServiceResponse { Success = result };
+            return new Response<District>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
-        public async Task<DistrictServiceResponse> SelectAsync(DistrictSelectDataTransfer Model)
+        public async Task<Response<District>> SelectAsync(DistrictSelectDataTransfer Model)
         {
             List<District> DataSource = await UnitOfWork.District.SelectAsync(x => x.IsActive == true);
-            return new DistrictServiceResponse { List = DataSource };
+            return new Response<District>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
 
-        public async Task<DistrictServiceResponse> AnySelectAsync(DistrictAnyDataTransfer Model)
+        public async Task<Response<District>> AnySelectAsync(DistrictAnyDataTransfer Model)
         {
-            DistrictServiceResponse response = new DistrictServiceResponse();
-            response.IsAvailable = await UnitOfWork.City.AnySelectAsync(x => x.Id == Model.Id);
-            return response;
+            //DistrictServiceResponse response = new DistrictServiceResponse();
+            await UnitOfWork.District.SelectAsync(x => x.IsActive == true);
+            //return response;
+            return new Response<District>
+            {
+                //Single = Entity,
+                //Success = Success,
+                //Message = Message,
+                //Errors = new List<string>(),
+                //IsValidationError = IsValidationError,
+                //Validations = new List<ValidationResult> { Validations }
+            };
         }
     }
 }

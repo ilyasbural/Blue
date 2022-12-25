@@ -6,6 +6,5 @@
         Task UpdateAsync(T Entity);
         Task DeleteAsync(T Entity);
         Task<List<T>> SelectAsync(System.Linq.Expressions.Expression<Func<T, bool>> Predicate);
-        Task<bool> AnySelectAsync(System.Linq.Expressions.Expression<Func<T, bool>> Predicate);
     }
 }
