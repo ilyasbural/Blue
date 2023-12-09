@@ -13,15 +13,25 @@
             Service.AddDbContext<DbContext>();
             Service.AddDbContext<BlueContext>();
 
+            Service.AddScoped<IBuildingType, BuildingTypeRepositoryEF>();
+            Service.AddScoped<IBuyingType, BuyingTypeRepositoryEF>();
             Service.AddScoped<ICity, CityRepositoryEF>();
             Service.AddScoped<IDistrict, DistrictRepositoryEF>();
+            Service.AddScoped<IFeaturesAround, FeaturesAroundRepositoryEF>();
+            Service.AddScoped<IFeaturesInside, FeaturesInsideRepositoryEF>();
+            Service.AddScoped<IFeaturesOutside, FeaturesOutsideRepositoryEF>();
+            Service.AddScoped<IFromWho, FromWhoRepositoryEF>();
+            Service.AddScoped<IFuelType, FuelTypeRepositoryEF>();
             Service.AddScoped<IFurniture, FurnitureRepositoryEF>();
+            Service.AddScoped<IHometown, HometownRepositoryEF>();
             Service.AddScoped<IManagement, ManagementRepositoryEF>();
             Service.AddScoped<IPicture, PictureRepositoryEF>();
             Service.AddScoped<IPrice, PriceRepositoryEF>();
             Service.AddScoped<IRealEstateDetail, RealEstateDetailRepositoryEF>();
             Service.AddScoped<IRealEstate, RealEstateRepositoryEF>();
+            Service.AddScoped<IRoom, RoomRepositoryEF>();
             Service.AddScoped<ISize, SizeRepositoryEF>();
+            Service.AddScoped<IStatus, StatusRepositoryEF>();
             Service.AddScoped<IType, TypeRepositoryEF>();
             Service.AddScoped<IWarming, WarmingRepositoryEF>();
             Service.AddScoped<IUnitOfWork, UnitOfWork>();

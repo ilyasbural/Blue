@@ -4,15 +4,25 @@
 
     public class UnitOfWork : IUnitOfWork
     {
+        public IBuildingType BuildingType => BuildingTypeRepository ?? new BuildingTypeRepositoryEF(DbContext);
+        public IBuyingType BuyingType => BuyingTypeRepository ?? new BuyingTypeRepositoryEF(DbContext);
         public ICity City => CityRepository ?? new CityRepositoryEF(DbContext);
         public IDistrict District => DistrictRepository ?? new DistrictRepositoryEF(DbContext);
+        public IFeaturesAround FeaturesAround => FeaturesAroundRepository ?? new FeaturesAroundRepositoryEF(DbContext);
+        public IFeaturesInside FeaturesInside => FeaturesInsideRepository ?? new FeaturesInsideRepositoryEF(DbContext);
+        public IFeaturesOutside FeaturesOutside => FeaturesOutsideRepository ?? new FeaturesOutsideRepositoryEF(DbContext);
+        public IFromWho FromWho => FromWhoRepository ?? new FromWhoRepositoryEF(DbContext);
+        public IFuelType FuelType => FuelTypeRepository ?? new FuelTypeRepositoryEF(DbContext);
         public IFurniture Furniture => FurnitureRepository ?? new FurnitureRepositoryEF(DbContext);
+        public IHometown Hometown => HometownRepository ?? new HometownRepositoryEF(DbContext);
         public IManagement Management => ManagementRepository ?? new ManagementRepositoryEF(DbContext);
         public IPicture Picture => PictureRepository ?? new PictureRepositoryEF(DbContext);
         public IPrice Price => PriceRepository ?? new PriceRepositoryEF(DbContext);
         public IRealEstateDetail RealEstateDetail => RealEstateDetailRepository ?? new RealEstateDetailRepositoryEF(DbContext);
         public IRealEstate RealEstate => RealEstateRepository ?? new RealEstateRepositoryEF(DbContext);
+        public IRoom Room => RoomRepository ?? new RoomRepositoryEF(DbContext);
         public ISize Size => SizeRepository ?? new SizeRepositoryEF(DbContext);
+        public IStatus Status => StatusRepository ?? new StatusRepositoryEF(DbContext);
         public IType Type => TypeRepository ?? new TypeRepositoryEF(DbContext);
         public IWarming Warming => WarmingRepository ?? new WarmingRepositoryEF(DbContext);
 
@@ -43,7 +53,7 @@
         protected SizeRepositoryEF SizeRepository { get; set; } = null!;
         protected StatusRepositoryEF StatusRepository { get; set; } = null!;
         protected TypeRepositoryEF TypeRepository { get; set; } = null!;
-        protected WarmingRepositoryEF WarmingRepository { get; set; } = null!;
+        protected WarmingRepositoryEF WarmingRepository { get; set; } = null!;    
 
         public async Task<int> SaveChangesAsync()
         {
