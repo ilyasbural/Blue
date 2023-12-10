@@ -36,15 +36,25 @@
             Service.AddScoped<IWarming, WarmingRepositoryEF>();
             Service.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            Service.AddScoped<IValidator<BuildingType>, BuildingTypeValidator>();
+            Service.AddScoped<IValidator<BuyingType>, BuyingTypeValidator>();
             Service.AddScoped<IValidator<City>, CityValidator>();
             Service.AddScoped<IValidator<District>, DistrictValidator>();
+            Service.AddScoped<IValidator<FeaturesAround>, FeaturesAroundValidator>();
+            Service.AddScoped<IValidator<FeaturesInside>, FeaturesInsideValidator>();
+            Service.AddScoped<IValidator<FeaturesOutside>, FeaturesOutsideValidator>();
+            Service.AddScoped<IValidator<FromWho>, FromWhoValidator>();
+            Service.AddScoped<IValidator<FuelType>, FuelTypeValidator>();
             Service.AddScoped<IValidator<Furniture>, FurnitureValidator>();
+            Service.AddScoped<IValidator<Hometown>, HometownValidator>();
             Service.AddScoped<IValidator<Management>, ManagementValidator>();
             Service.AddScoped<IValidator<Picture>, PictureValidator>();
             Service.AddScoped<IValidator<Price>, PriceValidator>();
             Service.AddScoped<IValidator<RealEstateDetail>, RealEstateDetailValidator>();
             Service.AddScoped<IValidator<RealEstate>, RealEstateValidator>();
+            Service.AddScoped<IValidator<Room>, RoomValidator>();
             Service.AddScoped<IValidator<Size>, SizeValidator>();
+            Service.AddScoped<IValidator<Status>, StatusValidator>();
             Service.AddScoped<IValidator<Type>, TypeValidator>();
             Service.AddScoped<IValidator<Warming>, WarmingValidator>();
 
