@@ -58,15 +58,25 @@
             Service.AddScoped<IValidator<Type>, TypeValidator>();
             Service.AddScoped<IValidator<Warming>, WarmingValidator>();
 
+            Service.AddScoped<IBuildingTypeService, BuildingTypeManager>();
+            Service.AddScoped<IBuyingTypeService, BuyingTypeManager>();
             Service.AddScoped<ICityService, CityManager>();
             Service.AddScoped<IDistrictService, DistrictManager>();
+            Service.AddScoped<IFeaturesAroundService, FeaturesAroundManager>();
+            Service.AddScoped<IFeaturesInsideService, FeaturesInsideManager>();
+            Service.AddScoped<IFeaturesOutsideService, FeaturesOutsideManager>();
+            Service.AddScoped<IFromWhoService, FromWhoManager>();
+            Service.AddScoped<IFuelTypeService, FuelTypeManager>();
             Service.AddScoped<IFurnitureService, FurnitureManager>();
+            Service.AddScoped<IHometownService, HometownManager>();
             Service.AddScoped<IManagementService, ManagementManager>();
             Service.AddScoped<IPictureService, PictureManager>();
             Service.AddScoped<IPriceService, PriceManager>();
             Service.AddScoped<IRealEstateDetailService, RealEstateDetailManager>();
             Service.AddScoped<IRealEstateService, RealEstateManager>();
+            Service.AddScoped<IRoomService, RoomManager>();
             Service.AddScoped<ISizeService, SizeManager>();
+            Service.AddScoped<IStatusService, StatusManager>();
             Service.AddScoped<ITypeService, TypeManager>();
             Service.AddScoped<IWarmingService, WarmingManager>();
 
