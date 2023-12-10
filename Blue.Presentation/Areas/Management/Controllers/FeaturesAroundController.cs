@@ -6,6 +6,12 @@
     [Area("Management")]
     public class FeaturesAroundController : Controller
     {
+        readonly IFeaturesAroundService Service;
+        public FeaturesAroundController(IFeaturesAroundService service)
+        {
+            Service = service;
+        }
+
         public IActionResult Index()
         {
             return View();

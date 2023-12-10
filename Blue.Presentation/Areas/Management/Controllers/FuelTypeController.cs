@@ -6,6 +6,12 @@
     [Area("Management")]
     public class FuelTypeController : Controller
     {
+        readonly IFuelTypeService Service;
+        public FuelTypeController(IFuelTypeService service)
+        {
+            Service = service;
+        }
+
         public IActionResult Index()
         {
             return View();

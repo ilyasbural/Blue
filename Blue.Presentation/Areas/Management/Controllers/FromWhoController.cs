@@ -6,6 +6,12 @@
     [Area("Management")]
     public class FromWhoController : Controller
     {
+        readonly IFromWhoService Service;
+        public FromWhoController(IFromWhoService service)
+        {
+            Service = service;
+        }
+
         public IActionResult Index()
         {
             return View();

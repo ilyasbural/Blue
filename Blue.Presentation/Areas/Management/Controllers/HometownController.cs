@@ -6,6 +6,12 @@
     [Area("Management")]
     public class HometownController : Controller
     {
+        readonly IHometownService Service;
+        public HometownController(IHometownService service)
+        {
+            Service = service;
+        }
+
         public IActionResult Index()
         {
             return View();

@@ -6,6 +6,12 @@
     [Area("Management")]
     public class FeaturesInsideController : Controller
     {
+        readonly IFeaturesInsideService Service;
+        public FeaturesInsideController(IFeaturesInsideService service)
+        {
+            Service = service;
+        }
+
         public IActionResult Index()
         {
             return View();

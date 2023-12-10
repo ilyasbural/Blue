@@ -6,6 +6,12 @@
     [Area("Management")]
     public class RoomController : Controller
     {
+        readonly IRoomService Service;
+        public RoomController(IRoomService service)
+        {
+            Service = service;
+        }
+
         public IActionResult Index()
         {
             return View();

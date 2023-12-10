@@ -6,6 +6,12 @@
     [Area("Management")]
     public class FeaturesOutsideController : Controller
     {
+        readonly IFeaturesOutsideService Service;
+        public FeaturesOutsideController(IFeaturesOutsideService service)
+        {
+            Service = service;
+        }
+
         public IActionResult Index()
         {
             return View();
