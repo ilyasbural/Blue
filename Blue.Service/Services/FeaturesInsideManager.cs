@@ -16,5 +16,26 @@
             UnitOfWork = unitOfWork;
             Validator = validator;
         }
+
+        public async Task<Response<FeaturesInside>> InsertAsync(FeaturesInsideRegisterDto Model)
+        {
+            Data = Mapper.Map<FeaturesInside>(Model);
+            Data.Id = Guid.NewGuid();
+            Data.RegisterDate = DateTime.Now;
+            Data.UpdateDate = DateTime.Now;
+            Data.IsActive = true;
+
+            Validator.ValidateAndThrow<FeaturesInside>(Data);
+            await UnitOfWork.FeaturesInside.InsertAsync(Data);
+            int Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<FeaturesInside>
+            {
+                Success = Success,
+                Data = Data,
+                Message = "Success",
+                IsValidationError = false
+            };
+        }
     }
 }

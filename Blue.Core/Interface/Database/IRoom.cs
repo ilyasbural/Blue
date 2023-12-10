@@ -1,6 +1,6 @@
 ﻿namespace Blue.Core
 {
-    public interface IRoom
+    public interface IRoom : IRepository<Room>
     {
 
     }

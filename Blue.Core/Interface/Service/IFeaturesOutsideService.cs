@@ -2,5 +2,6 @@
 {
     public interface IFeaturesOutsideService
     {
+        Task<Response<FeaturesOutside>> InsertAsync(FeaturesOutsideRegisterDto Model);
     }
 }

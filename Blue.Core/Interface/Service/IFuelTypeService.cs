@@ -2,5 +2,6 @@
 {
     public interface IFuelTypeService
     {
+        Task<Response<FuelType>> InsertAsync(FuelTypeRegisterDto Model);
     }
 }

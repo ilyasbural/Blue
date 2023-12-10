@@ -16,5 +16,26 @@
             UnitOfWork = unitOfWork;
             Validator = validator;
         }
+
+        public async Task<Response<BuyingType>> InsertAsync(BuyingTypeRegisterDto Model)
+        {
+            Data = Mapper.Map<BuyingType>(Model);
+            Data.Id = Guid.NewGuid();
+            Data.RegisterDate = DateTime.Now;
+            Data.UpdateDate = DateTime.Now;
+            Data.IsActive = true;
+
+            Validator.ValidateAndThrow<BuyingType>(Data);
+            await UnitOfWork.BuyingType.InsertAsync(Data);
+            int Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<BuyingType>
+            {
+                Success = Success,
+                Data = Data,
+                Message = "Success",
+                IsValidationError = false
+            };
+        }
     }
 }

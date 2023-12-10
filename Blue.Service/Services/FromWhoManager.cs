@@ -16,5 +16,26 @@
             UnitOfWork = unitOfWork;
             Validator = validator;
         }
+
+        public async Task<Response<FromWho>> InsertAsync(FromWhoRegisterDto Model)
+        {
+            Data = Mapper.Map<FromWho>(Model);
+            Data.Id = Guid.NewGuid();
+            Data.RegisterDate = DateTime.Now;
+            Data.UpdateDate = DateTime.Now;
+            Data.IsActive = true;
+
+            Validator.ValidateAndThrow<FromWho>(Data);
+            await UnitOfWork.FromWho.InsertAsync(Data);
+            int Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<FromWho>
+            {
+                Success = Success,
+                Data = Data,
+                Message = "Success",
+                IsValidationError = false
+            };
+        }
     }
 }
