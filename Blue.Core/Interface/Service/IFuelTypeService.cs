@@ -5,5 +5,6 @@
         Task<Response<FuelType>> InsertAsync(FuelTypeRegisterDto Model);
         Task<Response<FuelType>> UpdateAsync(FuelTypeUpdateDto Model);
         Task<Response<FuelType>> DeleteAsync(FuelTypeDeleteDto Model);
+        Task<Response<FuelType>> SelectAsync(FuelTypeSelectDto Model);
     }
 }

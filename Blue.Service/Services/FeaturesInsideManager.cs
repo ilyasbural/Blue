@@ -67,5 +67,17 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<FeaturesInside>> SelectAsync(FeaturesInsideSelectDto Model)
+        {
+            Collection = await UnitOfWork.FeaturesInside.SelectAsync(x => x.IsActive == true);
+            return new Response<FeaturesInside>
+            {
+                Success = 1,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

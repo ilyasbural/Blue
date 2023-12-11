@@ -67,5 +67,17 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<Room>> SelectAsync(RoomSelectDto Model)
+        {
+            Collection = await UnitOfWork.Room.SelectAsync(x => x.IsActive == true);
+            return new Response<Room>
+            {
+                Success = 1,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }
