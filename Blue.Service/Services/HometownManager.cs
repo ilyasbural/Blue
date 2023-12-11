@@ -79,5 +79,17 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<Hometown>> SelectSingleAsync(HometownSelectDto Model)
+        {
+            Collection = await UnitOfWork.Hometown.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new Response<Hometown>
+            {
+                Success = 1,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

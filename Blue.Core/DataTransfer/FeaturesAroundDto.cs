@@ -17,6 +17,6 @@
 
     public class FeaturesAroundSelectDto
     {
-
+        public Guid Id { get; set; }
     }
 }

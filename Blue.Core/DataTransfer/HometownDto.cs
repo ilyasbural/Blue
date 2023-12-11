@@ -17,6 +17,6 @@
 
     public class HometownSelectDto
     {
-
+        public Guid Id { get; set; }
     }
 }

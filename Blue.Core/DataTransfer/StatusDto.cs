@@ -17,6 +17,6 @@
 
     public class StatusSelectDto
     {
-
+        public Guid Id { get; set; }
     }
 }

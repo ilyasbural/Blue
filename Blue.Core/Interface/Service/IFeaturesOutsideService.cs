@@ -6,5 +6,6 @@
         Task<Response<FeaturesOutside>> UpdateAsync(FeaturesOutsideUpdateDto Model);
         Task<Response<FeaturesOutside>> DeleteAsync(FeaturesOutsideDeleteDto Model);
         Task<Response<FeaturesOutside>> SelectAsync(FeaturesOutsideSelectDto Model);
+        Task<Response<FeaturesOutside>> SelectSingleAsync(FeaturesOutsideSelectDto Model);
     }
 }

@@ -17,6 +17,6 @@
 
     public class BuyingTypeSelectDto
     {
-
+        public Guid Id { get; set; }
     }
 }

@@ -79,5 +79,17 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<FuelType>> SelectSingleAsync(FuelTypeSelectDto Model)
+        {
+            Collection = await UnitOfWork.FuelType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new Response<FuelType>
+            {
+                Success = 1,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

@@ -17,6 +17,6 @@
 
     public class FromWhoSelectDto
     {
-
+        public Guid Id { get; set; }
     }
 }

@@ -79,5 +79,17 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<FromWho>> SelectSingleAsync(FromWhoSelectDto Model)
+        {
+            Collection = await UnitOfWork.FromWho.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new Response<FromWho>
+            {
+                Success = 1,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

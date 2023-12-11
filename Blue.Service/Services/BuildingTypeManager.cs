@@ -79,5 +79,17 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<BuildingType>> SelectSingleAsync(BuildingTypeSelectDto Model)
+        {
+            Collection = await UnitOfWork.BuildingType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            return new Response<BuildingType>
+            {
+                Success = 1,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

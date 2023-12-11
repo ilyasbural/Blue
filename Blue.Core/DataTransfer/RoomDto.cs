@@ -17,6 +17,6 @@
 
     public class RoomSelectDto
     {
-
+        public Guid Id { get; set; }
     }
 }

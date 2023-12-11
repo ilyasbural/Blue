@@ -17,6 +17,6 @@
 
     public class FuelTypeSelectDto
     {
-
+        public Guid Id { get; set; }
     }
 }

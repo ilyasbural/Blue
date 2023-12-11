@@ -17,6 +17,6 @@
 
     public class FeaturesOutsideSelectDto
     {
-
+        public Guid Id { get; set; }
     }
 }

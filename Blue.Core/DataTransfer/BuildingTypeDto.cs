@@ -17,6 +17,6 @@
 
     public class BuildingTypeSelectDto
     {
-
+        public Guid Id { get; set; }
     }
 }
