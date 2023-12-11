@@ -7,7 +7,7 @@
 
     public class FromWhoUpdateDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class FromWhoDeleteDto

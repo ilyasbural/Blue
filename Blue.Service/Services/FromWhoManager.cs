@@ -37,5 +37,20 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<FromWho>> UpdateAsync(FromWhoUpdateDto Model)
+        {
+            Collection = await UnitOfWork.FromWho.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            await UnitOfWork.FromWho.UpdateAsync(Collection[0]);
+            Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<FromWho>
+            {
+                Success = Success,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

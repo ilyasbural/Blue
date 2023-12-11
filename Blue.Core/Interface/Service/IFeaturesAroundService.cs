@@ -3,5 +3,6 @@
     public interface IFeaturesAroundService
     {
         Task<Response<FeaturesAround>> InsertAsync(FeaturesAroundRegisterDto Model);
+        Task<Response<FeaturesAround>> UpdateAsync(FeaturesAroundUpdateDto Model);
     }
 }

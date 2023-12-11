@@ -7,7 +7,7 @@
 
     public class StatusUpdateDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class StatusDeleteDto

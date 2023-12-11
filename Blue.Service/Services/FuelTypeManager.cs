@@ -37,5 +37,20 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<FuelType>> UpdateAsync(FuelTypeUpdateDto Model)
+        {
+            Collection = await UnitOfWork.FuelType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            await UnitOfWork.FuelType.UpdateAsync(Collection[0]);
+            Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<FuelType>
+            {
+                Success = Success,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

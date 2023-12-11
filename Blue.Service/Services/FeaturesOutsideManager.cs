@@ -37,5 +37,20 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<FeaturesOutside>> UpdateAsync(FeaturesOutsideUpdateDto Model)
+        {
+            Collection = await UnitOfWork.FeaturesOutside.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            await UnitOfWork.FeaturesOutside.UpdateAsync(Collection[0]);
+            Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<FeaturesOutside>
+            {
+                Success = Success,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

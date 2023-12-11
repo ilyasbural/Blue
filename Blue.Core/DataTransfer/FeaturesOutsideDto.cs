@@ -7,7 +7,7 @@
 
     public class FeaturesOutsideUpdateDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class FeaturesOutsideDeleteDto

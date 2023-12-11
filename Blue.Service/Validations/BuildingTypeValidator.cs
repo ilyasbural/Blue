@@ -7,7 +7,7 @@
     {
         public BuildingTypeValidator()
         {
-            
+
         }
     }
 }

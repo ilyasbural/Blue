@@ -7,7 +7,7 @@
 
     public class FuelTypeUpdateDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class FuelTypeDeleteDto

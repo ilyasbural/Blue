@@ -7,7 +7,7 @@
 
     public class HometownUpdateDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class HometownDeleteDto

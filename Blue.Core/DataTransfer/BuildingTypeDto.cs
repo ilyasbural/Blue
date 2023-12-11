@@ -7,7 +7,7 @@
 
     public class BuildingTypeUpdateDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class BuildingTypeDeleteDto

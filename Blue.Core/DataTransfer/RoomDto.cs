@@ -7,7 +7,7 @@
 
     public class RoomUpdateDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class RoomDeleteDto

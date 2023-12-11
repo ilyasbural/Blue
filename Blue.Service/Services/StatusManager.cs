@@ -37,5 +37,20 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<Status>> UpdateAsync(StatusUpdateDto Model)
+        {
+            Collection = await UnitOfWork.Status.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            await UnitOfWork.Status.UpdateAsync(Collection[0]);
+            Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<Status>
+            {
+                Success = Success,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

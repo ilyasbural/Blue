@@ -7,7 +7,7 @@
 
     public class BuyingTypeUpdateDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class BuyingTypeDeleteDto
