@@ -52,5 +52,20 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<FeaturesAround>> DeleteAsync(FeaturesAroundDeleteDto Model)
+        {
+            Collection = await UnitOfWork.FeaturesAround.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            await UnitOfWork.FeaturesAround.DeleteAsync(Collection[0]);
+            Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<FeaturesAround>
+            {
+                Success = Success,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

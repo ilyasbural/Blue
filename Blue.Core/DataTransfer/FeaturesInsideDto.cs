@@ -12,7 +12,7 @@
 
     public class FeaturesInsideDeleteDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class FeaturesInsideSelectDto

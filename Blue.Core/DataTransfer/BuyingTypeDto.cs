@@ -12,7 +12,7 @@
 
     public class BuyingTypeDeleteDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class BuyingTypeSelectDto

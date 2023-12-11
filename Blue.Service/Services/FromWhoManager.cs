@@ -15,7 +15,7 @@
             Mapper = mapper;
             UnitOfWork = unitOfWork;
             Validator = validator;
-        }
+        } 
 
         public async Task<Response<FromWho>> InsertAsync(FromWhoRegisterDto Model)
         {
@@ -42,6 +42,21 @@
         {
             Collection = await UnitOfWork.FromWho.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             await UnitOfWork.FromWho.UpdateAsync(Collection[0]);
+            Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<FromWho>
+            {
+                Success = Success,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
+
+        public async Task<Response<FromWho>> DeleteAsync(FromWhoDeleteDto Model)
+        {
+            Collection = await UnitOfWork.FromWho.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            await UnitOfWork.FromWho.DeleteAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<FromWho>

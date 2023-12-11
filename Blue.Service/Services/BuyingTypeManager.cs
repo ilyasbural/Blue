@@ -52,5 +52,20 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<BuyingType>> DeleteAsync(BuyingTypeDeleteDto Model)
+        {
+            Collection = await UnitOfWork.BuyingType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            await UnitOfWork.BuyingType.DeleteAsync(Collection[0]);
+            Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<BuyingType>
+            {
+                Success = Success,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

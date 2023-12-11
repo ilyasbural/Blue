@@ -12,7 +12,7 @@
 
     public class BuildingTypeDeleteDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class BuildingTypeSelectDto

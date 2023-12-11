@@ -12,7 +12,7 @@
 
     public class HometownDeleteDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class HometownSelectDto

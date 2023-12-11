@@ -12,7 +12,7 @@
 
     public class StatusDeleteDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class StatusSelectDto

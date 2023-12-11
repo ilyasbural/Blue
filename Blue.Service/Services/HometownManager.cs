@@ -52,5 +52,20 @@
                 IsValidationError = false
             };
         }
+
+        public async Task<Response<Hometown>> DeleteAsync(HometownDeleteDto Model)
+        {
+            Collection = await UnitOfWork.Hometown.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            await UnitOfWork.Hometown.DeleteAsync(Collection[0]);
+            Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<Hometown>
+            {
+                Success = Success,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
     }
 }

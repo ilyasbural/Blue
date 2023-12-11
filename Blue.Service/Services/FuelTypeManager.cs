@@ -15,7 +15,7 @@
             Mapper = mapper;
             UnitOfWork = unitOfWork;
             Validator = validator;
-        }
+        }   
 
         public async Task<Response<FuelType>> InsertAsync(FuelTypeRegisterDto Model)
         {
@@ -42,6 +42,21 @@
         {
             Collection = await UnitOfWork.FuelType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             await UnitOfWork.FuelType.UpdateAsync(Collection[0]);
+            Success = await UnitOfWork.SaveChangesAsync();
+
+            return new Response<FuelType>
+            {
+                Success = Success,
+                Message = "Success",
+                Collection = Collection,
+                IsValidationError = false
+            };
+        }
+
+        public async Task<Response<FuelType>> DeleteAsync(FuelTypeDeleteDto Model)
+        {
+            Collection = await UnitOfWork.FuelType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            await UnitOfWork.FuelType.DeleteAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<FuelType>

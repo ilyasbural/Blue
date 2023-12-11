@@ -12,7 +12,7 @@
 
     public class FromWhoDeleteDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class FromWhoSelectDto

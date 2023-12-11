@@ -12,7 +12,7 @@
 
     public class FeaturesAroundDeleteDto
     {
-
+        public Guid Id { get; set; }
     }
 
     public class FeaturesAroundSelectDto
