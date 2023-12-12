@@ -15,8 +15,6 @@
         public IActionResult Index()
         {
             Service.InsertAsync(new WarmingRegisterDto { Name = "Var" });
-
-
             return View();
         }
     }

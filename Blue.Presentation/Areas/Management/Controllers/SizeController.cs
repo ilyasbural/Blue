@@ -15,8 +15,6 @@
         public IActionResult Index()
         {
             Service.InsertAsync(new SizeRegisterDto { Name = "75 m2" });
-
-
             return View();
         }
     }

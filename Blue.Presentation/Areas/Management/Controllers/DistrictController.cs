@@ -14,9 +14,7 @@
 
         public IActionResult Index()
         {
-
-
-
+            Service.InsertAsync(new DistrictRegisterDto { Name = "Aaaa" });
             return View();
         }
     }

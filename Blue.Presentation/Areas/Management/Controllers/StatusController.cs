@@ -4,17 +4,17 @@
     using Microsoft.AspNetCore.Mvc;
 
     [Area("Management")]
-    public class BuyingTypeController : Controller
+    public class StatusController : Controller
     {
-        readonly IBuyingTypeService Service;
-        public BuyingTypeController(IBuyingTypeService service)
+        readonly IStatusService Service;
+        public StatusController(IStatusService service)
         {
             Service = service;
         }
 
         public IActionResult Index()
         {
-            Service.InsertAsync(new BuyingTypeRegisterDto { });
+            Service.InsertAsync(new StatusRegisterDto { });
             return View();
         }
     }

@@ -14,17 +14,9 @@
 
         public IActionResult Index()
         {
-
-
-
-
-
             CityRegisterDto cityRegisterDto = new CityRegisterDto();
             cityRegisterDto.Name = "İstanbul";
-
             Service.InsertAsync(cityRegisterDto);
-
-
             return View();
         }
     }

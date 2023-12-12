@@ -15,8 +15,6 @@
         public IActionResult Index()
         {
             Service.InsertAsync(new PriceRegisterDto { Name = "100.000" });
-
-
             return View();
         }
     }

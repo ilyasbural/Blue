@@ -14,6 +14,7 @@
 
         public IActionResult Index()
         {
+            Service.InsertAsync(new RoomRegisterDto { });
             return View();
         }
     }
