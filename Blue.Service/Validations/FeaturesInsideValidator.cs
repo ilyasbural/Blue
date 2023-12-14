@@ -7,7 +7,7 @@
     {
         public FeaturesInsideValidator()
         {
-            
+            //RuleFor(x => x.Name).NotEmpty().WithMessage("Name area can not be null");
         }
     }
 }
