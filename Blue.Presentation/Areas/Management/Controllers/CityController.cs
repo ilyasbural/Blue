@@ -33,5 +33,19 @@
 
             return View(Model);
         }
+
+        public IActionResult Update()
+        {
+            var Model = Tuple.Create<CityViewModel>(new CityViewModel());
+
+            return View(Model);
+        }
+
+        public IActionResult Delete()
+        {
+            var Model = Tuple.Create<CityViewModel>(new CityViewModel());
+
+            return View(Model);
+        }
     }
 }

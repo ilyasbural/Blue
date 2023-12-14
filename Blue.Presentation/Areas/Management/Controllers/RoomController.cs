@@ -31,5 +31,19 @@
 
             return View(Model);
         }
+
+        public IActionResult Update()
+        {
+            var Model = Tuple.Create<RoomViewModel>(new RoomViewModel());
+
+            return View(Model);
+        }
+
+        public IActionResult Delete()
+        {
+            var Model = Tuple.Create<RoomViewModel>(new RoomViewModel());
+
+            return View(Model);
+        }
     }
 }
