@@ -14,8 +14,11 @@
 
         public IActionResult Index()
         {
-            Service.InsertAsync(new FeaturesAroundRegisterDto { });
-            return View();
+            var Model = Tuple.Create<List<FeaturesAroundViewModel>>(new List<FeaturesAroundViewModel>());
+
+            //Service.InsertAsync(new FeaturesAroundRegisterDto { });
+
+            return View(Model);
         }
     }
 }

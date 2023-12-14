@@ -1,4 +1,4 @@
-﻿namespace Blue.Platform.Areas.Management.Controllers
+﻿namespace Blue.Presentation.Areas.Management.Controllers
 {
     using Core;
     using Microsoft.AspNetCore.Mvc;
@@ -14,10 +14,11 @@
 
         public IActionResult Index()
         {
-            Service.InsertAsync(new FurnitureRegisterDto { Name = "Var" });
+            var Model = Tuple.Create<List<FurnitureViewModel>>(new List<FurnitureViewModel>());
 
+            //Service.InsertAsync(new FurnitureRegisterDto { Name = "Var" });
 
-            return View();
+            return View(Model);
         }
     }
 }

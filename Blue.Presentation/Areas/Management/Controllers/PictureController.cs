@@ -1,4 +1,4 @@
-﻿namespace Blue.Platform.Areas.Management.Controllers
+﻿namespace Blue.Presentation.Areas.Management.Controllers
 {
     using Core;
     using Microsoft.AspNetCore.Mvc;
@@ -14,8 +14,11 @@
 
         public IActionResult Index()
         {
-            Service.InsertAsync(new PictureRegisterDto { });
-            return View();
+            var Model = Tuple.Create<List<PictureViewModel>>(new List<PictureViewModel>());
+
+            //Service.InsertAsync(new PictureRegisterDto { });
+
+            return View(Model);
         }
     }
 }

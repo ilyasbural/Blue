@@ -14,8 +14,11 @@
 
         public IActionResult Index()
         {
-            Service.InsertAsync(new HometownRegisterDto { });
-            return View();
+            var Model = Tuple.Create<List<HometownViewModel>>(new List<HometownViewModel>());
+
+            //Service.InsertAsync(new HometownRegisterDto { });
+
+            return View(Model);
         }
     }
 }

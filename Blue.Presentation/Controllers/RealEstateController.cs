@@ -1,4 +1,4 @@
-﻿namespace Blue.Platform.Controllers
+﻿namespace Blue.Presentation.Controllers
 {
     using Core;
     using Microsoft.AspNetCore.Mvc;

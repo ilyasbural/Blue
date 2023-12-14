@@ -1,6 +1,6 @@
 ﻿namespace Blue.Presentation
 {
-    public class RealEstateViewModel
+    public class RealEstateViewModel : BaseViewModel
     {
 
     }

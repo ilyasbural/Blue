@@ -14,8 +14,11 @@
 
         public IActionResult Index()
         {
+            var Model = Tuple.Create<List<FromWhoViewModel>>(new List<FromWhoViewModel>());
+
             Service.InsertAsync(new FromWhoRegisterDto { });
-            return View();
+
+            return View(Model);
         }
     }
 }

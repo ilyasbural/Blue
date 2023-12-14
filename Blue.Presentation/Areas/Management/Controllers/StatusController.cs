@@ -14,8 +14,11 @@
 
         public IActionResult Index()
         {
-            Service.InsertAsync(new StatusRegisterDto { });
-            return View();
+            var Model = Tuple.Create<List<StatusViewModel>>(new List<StatusViewModel>());
+
+            //Service.InsertAsync(new StatusRegisterDto { });
+
+            return View(Model);
         }
     }
 }

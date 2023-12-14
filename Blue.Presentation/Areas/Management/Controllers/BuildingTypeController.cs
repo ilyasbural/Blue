@@ -14,8 +14,11 @@
 
         public IActionResult Index()
         {
-            Service.InsertAsync(new BuildingTypeRegisterDto { });
-            return View();
+            var Model = Tuple.Create<List<BuildingTypeViewModel>>(new List<BuildingTypeViewModel>());
+
+            //Service.InsertAsync(new BuildingTypeRegisterDto { });
+
+            return View(Model);
         }
     }
 }

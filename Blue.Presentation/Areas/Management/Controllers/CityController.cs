@@ -1,4 +1,4 @@
-﻿namespace Blue.Platform.Areas.Management.Controllers
+﻿namespace Blue.Presentation.Areas.Management.Controllers
 {
     using Core;
     using Microsoft.AspNetCore.Mvc;
@@ -14,10 +14,13 @@
 
         public IActionResult Index()
         {
-            CityRegisterDto cityRegisterDto = new CityRegisterDto();
-            cityRegisterDto.Name = "İstanbul";
-            Service.InsertAsync(cityRegisterDto);
-            return View();
+            var Model = Tuple.Create<List<CityViewModel>>(new List<CityViewModel>());
+
+            //CityRegisterDto cityRegisterDto = new CityRegisterDto();
+            //cityRegisterDto.Name = "İstanbul";
+            //Service.InsertAsync(cityRegisterDto);
+
+            return View(Model);
         }
     }
 }

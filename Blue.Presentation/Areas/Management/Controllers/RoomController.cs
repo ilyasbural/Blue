@@ -14,8 +14,11 @@
 
         public IActionResult Index()
         {
-            Service.InsertAsync(new RoomRegisterDto { });
-            return View();
+            var Model = Tuple.Create<List<RoomViewModel>>(new List<RoomViewModel>());
+
+            //Service.InsertAsync(new RoomRegisterDto { });
+
+            return View(Model);
         }
     }
 }

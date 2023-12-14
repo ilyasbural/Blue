@@ -14,8 +14,11 @@
 
         public IActionResult Index()
         {
-            Service.InsertAsync(new FuelTypeRegisterDto { });
-            return View();
+            var Model = Tuple.Create<List<FuelTypeViewModel>>(new List<FuelTypeViewModel>());
+
+            //Service.InsertAsync(new FuelTypeRegisterDto { });
+
+            return View(Model);
         }
     }
 }
