@@ -25,7 +25,7 @@
 
         public IActionResult Create()
         {
-            var Model = Tuple.Create<RealEstateViewModel>(new RealEstateViewModel());
+            var Model = Tuple.Create<RealEstateViewModel, RealEstateDetailViewModel> (new RealEstateViewModel(), new RealEstateDetailViewModel());
 
             //await Service.InsertAsync(new BuildingTypeRegisterDto { });
 
@@ -34,14 +34,14 @@
 
         public IActionResult Update()
         {
-            var Model = Tuple.Create<RealEstateViewModel>(new RealEstateViewModel());
+            var Model = Tuple.Create<RealEstateViewModel, RealEstateDetailViewModel>(new RealEstateViewModel(), new RealEstateDetailViewModel());
 
             return View(Model);
         }
 
         public IActionResult Delete()
         {
-            var Model = Tuple.Create<RealEstateViewModel>(new RealEstateViewModel());
+            var Model = Tuple.Create<RealEstateViewModel, RealEstateDetailViewModel>(new RealEstateViewModel(), new RealEstateDetailViewModel());
 
             return View(Model);
         }
