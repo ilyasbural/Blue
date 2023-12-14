@@ -12,11 +12,13 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<FromWhoViewModel>>(new List<FromWhoViewModel>());
 
-            Service.InsertAsync(new FromWhoRegisterDto { });
+            await Service.SelectAsync(new FromWhoSelectDto {      });
+
+            //Service.InsertAsync(new FromWhoRegisterDto { });
 
             return View(Model);
         }

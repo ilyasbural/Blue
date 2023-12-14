@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<PictureViewModel>>(new List<PictureViewModel>());
+
+            await Service.SelectAsync(new PictureSelectDto {      });
 
             //Service.InsertAsync(new PictureRegisterDto { });
 

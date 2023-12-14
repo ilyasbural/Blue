@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<HometownViewModel>>(new List<HometownViewModel>());
+
+            await Service.SelectAsync(new HometownSelectDto {         });
 
             //Service.InsertAsync(new HometownRegisterDto { });
 

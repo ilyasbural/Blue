@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<FurnitureViewModel>>(new List<FurnitureViewModel>());
+
+            await Service.SelectAsync(new FurnitureSelectDto {        });
 
             //Service.InsertAsync(new FurnitureRegisterDto { Name = "Var" });
 

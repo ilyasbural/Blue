@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<PriceViewModel>>(new List<PriceViewModel>());
+
+            await Service.SelectAsync(new PriceSelectDto {    });
 
             //Service.InsertAsync(new PriceRegisterDto { Name = "100.000" });
 

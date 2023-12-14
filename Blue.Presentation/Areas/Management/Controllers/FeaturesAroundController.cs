@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<FeaturesAroundViewModel>>(new List<FeaturesAroundViewModel>());
+
+            await Service.SelectAsync(new FeaturesAroundSelectDto {       });
 
             //Service.InsertAsync(new FeaturesAroundRegisterDto { });
 

@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<FuelTypeViewModel>>(new List<FuelTypeViewModel>());
+
+            await Service.SelectAsync(new FuelTypeSelectDto {         });
 
             //Service.InsertAsync(new FuelTypeRegisterDto { });
 

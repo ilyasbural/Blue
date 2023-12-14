@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<SizeViewModel>>(new List<SizeViewModel>());
+
+            await Service.SelectAsync(new SizeSelectDto {         });
 
             //Service.InsertAsync(new SizeRegisterDto { Name = "75 m2" });
 

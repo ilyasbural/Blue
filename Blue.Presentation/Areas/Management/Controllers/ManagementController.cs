@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<ManagementViewModel>>(new List<ManagementViewModel>());
+
+            await Service.SelectAsync(new ManagementSelectDto {       });
 
             //Service.InsertAsync(new ManagementRegisterDto { });
 

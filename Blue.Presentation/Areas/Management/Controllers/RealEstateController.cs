@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<RealEstateViewModel>>(new List<RealEstateViewModel>());
+
+            await Service.SelectAsync(new RealEstateSelectDto {       });
 
             //Service.InsertAsync(new RealEstateRegisterDto { });
 

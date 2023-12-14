@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<WarmingViewModel>>(new List<WarmingViewModel>());
+
+            await Service.SelectAsync(new WarmingSelectDto {      });
 
             //Service.InsertAsync(new WarmingRegisterDto { Name = "Var" });
 

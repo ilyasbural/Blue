@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<FeaturesOutsideViewModel>>(new List<FeaturesOutsideViewModel>());
+
+            await Service.SelectAsync(new FeaturesOutsideSelectDto {      });
 
             //Service.InsertAsync(new FeaturesOutsideRegisterDto { });
 

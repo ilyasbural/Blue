@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<CityViewModel>>(new List<CityViewModel>());
+
+            Response<City> Response = await Service.SelectAsync(new CitySelectDto {         });
 
             //CityRegisterDto cityRegisterDto = new CityRegisterDto();
             //cityRegisterDto.Name = "İstanbul";

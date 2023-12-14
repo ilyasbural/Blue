@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<DistrictViewModel>>(new List<DistrictViewModel>());
+
+            await Service.SelectAsync(new DistrictSelectDto {         });
 
             //Service.InsertAsync(new DistrictRegisterDto { Name = "Aaaa" });
 

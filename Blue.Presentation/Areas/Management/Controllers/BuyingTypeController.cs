@@ -12,9 +12,11 @@
             Service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<BuyingTypeViewModel>>(new List<BuyingTypeViewModel>());
+
+            Response<BuyingType> Response = await Service.SelectAsync(new BuyingTypeSelectDto {           });
 
             //Service.InsertAsync(new BuyingTypeRegisterDto { });
 
