@@ -22,5 +22,14 @@
 
             return View(Model);
         }
+
+        public IActionResult Create()
+        {
+            var Model = Tuple.Create<FurnitureViewModel>(new FurnitureViewModel());
+
+            //await Service.InsertAsync(new BuildingTypeRegisterDto { });
+
+            return View(Model);
+        }
     }
 }

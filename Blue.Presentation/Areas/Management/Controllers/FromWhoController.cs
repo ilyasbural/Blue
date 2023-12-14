@@ -22,5 +22,14 @@
 
             return View(Model);
         }
+
+        public IActionResult Create()
+        {
+            var Model = Tuple.Create<FromWhoViewModel>(new FromWhoViewModel());
+
+            //await Service.InsertAsync(new BuildingTypeRegisterDto { });
+
+            return View(Model);
+        }
     }
 }

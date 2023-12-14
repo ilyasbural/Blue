@@ -22,5 +22,14 @@
 
             return View(Model);
         }
+
+        public IActionResult Create()
+        {
+            var Model = Tuple.Create<ManagementViewModel>(new ManagementViewModel());
+
+            //await Service.InsertAsync(new BuildingTypeRegisterDto { });
+
+            return View(Model);
+        }
     }
 }

@@ -18,7 +18,28 @@
 
             Response<BuildingType> Response = await Service.SelectAsync(new BuildingTypeSelectDto {    });
 
-            //Service.InsertAsync(new BuildingTypeRegisterDto { });
+            return View(Model);
+        }
+
+        public IActionResult Create()
+        {
+            var Model = Tuple.Create<BuildingTypeViewModel>(new BuildingTypeViewModel());
+
+            //await Service.InsertAsync(new BuildingTypeRegisterDto { });
+
+            return View(Model);
+        }
+
+        public IActionResult Update() 
+        {
+            var Model = Tuple.Create<BuildingTypeViewModel>(new BuildingTypeViewModel());
+
+            return View(Model); 
+        }
+
+        public IActionResult Delete()
+        {
+            var Model = Tuple.Create<BuildingTypeViewModel>(new BuildingTypeViewModel());
 
             return View(Model);
         }
