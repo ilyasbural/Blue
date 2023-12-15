@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<FeaturesOutsideViewModel>> (new List<FeaturesOutsideViewModel>());
             Response<FeaturesOutside> FeaturesOutsideResponse = await Service.SelectAsync(new FeaturesOutsideSelectDto {  });
-
-            //Service.InsertAsync(new FeaturesOutsideRegisterDto { });
-
+            foreach (FeaturesOutside FeaturesOutside in FeaturesOutsideResponse.Collection)
+            {
+                FeaturesOutsideViewModel ViewModel = new FeaturesOutsideViewModel { Id = FeaturesOutside.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

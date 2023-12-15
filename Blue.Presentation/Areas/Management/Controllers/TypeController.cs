@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<TypeViewModel>> (new List<TypeViewModel>());
             Response<Type> TypeResponse = await Service.SelectAsync(new TypeSelectDto {         });
-
-            //Service.InsertAsync(new TypeRegisterDto { Name = "Villa" });
-
+            foreach (Type Type in TypeResponse.Collection)
+            {
+                TypeViewModel ViewModel = new TypeViewModel { Id = Type.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

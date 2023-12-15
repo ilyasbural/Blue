@@ -16,18 +16,11 @@
         {
             var Model = Tuple.Create<List<BuyingTypeViewModel>> (new List<BuyingTypeViewModel>());
             Response<BuyingType> BuyingTypeResponse = await Service.SelectAsync(new BuyingTypeSelectDto { });
-
             foreach (BuyingType BuyingType in BuyingTypeResponse.Collection)
             {
-                BuyingTypeViewModel BuildingTypeViewModel = new BuyingTypeViewModel
-                {
-                    Id = BuyingType.Id
-                };
-                Model.Item1.Add(BuildingTypeViewModel);
+                BuyingTypeViewModel ViewModel = new BuyingTypeViewModel { Id = BuyingType.Id };
+                Model.Item1.Add(ViewModel);
             }
-
-            //Service.InsertAsync(new BuyingTypeRegisterDto { });
-
             return View(Model);
         }
 

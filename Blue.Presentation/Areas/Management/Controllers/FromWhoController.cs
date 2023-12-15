@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<FromWhoViewModel>> (new List<FromWhoViewModel>());
             Response<FromWho> FromWhoResponse = await Service.SelectAsync(new FromWhoSelectDto {   });
-
-            //Service.InsertAsync(new FromWhoRegisterDto { });
-
+            foreach (FromWho FromWho in FromWhoResponse.Collection)
+            {
+                FromWhoViewModel ViewModel = new FromWhoViewModel { Id = FromWho.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

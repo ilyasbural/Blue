@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<FuelTypeViewModel>> (new List<FuelTypeViewModel>());
             Response<FuelType> FuelTypeResponse = await Service.SelectAsync(new FuelTypeSelectDto {  });
-
-            //Service.InsertAsync(new FuelTypeRegisterDto { });
-
+            foreach (FuelType FuelType in FuelTypeResponse.Collection)
+            {
+                FuelTypeViewModel ViewModel = new FuelTypeViewModel { Id = FuelType.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

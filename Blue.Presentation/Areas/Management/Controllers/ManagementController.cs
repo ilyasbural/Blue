@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<ManagementViewModel>> (new List<ManagementViewModel>());
             Response<Management> ManagementResponse = await Service.SelectAsync(new ManagementSelectDto {    });
-
-            //Service.InsertAsync(new ManagementRegisterDto { });
-
+            foreach (Management Management in ManagementResponse.Collection)
+            {
+                ManagementViewModel ViewModel = new ManagementViewModel { Id = Management.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

@@ -15,17 +15,12 @@
         public async Task<IActionResult> Index()
         {
             var Model = Tuple.Create<List<BuildingTypeViewModel>> (new List<BuildingTypeViewModel>());
-            Response<BuildingType> BuildingTypeResponse = await Service.SelectAsync(new BuildingTypeSelectDto {    });
-
+            Response<BuildingType> BuildingTypeResponse = await Service.SelectAsync(new BuildingTypeSelectDto {  });
             foreach (BuildingType BuildingType in BuildingTypeResponse.Collection)
             {
-                BuildingTypeViewModel BuildingTypeViewModel = new BuildingTypeViewModel 
-                {
-                    Id = BuildingType.Id
-                };
-                Model.Item1.Add(BuildingTypeViewModel);
+                BuildingTypeViewModel ViewModel = new BuildingTypeViewModel { Id = BuildingType.Id };
+                Model.Item1.Add(ViewModel);
             }
-
             return View(Model);
         }
 

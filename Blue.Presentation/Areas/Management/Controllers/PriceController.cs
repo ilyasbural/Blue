@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<PriceViewModel>> (new List<PriceViewModel>());
             Response<Price> PriceResponse = await Service.SelectAsync(new PriceSelectDto {    });
-
-            //Service.InsertAsync(new PriceRegisterDto { Name = "100.000" });
-
+            foreach (Price Price in PriceResponse.Collection)
+            {
+                PriceViewModel ViewModel = new PriceViewModel { Id = Price.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

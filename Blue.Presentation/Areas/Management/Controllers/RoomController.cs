@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<RoomViewModel>> (new List<RoomViewModel>());
             Response<Room> RoomResponse = await Service.SelectAsync(new RoomSelectDto {         });
-
-            //Service.InsertAsync(new RoomRegisterDto { });
-
+            foreach (Room Room in RoomResponse.Collection)
+            {
+                RoomViewModel ViewModel = new RoomViewModel { Id = Room.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

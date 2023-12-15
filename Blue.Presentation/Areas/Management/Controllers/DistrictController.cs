@@ -16,10 +16,11 @@
         {
             var Model = Tuple.Create<List<DistrictViewModel>> (new List<DistrictViewModel>());
             Response<District> DistrictResponse = await Service.SelectAsync(new DistrictSelectDto {  });
-
-
-            //Service.InsertAsync(new DistrictRegisterDto { Name = "Aaaa" });
-
+            foreach (District District in DistrictResponse.Collection)
+            {
+                DistrictViewModel ViewModel = new DistrictViewModel { Id = District.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

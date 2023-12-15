@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<HometownViewModel>> (new List<HometownViewModel>());
             Response<Hometown> HometownResponse = await Service.SelectAsync(new HometownSelectDto {     });
-
-            //Service.InsertAsync(new HometownRegisterDto { });
-
+            foreach (Hometown Hometown in HometownResponse.Collection)
+            {
+                HometownViewModel ViewModel = new HometownViewModel { Id = Hometown.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

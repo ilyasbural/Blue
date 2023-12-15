@@ -16,20 +16,11 @@
         {
             var Model = Tuple.Create<List<CityViewModel>> (new List<CityViewModel>());
             Response<City> CityResponse = await Service.SelectAsync(new CitySelectDto {  });
-
             foreach (City City in CityResponse.Collection)
             {
-                CityViewModel CityViewModel = new CityViewModel
-                {
-                    Id = City.Id
-                };
-                Model.Item1.Add(CityViewModel);
+                CityViewModel ViewModel = new CityViewModel { Id = City.Id };
+                Model.Item1.Add(ViewModel);
             }
-
-            //CityRegisterDto cityRegisterDto = new CityRegisterDto();
-            //cityRegisterDto.Name = "İstanbul";
-            //Service.InsertAsync(cityRegisterDto);
-
             return View(Model);
         }
 

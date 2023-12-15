@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<WarmingViewModel>> (new List<WarmingViewModel>());
             Response<Warming> WarmingResponse = await Service.SelectAsync(new WarmingSelectDto {      });
-
-            //Service.InsertAsync(new WarmingRegisterDto { Name = "Var" });
-
+            foreach (Warming Warming in WarmingResponse.Collection)
+            {
+                WarmingViewModel ViewModel = new WarmingViewModel { Id = Warming.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

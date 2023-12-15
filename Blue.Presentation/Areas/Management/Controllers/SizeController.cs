@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<SizeViewModel>> (new List<SizeViewModel>());
             Response<Size> SizeResponse = await Service.SelectAsync(new SizeSelectDto {         });
-
-            //Service.InsertAsync(new SizeRegisterDto { Name = "75 m2" });
-
+            foreach (Size Size in SizeResponse.Collection)
+            {
+                SizeViewModel ViewModel = new SizeViewModel { Id = Size.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 

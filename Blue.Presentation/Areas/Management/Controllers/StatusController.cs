@@ -16,9 +16,11 @@
         {
             var Model = Tuple.Create<List<StatusViewModel>> (new List<StatusViewModel>());
             Response<Status> StatusResponse = await Service.SelectAsync(new StatusSelectDto {       });
-
-            //Service.InsertAsync(new StatusRegisterDto { });
-
+            foreach (Status Status in StatusResponse.Collection)
+            {
+                StatusViewModel ViewModel = new StatusViewModel { Id = Status.Id };
+                Model.Item1.Add(ViewModel);
+            }
             return View(Model);
         }
 
