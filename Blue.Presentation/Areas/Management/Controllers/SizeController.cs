@@ -33,7 +33,17 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] SizeViewModel Model)
+		{
+			SizeRegisterDto Size = new SizeRegisterDto();
+			//BuildingType.Name = Model.Name;
+			Response<Size> SizeResponse = await Service.InsertAsync(Size);
+			if (SizeResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<SizeViewModel>(new SizeViewModel());
 

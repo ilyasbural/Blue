@@ -33,7 +33,17 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] StatusViewModel Model)
+		{
+			StatusRegisterDto Status = new StatusRegisterDto();
+			//BuildingType.Name = Model.Name;
+			Response<Status> StatusResponse = await Service.InsertAsync(Status);
+			if (StatusResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<StatusViewModel>(new StatusViewModel());
 

@@ -33,7 +33,18 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] FeaturesAroundViewModel Model)
+		{
+			FeaturesAroundRegisterDto FeaturesAround = new FeaturesAroundRegisterDto();
+			//BuildingType.Name = Model.Name;
+			Response<FeaturesAround> FeaturesAroundResponse = await Service.InsertAsync(FeaturesAround);
+
+			if (FeaturesAroundResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<FeaturesAroundViewModel>(new FeaturesAroundViewModel());
 

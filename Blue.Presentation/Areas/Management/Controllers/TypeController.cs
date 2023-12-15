@@ -33,7 +33,17 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] TypeViewModel Model)
+		{
+			TypeRegisterDto Type = new TypeRegisterDto();
+			//Type.Name = Model.Name;
+			Response<Type> TypeResponse = await Service.InsertAsync(Type);
+			if (TypeResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<TypeViewModel>(new TypeViewModel());
 

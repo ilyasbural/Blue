@@ -33,7 +33,18 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] FeaturesOutsideViewModel Model)
+		{
+			FeaturesOutsideRegisterDto FeaturesOutside = new FeaturesOutsideRegisterDto();
+			//BuildingType.Name = Model.Name;
+			Response<FeaturesOutside> FeaturesOutsideResponse = await Service.InsertAsync(FeaturesOutside);
+
+			if (FeaturesOutsideResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<FeaturesOutsideViewModel>(new FeaturesOutsideViewModel());
 

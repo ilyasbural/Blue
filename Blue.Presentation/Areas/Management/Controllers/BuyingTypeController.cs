@@ -33,7 +33,17 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] BuyingTypeViewModel Model)
+		{
+			BuyingTypeRegisterDto BuyingType = new BuyingTypeRegisterDto();
+			//BuildingType.Name = Model.Name;
+			Response<BuyingType> BuyingTypeResponse = await Service.InsertAsync(BuyingType);
+			if (BuyingTypeResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<BuyingTypeViewModel>(new BuyingTypeViewModel());
 

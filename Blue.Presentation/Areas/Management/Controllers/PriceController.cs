@@ -33,7 +33,17 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] PriceViewModel Model)
+		{
+			PriceRegisterDto Price = new PriceRegisterDto();
+			//BuildingType.Name = Model.Name;
+			Response<Price> PriceResponse = await Service.InsertAsync(Price);
+			if (PriceResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<PriceViewModel>(new PriceViewModel());
 

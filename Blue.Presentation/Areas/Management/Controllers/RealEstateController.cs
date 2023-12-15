@@ -33,7 +33,17 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] RealEstateViewModel Model)
+		{
+			RealEstateRegisterDto RealEstate = new RealEstateRegisterDto();
+			//BuildingType.Name = Model.Name;
+			Response<RealEstate> RealEstateResponse = await Service.InsertAsync(RealEstate);
+			if (RealEstateResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<RealEstateViewModel, RealEstateDetailViewModel>(new RealEstateViewModel(), new RealEstateDetailViewModel());
 

@@ -33,7 +33,17 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] ManagementViewModel Model)
+		{
+			ManagementRegisterDto Management = new ManagementRegisterDto();
+			//BuildingType.Name = Model.Name;
+			Response<Management> ManagementResponse = await Service.InsertAsync(Management);
+			if (ManagementResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<ManagementViewModel>(new ManagementViewModel());
 

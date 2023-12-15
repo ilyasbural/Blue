@@ -33,7 +33,18 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] FurnitureViewModel Model)
+		{
+			FurnitureRegisterDto Furniture = new FurnitureRegisterDto();
+			//Furniture.Name = Model.Name;
+			Response<Furniture> FurnitureResponse = await Service.InsertAsync(Furniture);
+
+			if (FurnitureResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<FurnitureViewModel>(new FurnitureViewModel());
 

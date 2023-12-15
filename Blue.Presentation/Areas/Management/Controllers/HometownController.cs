@@ -33,7 +33,17 @@
             return View(Model);
         }
 
-        public IActionResult Update()
+		[HttpPost]
+		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] HometownViewModel Model)
+		{
+			HometownRegisterDto Hometown = new HometownRegisterDto();
+			//BuildingType.Name = Model.Name;
+			Response<Hometown> HometownResponse = await Service.InsertAsync(Hometown);
+			if (HometownResponse.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public IActionResult Update()
         {
             var Model = Tuple.Create<HometownViewModel>(new HometownViewModel());
 
