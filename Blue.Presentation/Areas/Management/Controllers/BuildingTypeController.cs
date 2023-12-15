@@ -30,27 +30,15 @@
 			return View(Model);
 		}
 
-		[HttpPost]
-		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] BuildingTypeViewModel Model)
-		{
-			BuildingTypeRegisterDto BuildingType = new BuildingTypeRegisterDto();
-			BuildingType.Name = Model.Name;
-			Response<BuildingType> BuildingTypeResponse = await Service.InsertAsync(BuildingType);
-			if (BuildingTypeResponse.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
-
 		public IActionResult Update()
 		{
 			var Model = Tuple.Create<BuildingTypeViewModel>(new BuildingTypeViewModel());
-
 			return View(Model);
 		}
 
 		public IActionResult Delete()
 		{
 			var Model = Tuple.Create<BuildingTypeViewModel>(new BuildingTypeViewModel());
-
 			return View(Model);
 		}
 	}
