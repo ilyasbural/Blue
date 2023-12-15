@@ -4,4 +4,7 @@
 }
 @model Tuple<List<Blue.Presentation.FeaturesAroundViewModel>>
 
-<h1>Index</h1>
+@foreach (Blue.Presentation.FeaturesAroundViewModel FeaturesAroundViewModel in Model.Item1)
+{
+    <h1>@FeaturesAroundViewModel.Id</h1>
+}

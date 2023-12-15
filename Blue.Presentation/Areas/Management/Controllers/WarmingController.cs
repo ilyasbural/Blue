@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<WarmingViewModel>>(new List<WarmingViewModel>());
-
-            await Service.SelectAsync(new WarmingSelectDto {      });
+            var Model = Tuple.Create<List<WarmingViewModel>> (new List<WarmingViewModel>());
+            Response<Warming> WarmingResponse = await Service.SelectAsync(new WarmingSelectDto {      });
 
             //Service.InsertAsync(new WarmingRegisterDto { Name = "Var" });
 

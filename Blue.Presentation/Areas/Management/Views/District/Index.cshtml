@@ -4,4 +4,7 @@
 }
 @model Tuple<List<Blue.Presentation.DistrictViewModel>>
 
-<h1>Index</h1>
+@foreach (Blue.Presentation.DistrictViewModel DistrictViewModel in Model.Item1)
+{
+    <h1>@DistrictViewModel.Id</h1>
+}

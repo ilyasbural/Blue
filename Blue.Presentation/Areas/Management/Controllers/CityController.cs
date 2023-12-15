@@ -14,9 +14,17 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<CityViewModel>>(new List<CityViewModel>());
+            var Model = Tuple.Create<List<CityViewModel>> (new List<CityViewModel>());
+            Response<City> CityResponse = await Service.SelectAsync(new CitySelectDto {  });
 
-            Response<City> Response = await Service.SelectAsync(new CitySelectDto {         });
+            foreach (City City in CityResponse.Collection)
+            {
+                CityViewModel CityViewModel = new CityViewModel
+                {
+                    Id = City.Id
+                };
+                Model.Item1.Add(CityViewModel);
+            }
 
             //CityRegisterDto cityRegisterDto = new CityRegisterDto();
             //cityRegisterDto.Name = "İstanbul";

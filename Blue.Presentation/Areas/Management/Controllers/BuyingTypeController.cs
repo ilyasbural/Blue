@@ -14,9 +14,17 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<BuyingTypeViewModel>>(new List<BuyingTypeViewModel>());
+            var Model = Tuple.Create<List<BuyingTypeViewModel>> (new List<BuyingTypeViewModel>());
+            Response<BuyingType> BuyingTypeResponse = await Service.SelectAsync(new BuyingTypeSelectDto { });
 
-            Response<BuyingType> Response = await Service.SelectAsync(new BuyingTypeSelectDto {           });
+            foreach (BuyingType BuyingType in BuyingTypeResponse.Collection)
+            {
+                BuyingTypeViewModel BuildingTypeViewModel = new BuyingTypeViewModel
+                {
+                    Id = BuyingType.Id
+                };
+                Model.Item1.Add(BuildingTypeViewModel);
+            }
 
             //Service.InsertAsync(new BuyingTypeRegisterDto { });
 

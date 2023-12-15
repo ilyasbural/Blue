@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<SizeViewModel>>(new List<SizeViewModel>());
-
-            await Service.SelectAsync(new SizeSelectDto {         });
+            var Model = Tuple.Create<List<SizeViewModel>> (new List<SizeViewModel>());
+            Response<Size> SizeResponse = await Service.SelectAsync(new SizeSelectDto {         });
 
             //Service.InsertAsync(new SizeRegisterDto { Name = "75 m2" });
 

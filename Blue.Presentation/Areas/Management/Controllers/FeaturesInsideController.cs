@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<FeaturesInsideViewModel>>(new List<FeaturesInsideViewModel>());
-
-            await Service.SelectAsync(new FeaturesInsideSelectDto {       });
+            var Model = Tuple.Create<List<FeaturesInsideViewModel>> (new List<FeaturesInsideViewModel>());
+            Response<FeaturesInside> FeaturesInsideResponse = await Service.SelectAsync(new FeaturesInsideSelectDto {   });
 
             //Service.InsertAsync(new FeaturesInsideRegisterDto { });
 

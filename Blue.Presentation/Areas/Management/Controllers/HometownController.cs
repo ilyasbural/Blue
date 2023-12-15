@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<HometownViewModel>>(new List<HometownViewModel>());
-
-            await Service.SelectAsync(new HometownSelectDto {         });
+            var Model = Tuple.Create<List<HometownViewModel>> (new List<HometownViewModel>());
+            Response<Hometown> HometownResponse = await Service.SelectAsync(new HometownSelectDto {     });
 
             //Service.InsertAsync(new HometownRegisterDto { });
 

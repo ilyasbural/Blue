@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<PriceViewModel>>(new List<PriceViewModel>());
-
-            await Service.SelectAsync(new PriceSelectDto {    });
+            var Model = Tuple.Create<List<PriceViewModel>> (new List<PriceViewModel>());
+            Response<Price> PriceResponse = await Service.SelectAsync(new PriceSelectDto {    });
 
             //Service.InsertAsync(new PriceRegisterDto { Name = "100.000" });
 

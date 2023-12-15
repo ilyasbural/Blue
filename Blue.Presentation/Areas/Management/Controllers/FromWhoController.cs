@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<FromWhoViewModel>>(new List<FromWhoViewModel>());
-
-            await Service.SelectAsync(new FromWhoSelectDto {      });
+            var Model = Tuple.Create<List<FromWhoViewModel>> (new List<FromWhoViewModel>());
+            Response<FromWho> FromWhoResponse = await Service.SelectAsync(new FromWhoSelectDto {   });
 
             //Service.InsertAsync(new FromWhoRegisterDto { });
 

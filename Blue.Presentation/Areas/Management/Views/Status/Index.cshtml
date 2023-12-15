@@ -4,4 +4,7 @@
 }
 @model Tuple<List<Blue.Presentation.StatusViewModel>>
 
-<h1>Index</h1>
+@foreach (Blue.Presentation.StatusViewModel StatusViewModel in Model.Item1)
+{
+    <h1>@StatusViewModel.Id</h1>
+}

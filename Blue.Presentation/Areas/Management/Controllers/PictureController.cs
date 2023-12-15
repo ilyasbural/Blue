@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<PictureViewModel>>(new List<PictureViewModel>());
-
-            await Service.SelectAsync(new PictureSelectDto {      });
+            var Model = Tuple.Create<List<PictureViewModel>> (new List<PictureViewModel>());
+            Response<Picture> PictureResponse = await Service.SelectAsync(new PictureSelectDto {    });
 
             //Service.InsertAsync(new PictureRegisterDto { });
 

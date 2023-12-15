@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<StatusViewModel>>(new List<StatusViewModel>());
-
-            await Service.SelectAsync(new StatusSelectDto {       });
+            var Model = Tuple.Create<List<StatusViewModel>> (new List<StatusViewModel>());
+            Response<Status> StatusResponse = await Service.SelectAsync(new StatusSelectDto {       });
 
             //Service.InsertAsync(new StatusRegisterDto { });
 

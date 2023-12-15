@@ -14,9 +14,9 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<DistrictViewModel>>(new List<DistrictViewModel>());
+            var Model = Tuple.Create<List<DistrictViewModel>> (new List<DistrictViewModel>());
+            Response<District> DistrictResponse = await Service.SelectAsync(new DistrictSelectDto {  });
 
-            await Service.SelectAsync(new DistrictSelectDto {         });
 
             //Service.InsertAsync(new DistrictRegisterDto { Name = "Aaaa" });
 

@@ -25,14 +25,21 @@
             Data.UpdateDate = DateTime.Now;
             Data.IsActive = true;
 
+            RealEstateDetail Detail = new RealEstateDetail();
+            Detail.Id = Data.Id;
+            Detail.RegisterDate = DateTime.Now;
+            Detail.UpdateDate = DateTime.Now;
+            Detail.IsActive = true;
+
             Validator.ValidateAndThrow<RealEstate>(Data);
             await UnitOfWork.RealEstate.InsertAsync(Data);
+            await UnitOfWork.RealEstateDetail.InsertAsync(Detail);
             int Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<RealEstate>
             {
-                Success = 1,
                 Data = Data,
+                Success = Success,
                 Message = "Success",
                 IsValidationError = false
             };

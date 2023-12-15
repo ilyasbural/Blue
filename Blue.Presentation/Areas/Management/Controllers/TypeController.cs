@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<TypeViewModel>>(new List<TypeViewModel>());
-
-            await Service.SelectAsync(new TypeSelectDto {         });
+            var Model = Tuple.Create<List<TypeViewModel>> (new List<TypeViewModel>());
+            Response<Type> TypeResponse = await Service.SelectAsync(new TypeSelectDto {         });
 
             //Service.InsertAsync(new TypeRegisterDto { Name = "Villa" });
 

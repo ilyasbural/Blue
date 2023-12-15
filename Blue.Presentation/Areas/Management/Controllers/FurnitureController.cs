@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<FurnitureViewModel>>(new List<FurnitureViewModel>());
-
-            await Service.SelectAsync(new FurnitureSelectDto {        });
+            var Model = Tuple.Create<List<FurnitureViewModel>> (new List<FurnitureViewModel>());
+            Response<Furniture> FurnitureResponse = await Service.SelectAsync(new FurnitureSelectDto {   });
 
             //Service.InsertAsync(new FurnitureRegisterDto { Name = "Var" });
 

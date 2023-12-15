@@ -14,9 +14,8 @@
 
         public async Task<IActionResult> Index()
         {
-            var Model = Tuple.Create<List<RoomViewModel>>(new List<RoomViewModel>());
-
-            await Service.SelectAsync(new RoomSelectDto {         });
+            var Model = Tuple.Create<List<RoomViewModel>> (new List<RoomViewModel>());
+            Response<Room> RoomResponse = await Service.SelectAsync(new RoomSelectDto {         });
 
             //Service.InsertAsync(new RoomRegisterDto { });
 
