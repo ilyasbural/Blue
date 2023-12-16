@@ -1,10 +1,10 @@
 ﻿namespace Blue.Core
 {
-    public class Picture : Base<Picture>, IEntity
-    {
-        public Picture()
-        {
-            
-        }
-    }
+	public class Picture : Base<Picture>, IEntity
+	{
+		public Picture()
+		{
+
+		}
+	}
 }

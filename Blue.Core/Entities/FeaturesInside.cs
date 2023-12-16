@@ -1,10 +1,10 @@
 ﻿namespace Blue.Core
 {
-    public class FeaturesInside : Base<FeaturesInside>, IEntity
-    {
-        public FeaturesInside()
-        {
+	public class FeaturesInside : Base<FeaturesInside>, IEntity
+	{
+		public FeaturesInside()
+		{
 
-        }
-    }
+		}
+	}
 }

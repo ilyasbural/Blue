@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public interface IPrice : IRepository<Price>
-    {
+	public interface IPrice : IRepository<Price>
+	{
 
-    }
+	}
 }

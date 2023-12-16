@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public interface IManagement : IRepository<Management>
-    {
+	public interface IManagement : IRepository<Management>
+	{
 
-    }
+	}
 }

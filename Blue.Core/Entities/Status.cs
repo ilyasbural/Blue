@@ -1,10 +1,10 @@
 ﻿namespace Blue.Core
 {
-    public class Status : Base<Status>, IEntity
-    {
-        public Status()
-        {
+	public class Status : Base<Status>, IEntity
+	{
+		public Status()
+		{
 
-        }
-    }
+		}
+	}
 }

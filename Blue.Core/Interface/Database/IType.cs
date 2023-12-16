@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public interface IType : IRepository<Type>
-    {
+	public interface IType : IRepository<Type>
+	{
 
-    }
+	}
 }

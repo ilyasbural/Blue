@@ -1,10 +1,10 @@
 ﻿namespace Blue.Core
 {
-    public class FuelType : Base<FuelType>, IEntity
-    {
-        public FuelType()
-        {
+	public class FuelType : Base<FuelType>, IEntity
+	{
+		public FuelType()
+		{
 
-        }
-    }
+		}
+	}
 }

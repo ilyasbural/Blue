@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public interface IFromWho : IRepository<FromWho>
-    {
+	public interface IFromWho : IRepository<FromWho>
+	{
 
-    }
+	}
 }

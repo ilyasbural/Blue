@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-    public interface IBuyingType : IRepository<BuyingType>
-    {
+	public interface IBuyingType : IRepository<BuyingType>
+	{
 
-    }
+	}
 }

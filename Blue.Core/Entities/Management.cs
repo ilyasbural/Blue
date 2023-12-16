@@ -1,10 +1,10 @@
 ﻿namespace Blue.Core
 {
-    public class Management : Base<Management>, IEntity
-    {
-        public Management()
-        {
-            
-        }
-    }
+	public class Management : Base<Management>, IEntity
+	{
+		public Management()
+		{
+
+		}
+	}
 }
