@@ -1,37 +1,37 @@
 ﻿namespace Blue.Presentation.Areas.Management.Controllers
 {
-    using Core;
-    using Microsoft.AspNetCore.Mvc;
+	using Core;
+	using Microsoft.AspNetCore.Mvc;
 
-    [Area("Management")]
-    public class DistrictController : Controller
-    {
-        readonly IDistrictService Service;
-        public DistrictController(IDistrictService service)
-        {
-            Service = service;
-        }
+	[Area("Management")]
+	public class DistrictController : Controller
+	{
+		readonly IDistrictService Service;
+		public DistrictController(IDistrictService service)
+		{
+			Service = service;
+		}
 
-        public async Task<IActionResult> Index()
-        {
-            var Model = Tuple.Create<List<DistrictViewModel>> (new List<DistrictViewModel>());
-            Response<District> DistrictResponse = await Service.SelectAsync(new DistrictSelectDto {  });
-            foreach (District District in DistrictResponse.Collection)
-            {
-                DistrictViewModel ViewModel = new DistrictViewModel { Id = District.Id };
-                Model.Item1.Add(ViewModel);
-            }
-            return View(Model);
-        }
+		public async Task<IActionResult> Index()
+		{
+			var Model = Tuple.Create<List<DistrictViewModel>>(new List<DistrictViewModel>());
+			Response<District> DistrictResponse = await Service.SelectAsync(new DistrictSelectDto { });
+			foreach (District District in DistrictResponse.Collection)
+			{
+				DistrictViewModel ViewModel = new DistrictViewModel { Id = District.Id };
+				Model.Item1.Add(ViewModel);
+			}
+			return View(Model);
+		}
 
-        public IActionResult Create()
-        {
-            var Model = Tuple.Create<DistrictViewModel>(new DistrictViewModel());
+		public IActionResult Create()
+		{
+			var Model = Tuple.Create<DistrictViewModel>(new DistrictViewModel());
 
-            //await Service.InsertAsync(new BuildingTypeRegisterDto { });
+			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
 
-            return View(Model);
-        }
+			return View(Model);
+		}
 
 		[HttpPost]
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] DistrictViewModel Model)
@@ -44,17 +44,17 @@
 		}
 
 		public IActionResult Update()
-        {
-            var Model = Tuple.Create<DistrictViewModel>(new DistrictViewModel());
+		{
+			var Model = Tuple.Create<DistrictViewModel>(new DistrictViewModel());
 
-            return View(Model);
-        }
+			return View(Model);
+		}
 
-        public IActionResult Delete()
-        {
-            var Model = Tuple.Create<DistrictViewModel>(new DistrictViewModel());
+		public IActionResult Delete()
+		{
+			var Model = Tuple.Create<DistrictViewModel>(new DistrictViewModel());
 
-            return View(Model);
-        }
-    }
+			return View(Model);
+		}
+	}
 }
