@@ -1,13 +1,13 @@
 ﻿namespace Blue.Service
 {
-    using Core;
-    using FluentValidation;
+	using Core;
+	using FluentValidation;
 
-    public class HometownValidator : AbstractValidator<Hometown>
-    {
-        public HometownValidator()
-        {
-            
-        }
-    }
+	public class HometownValidator : AbstractValidator<Hometown>
+	{
+		public HometownValidator()
+		{
+
+		}
+	}
 }

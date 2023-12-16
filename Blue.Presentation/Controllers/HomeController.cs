@@ -1,9 +1,9 @@
 ﻿namespace Blue.Presentation.Controllers
 {
-    using Core;
-    using Microsoft.AspNetCore.Mvc;
+	using Core;
+	using Microsoft.AspNetCore.Mvc;
 
-    public class HomeController : Controller
+	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
 
