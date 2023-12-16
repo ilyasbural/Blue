@@ -1,37 +1,37 @@
 ﻿namespace Blue.Presentation.Areas.Management.Controllers
 {
-    using Core;
-    using Microsoft.AspNetCore.Mvc;
+	using Core;
+	using Microsoft.AspNetCore.Mvc;
 
-    [Area("Management")]
-    public class SizeController : Controller
-    {
-        readonly ISizeService Service;
-        public SizeController(ISizeService service)
-        {
-            Service = service;
-        }
+	[Area("Management")]
+	public class SizeController : Controller
+	{
+		readonly ISizeService Service;
+		public SizeController(ISizeService service)
+		{
+			Service = service;
+		}
 
-        public async Task<IActionResult> Index()
-        {
-            var Model = Tuple.Create<List<SizeViewModel>> (new List<SizeViewModel>());
-            Response<Size> SizeResponse = await Service.SelectAsync(new SizeSelectDto {         });
-            foreach (Size Size in SizeResponse.Collection)
-            {
-                SizeViewModel ViewModel = new SizeViewModel { Id = Size.Id };
-                Model.Item1.Add(ViewModel);
-            }
-            return View(Model);
-        }
+		public async Task<IActionResult> Index()
+		{
+			var Model = Tuple.Create<List<SizeViewModel>>(new List<SizeViewModel>());
+			Response<Size> SizeResponse = await Service.SelectAsync(new SizeSelectDto { });
+			foreach (Size Size in SizeResponse.Collection)
+			{
+				SizeViewModel ViewModel = new SizeViewModel { Id = Size.Id };
+				Model.Item1.Add(ViewModel);
+			}
+			return View(Model);
+		}
 
-        public IActionResult Create()
-        {
-            var Model = Tuple.Create<SizeViewModel>(new SizeViewModel());
+		public IActionResult Create()
+		{
+			var Model = Tuple.Create<SizeViewModel>(new SizeViewModel());
 
-            //await Service.InsertAsync(new BuildingTypeRegisterDto { });
+			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
 
-            return View(Model);
-        }
+			return View(Model);
+		}
 
 		[HttpPost]
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] SizeViewModel Model)
@@ -44,17 +44,17 @@
 		}
 
 		public IActionResult Update()
-        {
-            var Model = Tuple.Create<SizeViewModel>(new SizeViewModel());
+		{
+			var Model = Tuple.Create<SizeViewModel>(new SizeViewModel());
 
-            return View(Model);
-        }
+			return View(Model);
+		}
 
-        public IActionResult Delete()
-        {
-            var Model = Tuple.Create<SizeViewModel>(new SizeViewModel());
+		public IActionResult Delete()
+		{
+			var Model = Tuple.Create<SizeViewModel>(new SizeViewModel());
 
-            return View(Model);
-        }
-    }
+			return View(Model);
+		}
+	}
 }

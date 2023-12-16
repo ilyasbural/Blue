@@ -1,48 +1,48 @@
 ﻿namespace Blue.Presentation.Areas.Management.Controllers
 {
-    using Core;
-    using Microsoft.AspNetCore.Mvc;
+	using Core;
+	using Microsoft.AspNetCore.Mvc;
 
-    [Area("Management")]
-    public class PictureController : Controller
-    {
-        readonly IPictureService Service;
-        public PictureController(IPictureService service)
-        {
-            Service = service;
-        }
+	[Area("Management")]
+	public class PictureController : Controller
+	{
+		readonly IPictureService Service;
+		public PictureController(IPictureService service)
+		{
+			Service = service;
+		}
 
-        public async Task<IActionResult> Index()
-        {
-            var Model = Tuple.Create<List<PictureViewModel>> (new List<PictureViewModel>());
-            Response<Picture> PictureResponse = await Service.SelectAsync(new PictureSelectDto {    });
+		public async Task<IActionResult> Index()
+		{
+			var Model = Tuple.Create<List<PictureViewModel>>(new List<PictureViewModel>());
+			Response<Picture> PictureResponse = await Service.SelectAsync(new PictureSelectDto { });
 
-            //Service.InsertAsync(new PictureRegisterDto { });
+			//Service.InsertAsync(new PictureRegisterDto { });
 
-            return View(Model);
-        }
+			return View(Model);
+		}
 
-        public IActionResult Create()
-        {
-            var Model = Tuple.Create<PictureViewModel>(new PictureViewModel());
+		public IActionResult Create()
+		{
+			var Model = Tuple.Create<PictureViewModel>(new PictureViewModel());
 
-            //await Service.InsertAsync(new BuildingTypeRegisterDto { });
+			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
 
-            return View(Model);
-        }
+			return View(Model);
+		}
 
-        public IActionResult Update()
-        {
-            var Model = Tuple.Create<PictureViewModel>(new PictureViewModel());
+		public IActionResult Update()
+		{
+			var Model = Tuple.Create<PictureViewModel>(new PictureViewModel());
 
-            return View(Model);
-        }
+			return View(Model);
+		}
 
-        public IActionResult Delete()
-        {
-            var Model = Tuple.Create<PictureViewModel>(new PictureViewModel());
+		public IActionResult Delete()
+		{
+			var Model = Tuple.Create<PictureViewModel>(new PictureViewModel());
 
-            return View(Model);
-        }
-    }
+			return View(Model);
+		}
+	}
 }
