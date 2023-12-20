@@ -40,10 +40,9 @@
 			else return View(Model);
 		}
 
-		public IActionResult Update()
+		public IActionResult Update(Guid Id)
 		{
 			var Model = Tuple.Create<RealEstateViewModel, RealEstateDetailViewModel>(new RealEstateViewModel(), new RealEstateDetailViewModel());
-
 			return View(Model);
 		}
 

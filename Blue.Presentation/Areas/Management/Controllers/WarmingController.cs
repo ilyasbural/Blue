@@ -40,10 +40,9 @@
 			else return View();
 		}
 
-		public IActionResult Update()
+		public IActionResult Update(Guid Id)
 		{
 			var Model = Tuple.Create<WarmingViewModel>(new WarmingViewModel());
-
 			return View(Model);
 		}
 

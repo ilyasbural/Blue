@@ -6,5 +6,5 @@
 
 @foreach (Blue.Presentation.WarmingViewModel WarmingViewModel in Model.Item1)
 {
-    <h1>@WarmingViewModel.Id</h1>
+    <h1><a href="/management/warming/update/@WarmingViewModel.Id">@WarmingViewModel.Id</a></h1>
 }

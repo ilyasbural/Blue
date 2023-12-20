@@ -28,10 +28,9 @@
 			return View(Model);
 		}
 
-		public IActionResult Update()
+		public IActionResult Update(Guid Id)
 		{
 			var Model = Tuple.Create<PictureViewModel>(new PictureViewModel());
-
 			return View(Model);
 		}
 
