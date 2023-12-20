@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<ManagementViewModel>(new ManagementViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,9 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] ManagementViewModel Model)
 		{
 			ManagementRegisterDto Management = new ManagementRegisterDto();
-			//BuildingType.Name = Model.Name;
-			Response<Management> ManagementResponse = await Service.InsertAsync(Management);
-			if (ManagementResponse.Success > 0) return RedirectToAction("Index");
+			Management.Name = Model.Name;
+			Response<Management> Response = await Service.InsertAsync(Management);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

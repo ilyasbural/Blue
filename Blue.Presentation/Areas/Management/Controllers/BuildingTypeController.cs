@@ -35,8 +35,8 @@
 		{
 			BuildingTypeRegisterDto BuildingType = new BuildingTypeRegisterDto();
 			BuildingType.Name = Model.Name;
-			Response<BuildingType> BuildingTypeResponse = await Service.InsertAsync(BuildingType);
-			if (BuildingTypeResponse.Success > 0) return RedirectToAction("Index");
+			Response<BuildingType> Response = await Service.InsertAsync(BuildingType);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

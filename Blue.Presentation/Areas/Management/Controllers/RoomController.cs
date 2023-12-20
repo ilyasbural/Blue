@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<RoomViewModel>(new RoomViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,9 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] RoomViewModel Model)
 		{
 			RoomRegisterDto Room = new RoomRegisterDto();
-			//BuildingType.Name = Model.Name;
-			Response<Room> RoomResponse = await Service.InsertAsync(Room);
-			if (RoomResponse.Success > 0) return RedirectToAction("Index");
+			Room.Name = Model.Name;
+			Response<Room> Response = await Service.InsertAsync(Room);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

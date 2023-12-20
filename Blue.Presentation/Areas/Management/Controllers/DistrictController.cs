@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<DistrictViewModel>(new DistrictViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,9 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] DistrictViewModel Model)
 		{
 			DistrictRegisterDto District = new DistrictRegisterDto();
-			//District.Name = Model.Name;
-			Response<District> BuildingTypeResponse = await Service.InsertAsync(District);
-			if (BuildingTypeResponse.Success > 0) return RedirectToAction("Index");
+			District.Name = Model.Name;
+			Response<District> Response = await Service.InsertAsync(District);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

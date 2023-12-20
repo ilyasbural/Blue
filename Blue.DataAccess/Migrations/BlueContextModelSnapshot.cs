@@ -55,6 +55,10 @@ namespace Blue.DataAccess.Migrations
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
 
@@ -123,6 +127,10 @@ namespace Blue.DataAccess.Migrations
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
 
@@ -142,6 +150,10 @@ namespace Blue.DataAccess.Migrations
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
@@ -163,6 +175,10 @@ namespace Blue.DataAccess.Migrations
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
 
@@ -183,6 +199,10 @@ namespace Blue.DataAccess.Migrations
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
 
@@ -202,6 +222,10 @@ namespace Blue.DataAccess.Migrations
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
@@ -247,6 +271,10 @@ namespace Blue.DataAccess.Migrations
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
 
@@ -266,6 +294,10 @@ namespace Blue.DataAccess.Migrations
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
@@ -331,6 +363,10 @@ namespace Blue.DataAccess.Migrations
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
 
@@ -370,6 +406,10 @@ namespace Blue.DataAccess.Migrations
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
@@ -414,6 +454,10 @@ namespace Blue.DataAccess.Migrations
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");

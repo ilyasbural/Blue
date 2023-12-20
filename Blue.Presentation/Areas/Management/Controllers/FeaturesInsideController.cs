@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<FeaturesInsideViewModel>(new FeaturesInsideViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,9 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] FeaturesInsideViewModel Model)
 		{
 			FeaturesInsideRegisterDto FeaturesInside = new FeaturesInsideRegisterDto();
-			//BuildingType.Name = Model.Name;
-			Response<FeaturesInside> FeaturesInsideResponse = await Service.InsertAsync(FeaturesInside);
-			if (FeaturesInsideResponse.Success > 0) return RedirectToAction("Index");
+			FeaturesInside.Name = Model.Name;
+			Response<FeaturesInside> Response = await Service.InsertAsync(FeaturesInside);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<HometownViewModel>(new HometownViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,9 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] HometownViewModel Model)
 		{
 			HometownRegisterDto Hometown = new HometownRegisterDto();
-			//BuildingType.Name = Model.Name;
-			Response<Hometown> HometownResponse = await Service.InsertAsync(Hometown);
-			if (HometownResponse.Success > 0) return RedirectToAction("Index");
+			Hometown.Name = Model.Name;
+			Response<Hometown> Response = await Service.InsertAsync(Hometown);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

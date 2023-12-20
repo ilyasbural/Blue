@@ -34,9 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] CityViewModel Model)
 		{
 			CityRegisterDto City = new CityRegisterDto();
-			//BuildingType.Name = Model.Name;
-			Response<City> BuildingTypeResponse = await Service.InsertAsync(City);
-			if (BuildingTypeResponse.Success > 0) return RedirectToAction("Index");
+			City.Name = Model.Name;
+			Response<City> Response = await Service.InsertAsync(City);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

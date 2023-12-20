@@ -2,7 +2,7 @@
 {
 	public class FeaturesOutsideRegisterDto
 	{
-
+		public string Name { get; set; } = String.Empty;
 	}
 
 	public class FeaturesOutsideUpdateDto

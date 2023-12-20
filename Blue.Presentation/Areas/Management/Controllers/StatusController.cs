@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<StatusViewModel>(new StatusViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,9 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] StatusViewModel Model)
 		{
 			StatusRegisterDto Status = new StatusRegisterDto();
-			//BuildingType.Name = Model.Name;
-			Response<Status> StatusResponse = await Service.InsertAsync(Status);
-			if (StatusResponse.Success > 0) return RedirectToAction("Index");
+			Status.Name = Model.Name;
+			Response<Status> Response = await Service.InsertAsync(Status);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

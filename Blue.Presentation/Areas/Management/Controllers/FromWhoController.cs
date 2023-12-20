@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<FromWhoViewModel>(new FromWhoViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,9 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] FromWhoViewModel Model)
 		{
 			FromWhoRegisterDto FromWho = new FromWhoRegisterDto();
-			//BuildingType.Name = Model.Name;
-			Response<FromWho> FromWhoResponse = await Service.InsertAsync(FromWho);
-			if (FromWhoResponse.Success > 0) return RedirectToAction("Index");
+			FromWho.Name = Model.Name;
+			Response<FromWho> Response = await Service.InsertAsync(FromWho);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

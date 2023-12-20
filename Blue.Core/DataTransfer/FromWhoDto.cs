@@ -2,7 +2,7 @@
 {
 	public class FromWhoRegisterDto
 	{
-
+		public string Name { get; set; } = String.Empty;
 	}
 
 	public class FromWhoUpdateDto

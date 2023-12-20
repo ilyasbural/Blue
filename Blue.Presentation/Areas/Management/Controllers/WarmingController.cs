@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<WarmingViewModel>(new WarmingViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,10 +34,10 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] WarmingViewModel Model)
 		{
 			WarmingRegisterDto Warming = new WarmingRegisterDto();
-			//Warming.Name = Model.Name;
-			Response<Warming> BuildingTypeResponse = await Service.InsertAsync(Warming);
-			if (BuildingTypeResponse.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
+			Warming.Name = Model.Name;
+			Response<Warming> Response = await Service.InsertAsync(Warming);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View();
 		}
 
 		public IActionResult Update()

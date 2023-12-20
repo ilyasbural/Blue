@@ -2,7 +2,7 @@
 {
 	public class RoomRegisterDto
 	{
-
+		public string Name { get; set; } = String.Empty;
 	}
 
 	public class RoomUpdateDto

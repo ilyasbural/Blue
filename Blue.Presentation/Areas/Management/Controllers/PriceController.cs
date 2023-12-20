@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<PriceViewModel>(new PriceViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,9 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] PriceViewModel Model)
 		{
 			PriceRegisterDto Price = new PriceRegisterDto();
-			//BuildingType.Name = Model.Name;
-			Response<Price> PriceResponse = await Service.InsertAsync(Price);
-			if (PriceResponse.Success > 0) return RedirectToAction("Index");
+			Price.Name = Model.Name;
+			Response<Price> Response = await Service.InsertAsync(Price);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

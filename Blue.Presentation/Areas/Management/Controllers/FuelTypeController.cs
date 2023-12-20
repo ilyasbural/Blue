@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<FuelTypeViewModel>(new FuelTypeViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,10 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] FuelTypeViewModel Model)
 		{
 			FuelTypeRegisterDto FuelType = new FuelTypeRegisterDto();
-			//FuelType.Name = Model.Name;
-			Response<FuelType> FuelTypeResponse = await Service.InsertAsync(FuelType);
-
-			if (FuelTypeResponse.Success > 0) return RedirectToAction("Index");
+			FuelType.Name = Model.Name;
+			Response<FuelType> Response = await Service.InsertAsync(FuelType);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

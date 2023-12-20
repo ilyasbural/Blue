@@ -2,7 +2,7 @@
 {
 	public class FuelTypeRegisterDto
 	{
-
+		public string Name { get; set; } = String.Empty;
 	}
 
 	public class FuelTypeUpdateDto

@@ -2,7 +2,7 @@
 {
 	public class HometownRegisterDto
 	{
-
+		public string Name { get; set; } = String.Empty;
 	}
 
 	public class HometownUpdateDto

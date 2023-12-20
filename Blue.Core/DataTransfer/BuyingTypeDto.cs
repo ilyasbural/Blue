@@ -2,7 +2,7 @@
 {
 	public class BuyingTypeRegisterDto
 	{
-
+		public string Name { get; set; } = String.Empty;
 	}
 
 	public class BuyingTypeUpdateDto

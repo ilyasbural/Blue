@@ -27,9 +27,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<FeaturesOutsideViewModel>(new FeaturesOutsideViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 
@@ -37,10 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] FeaturesOutsideViewModel Model)
 		{
 			FeaturesOutsideRegisterDto FeaturesOutside = new FeaturesOutsideRegisterDto();
-			//BuildingType.Name = Model.Name;
-			Response<FeaturesOutside> FeaturesOutsideResponse = await Service.InsertAsync(FeaturesOutside);
-
-			if (FeaturesOutsideResponse.Success > 0) return RedirectToAction("Index");
+			FeaturesOutside.Name = Model.Name;
+			Response<FeaturesOutside> Response = await Service.InsertAsync(FeaturesOutside);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

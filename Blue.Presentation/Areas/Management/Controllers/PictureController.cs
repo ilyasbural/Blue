@@ -25,9 +25,6 @@
 		public IActionResult Create()
 		{
 			var Model = Tuple.Create<PictureViewModel>(new PictureViewModel());
-
-			//await Service.InsertAsync(new BuildingTypeRegisterDto { });
-
 			return View(Model);
 		}
 

@@ -34,9 +34,9 @@
 		public async Task<IActionResult> Create([Bind(Prefix = "Item1")] BuyingTypeViewModel Model)
 		{
 			BuyingTypeRegisterDto BuyingType = new BuyingTypeRegisterDto();
-			//BuildingType.Name = Model.Name;
-			Response<BuyingType> BuyingTypeResponse = await Service.InsertAsync(BuyingType);
-			if (BuyingTypeResponse.Success > 0) return RedirectToAction("Index");
+			BuyingType.Name = Model.Name;
+			Response<BuyingType> Response = await Service.InsertAsync(BuyingType);
+			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
 		}
 

@@ -2,7 +2,7 @@
 {
 	public class ManagementRegisterDto
 	{
-
+		public string Name { get; set; } = String.Empty;
 	}
 
 	public class ManagementUpdateDto
