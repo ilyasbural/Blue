@@ -18,7 +18,7 @@
 			Response<FuelType> FuelTypeResponse = await Service.SelectAsync(new FuelTypeSelectDto { });
 			foreach (FuelType FuelType in FuelTypeResponse.Collection)
 			{
-				FuelTypeViewModel ViewModel = new FuelTypeViewModel { Id = FuelType.Id };
+				FuelTypeViewModel ViewModel = new FuelTypeViewModel { Id = FuelType.Id, Name = FuelType.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

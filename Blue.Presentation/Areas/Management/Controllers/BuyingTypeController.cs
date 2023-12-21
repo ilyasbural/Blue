@@ -18,7 +18,7 @@
 			Response<BuyingType> BuyingTypeResponse = await Service.SelectAsync(new BuyingTypeSelectDto { });
 			foreach (BuyingType BuyingType in BuyingTypeResponse.Collection)
 			{
-				BuyingTypeViewModel ViewModel = new BuyingTypeViewModel { Id = BuyingType.Id };
+				BuyingTypeViewModel ViewModel = new BuyingTypeViewModel { Id = BuyingType.Id, Name = BuyingType.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

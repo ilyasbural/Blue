@@ -18,7 +18,7 @@
 			Response<Room> RoomResponse = await Service.SelectAsync(new RoomSelectDto { });
 			foreach (Room Room in RoomResponse.Collection)
 			{
-				RoomViewModel ViewModel = new RoomViewModel { Id = Room.Id };
+				RoomViewModel ViewModel = new RoomViewModel { Id = Room.Id, Name = Room.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

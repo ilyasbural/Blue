@@ -18,7 +18,7 @@
 			Response<Warming> WarmingResponse = await Service.SelectAsync(new WarmingSelectDto { });
 			foreach (Warming Warming in WarmingResponse.Collection)
 			{
-				WarmingViewModel ViewModel = new WarmingViewModel { Id = Warming.Id };
+				WarmingViewModel ViewModel = new WarmingViewModel { Id = Warming.Id, Name = Warming.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

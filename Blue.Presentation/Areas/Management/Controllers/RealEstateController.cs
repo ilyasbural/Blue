@@ -18,7 +18,7 @@
 			Response<RealEstate> RealEstateResponse = await Service.SelectAsync(new RealEstateSelectDto { });
 			foreach (RealEstate RealEstate in RealEstateResponse.Collection)
 			{
-				RealEstateViewModel ViewModel = new RealEstateViewModel { Id = RealEstate.Id };
+				RealEstateViewModel ViewModel = new RealEstateViewModel { Id = RealEstate.Id, Name = RealEstate.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

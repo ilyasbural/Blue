@@ -18,7 +18,7 @@
 			Response<Furniture> FurnitureResponse = await Service.SelectAsync(new FurnitureSelectDto { });
 			foreach (Furniture Furniture in FurnitureResponse.Collection)
 			{
-				FurnitureViewModel ViewModel = new FurnitureViewModel { Id = Furniture.Id };
+				FurnitureViewModel ViewModel = new FurnitureViewModel { Id = Furniture.Id, Name = Furniture.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

@@ -18,7 +18,7 @@
 			Response<FeaturesInside> FeaturesInsideResponse = await Service.SelectAsync(new FeaturesInsideSelectDto { });
 			foreach (FeaturesInside FeaturesInside in FeaturesInsideResponse.Collection)
 			{
-				FeaturesInsideViewModel ViewModel = new FeaturesInsideViewModel { Id = FeaturesInside.Id };
+				FeaturesInsideViewModel ViewModel = new FeaturesInsideViewModel { Id = FeaturesInside.Id, Name = FeaturesInside.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

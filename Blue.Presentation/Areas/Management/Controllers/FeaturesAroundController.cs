@@ -18,7 +18,7 @@
 			Response<FeaturesAround> FeaturesAroundResponse = await Service.SelectAsync(new FeaturesAroundSelectDto { });
 			foreach (FeaturesAround FeaturesAround in FeaturesAroundResponse.Collection)
 			{
-				FeaturesAroundViewModel ViewModel = new FeaturesAroundViewModel { Id = FeaturesAround.Id };
+				FeaturesAroundViewModel ViewModel = new FeaturesAroundViewModel { Id = FeaturesAround.Id, Name = FeaturesAround.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

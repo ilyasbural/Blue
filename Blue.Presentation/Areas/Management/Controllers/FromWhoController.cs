@@ -18,7 +18,7 @@
 			Response<FromWho> FromWhoResponse = await Service.SelectAsync(new FromWhoSelectDto { });
 			foreach (FromWho FromWho in FromWhoResponse.Collection)
 			{
-				FromWhoViewModel ViewModel = new FromWhoViewModel { Id = FromWho.Id };
+				FromWhoViewModel ViewModel = new FromWhoViewModel { Id = FromWho.Id, Name = FromWho.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

@@ -18,7 +18,7 @@
 			Response<Type> TypeResponse = await Service.SelectAsync(new TypeSelectDto { });
 			foreach (Type Type in TypeResponse.Collection)
 			{
-				TypeViewModel ViewModel = new TypeViewModel { Id = Type.Id };
+				TypeViewModel ViewModel = new TypeViewModel { Id = Type.Id, Name = Type.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

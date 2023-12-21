@@ -18,7 +18,7 @@
 			Response<Size> SizeResponse = await Service.SelectAsync(new SizeSelectDto { });
 			foreach (Size Size in SizeResponse.Collection)
 			{
-				SizeViewModel ViewModel = new SizeViewModel { Id = Size.Id };
+				SizeViewModel ViewModel = new SizeViewModel { Id = Size.Id, Name = Size.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

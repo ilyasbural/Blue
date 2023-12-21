@@ -18,7 +18,7 @@
 			Response<FeaturesOutside> FeaturesOutsideResponse = await Service.SelectAsync(new FeaturesOutsideSelectDto { });
 			foreach (FeaturesOutside FeaturesOutside in FeaturesOutsideResponse.Collection)
 			{
-				FeaturesOutsideViewModel ViewModel = new FeaturesOutsideViewModel { Id = FeaturesOutside.Id };
+				FeaturesOutsideViewModel ViewModel = new FeaturesOutsideViewModel { Id = FeaturesOutside.Id, Name = FeaturesOutside.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

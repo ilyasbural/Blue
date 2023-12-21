@@ -18,7 +18,7 @@
 			Response<City> CityResponse = await Service.SelectAsync(new CitySelectDto { });
 			foreach (City City in CityResponse.Collection)
 			{
-				CityViewModel ViewModel = new CityViewModel { Id = City.Id };
+				CityViewModel ViewModel = new CityViewModel { Id = City.Id, Name = City.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

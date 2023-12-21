@@ -18,7 +18,7 @@
 			Response<Hometown> HometownResponse = await Service.SelectAsync(new HometownSelectDto { });
 			foreach (Hometown Hometown in HometownResponse.Collection)
 			{
-				HometownViewModel ViewModel = new HometownViewModel { Id = Hometown.Id };
+				HometownViewModel ViewModel = new HometownViewModel { Id = Hometown.Id, Name = Hometown.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

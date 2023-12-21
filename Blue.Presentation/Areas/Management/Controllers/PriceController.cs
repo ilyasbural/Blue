@@ -18,7 +18,7 @@
 			Response<Price> PriceResponse = await Service.SelectAsync(new PriceSelectDto { });
 			foreach (Price Price in PriceResponse.Collection)
 			{
-				PriceViewModel ViewModel = new PriceViewModel { Id = Price.Id };
+				PriceViewModel ViewModel = new PriceViewModel { Id = Price.Id, Name = Price.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);

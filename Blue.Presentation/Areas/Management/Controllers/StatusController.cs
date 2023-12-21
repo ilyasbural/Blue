@@ -18,7 +18,7 @@
 			Response<Status> StatusResponse = await Service.SelectAsync(new StatusSelectDto { });
 			foreach (Status Status in StatusResponse.Collection)
 			{
-				StatusViewModel ViewModel = new StatusViewModel { Id = Status.Id };
+				StatusViewModel ViewModel = new StatusViewModel { Id = Status.Id, Name = Status.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);
