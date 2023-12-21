@@ -1,13 +1,13 @@
 ﻿namespace Blue.Service
 {
-	using Core;
-	using FluentValidation;
+    using Core;
+    using FluentValidation;
 
-	public class StatusValidator : AbstractValidator<Status>
-	{
-		public StatusValidator()
-		{
+    public class StatusValidator : AbstractValidator<Status>
+    {
+        public StatusValidator()
+        {
 
-		}
-	}
+        }
+    }
 }

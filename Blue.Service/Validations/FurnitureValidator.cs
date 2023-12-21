@@ -1,13 +1,13 @@
 ﻿namespace Blue.Service
 {
-	using Core;
-	using FluentValidation;
+    using Core;
+    using FluentValidation;
 
-	public class FurnitureValidator : AbstractValidator<Furniture>
-	{
-		public FurnitureValidator()
-		{
+    public class FurnitureValidator : AbstractValidator<Furniture>
+    {
+        public FurnitureValidator()
+        {
 
-		}
-	}
+        }
+    }
 }
