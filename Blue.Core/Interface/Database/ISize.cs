@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-	public interface ISize : IRepository<Size>
-	{
+    public interface ISize : IRepository<Size>
+    {
 
-	}
+    }
 }

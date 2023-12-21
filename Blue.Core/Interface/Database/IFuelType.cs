@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-	public interface IFuelType : IRepository<FuelType>
-	{
+    public interface IFuelType : IRepository<FuelType>
+    {
 
-	}
+    }
 }

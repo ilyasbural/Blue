@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-	public interface IEntity
-	{
+    public interface IEntity
+    {
 
-	}
+    }
 }

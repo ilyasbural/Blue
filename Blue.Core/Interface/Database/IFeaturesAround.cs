@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-	public interface IFeaturesAround : IRepository<FeaturesAround>
-	{
+    public interface IFeaturesAround : IRepository<FeaturesAround>
+    {
 
-	}
+    }
 }

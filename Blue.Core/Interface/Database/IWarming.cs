@@ -1,7 +1,7 @@
 ﻿namespace Blue.Core
 {
-	public interface IWarming : IRepository<Warming>
-	{
+    public interface IWarming : IRepository<Warming>
+    {
 
-	}
+    }
 }
