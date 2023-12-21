@@ -18,7 +18,7 @@
 			Response<BuildingType> BuildingTypeResponse = await Service.SelectAsync(new BuildingTypeSelectDto { });
 			foreach (BuildingType BuildingType in BuildingTypeResponse.Collection)
 			{
-				BuildingTypeViewModel ViewModel = new BuildingTypeViewModel { Id = BuildingType.Id };
+				BuildingTypeViewModel ViewModel = new BuildingTypeViewModel { Id = BuildingType.Id, Name = BuildingType.Name };
 				Model.Item1.Add(ViewModel);
 			}
 			return View(Model);
