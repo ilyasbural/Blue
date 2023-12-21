@@ -40,10 +40,10 @@
 			else return View();
 		}
 
-		public async Task<IActionResult> Update(Guid Id)
-		{
-			var Model = Tuple.Create<WarmingViewModel>(new WarmingViewModel());
-			Response<Warming> Response = await Service.SelectSingleAsync(new WarmingSelectDto { Id = Id });
+        public async Task<IActionResult> Update(Guid Id)
+        {
+            var Model = Tuple.Create<WarmingViewModel>(new WarmingViewModel());
+            Response<Warming> Response = await Service.SelectSingleAsync(new WarmingSelectDto { Id = Id });
 
             Model.Item1.Id = Response.Collection.First().Id;
             Model.Item1.Name = Response.Collection.First().Name;
@@ -51,9 +51,9 @@
             Model.Item1.UpdateDate = Response.Collection.First().UpdateDate;
 
             return View(Model);
-		}
+        }
 
-		public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(Guid Id)
 		{
 			var Model = Tuple.Create<WarmingViewModel>(new WarmingViewModel());
 			return View(Model);
