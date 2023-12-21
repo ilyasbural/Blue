@@ -7,4 +7,6 @@
 @foreach (Blue.Presentation.BuyingTypeViewModel BuyingTypeViewModel in Model.Item1)
 {
     <h1><a href="/management/buyingtype/update/@BuyingTypeViewModel.Id">@BuyingTypeViewModel.Id</a></h1>
+    <h1><a href="/management/buyingtype/delete/@BuyingTypeViewModel.Id">@BuyingTypeViewModel.Id</a></h1>
+    <br />
 }

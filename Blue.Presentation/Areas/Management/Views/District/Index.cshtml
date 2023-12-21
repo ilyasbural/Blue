@@ -7,4 +7,6 @@
 @foreach (Blue.Presentation.DistrictViewModel DistrictViewModel in Model.Item1)
 {
     <h1><a href="/management/district/update/@DistrictViewModel.Id">@DistrictViewModel.Id</a></h1>
+    <h1><a href="/management/district/delete/@DistrictViewModel.Id">@DistrictViewModel.Id</a></h1>
+    <br />
 }

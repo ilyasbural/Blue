@@ -7,4 +7,6 @@
 @foreach (Blue.Presentation.FurnitureViewModel FurnitureViewModel in Model.Item1)
 {
     <h1><a href="/management/furniture/update/@FurnitureViewModel.Id">@FurnitureViewModel.Id</a></h1>
+    <h1><a href="/management/furniture/delete/@FurnitureViewModel.Id">@FurnitureViewModel.Id</a></h1>
+    <br />
 }

@@ -7,4 +7,6 @@
 @foreach (Blue.Presentation.HometownViewModel HometownViewModel in Model.Item1)
 {
     <h1><a href="/management/hometown/update/@HometownViewModel.Id">@HometownViewModel.Id</a></h1>
+    <h1><a href="/management/hometown/delete/@HometownViewModel.Id">@HometownViewModel.Id</a></h1>
+    <br />
 }

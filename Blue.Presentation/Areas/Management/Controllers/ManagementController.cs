@@ -46,10 +46,9 @@
 			return View(Model);
 		}
 
-		public IActionResult Delete()
+		public IActionResult Delete(Guid Id)
 		{
 			var Model = Tuple.Create<ManagementViewModel>(new ManagementViewModel());
-
 			return View(Model);
 		}
 	}

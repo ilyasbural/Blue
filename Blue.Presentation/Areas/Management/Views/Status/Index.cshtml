@@ -7,4 +7,6 @@
 @foreach (Blue.Presentation.StatusViewModel StatusViewModel in Model.Item1)
 {
     <h1><a href="/management/status/update/@StatusViewModel.Id">@StatusViewModel.Id</a></h1>
+    <h1><a href="/management/status/delete/@StatusViewModel.Id">@StatusViewModel.Id</a></h1>
+    <br />
 }

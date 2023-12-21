@@ -46,10 +46,9 @@
 			return View(Model);
 		}
 
-		public IActionResult Delete()
+		public IActionResult Delete(Guid Id)
 		{
 			var Model = Tuple.Create<FromWhoViewModel>(new FromWhoViewModel());
-
 			return View(Model);
 		}
 	}

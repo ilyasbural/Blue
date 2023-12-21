@@ -7,4 +7,6 @@
 @foreach (Blue.Presentation.FeaturesOutsideViewModel FeaturesOutsideViewModel in Model.Item1)
 {
     <h1><a href="/management/featuresoutside/update/@FeaturesOutsideViewModel.Id">@FeaturesOutsideViewModel.Id</a></h1>
+    <h1><a href="/management/featuresoutside/delete/@FeaturesOutsideViewModel.Id">@FeaturesOutsideViewModel.Id</a></h1>
+    <br />
 }

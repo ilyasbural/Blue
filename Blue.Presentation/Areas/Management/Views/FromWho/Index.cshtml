@@ -7,4 +7,6 @@
 @foreach (Blue.Presentation.FromWhoViewModel FromWhoViewModel in Model.Item1)
 {
     <h1><a href="/management/fromwho/update/@FromWhoViewModel.Id">@FromWhoViewModel.Id</a></h1>
+    <h1><a href="/management/fromwho/delete/@FromWhoViewModel.Id">@FromWhoViewModel.Id</a></h1>
+    <br />
 }

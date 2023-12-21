@@ -7,4 +7,6 @@
 @foreach (Blue.Presentation.RoomViewModel RoomViewModel in Model.Item1)
 {
     <h1><a href="/management/room/update/@RoomViewModel.Id">@RoomViewModel.Id</a></h1>
+    <h1><a href="/management/room/delete/@RoomViewModel.Id">@RoomViewModel.Id</a></h1>
+    <br />
 }

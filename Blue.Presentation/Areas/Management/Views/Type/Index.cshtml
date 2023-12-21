@@ -7,4 +7,6 @@
 @foreach (Blue.Presentation.TypeViewModel TypeViewModel in Model.Item1)
 {
     <h1><a href="/management/type/update/@TypeViewModel.Id">@TypeViewModel.Id</a></h1>
+    <h1><a href="/management/type/delete/@TypeViewModel.Id">@TypeViewModel.Id</a></h1>
+    <br />
 }
