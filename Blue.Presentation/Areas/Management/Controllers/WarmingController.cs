@@ -46,10 +46,9 @@
 			return View(Model);
 		}
 
-		public IActionResult Delete()
+		public IActionResult Delete(Guid Id)
 		{
 			var Model = Tuple.Create<WarmingViewModel>(new WarmingViewModel());
-
 			return View(Model);
 		}
 	}

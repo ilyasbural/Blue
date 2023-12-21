@@ -46,7 +46,7 @@
 			return View(Model);
 		}
 
-		public IActionResult Delete()
+		public IActionResult Delete(Guid Id)
 		{
 			var Model = Tuple.Create<BuyingTypeViewModel>(new BuyingTypeViewModel());
 			return View(Model);
