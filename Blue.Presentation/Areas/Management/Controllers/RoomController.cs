@@ -53,7 +53,18 @@
             return View(Model);
         }
 
-        public async Task<IActionResult> Delete(Guid Id)
+		[HttpPost]
+		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] RoomViewModel Model)
+		{
+			RoomUpdateDto Room = new RoomUpdateDto();
+            Room.Id = Model.Id;
+			Room.Name = Model.Name;
+			Response<Room> Response = await Service.UpdateAsync(Room);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<RoomViewModel>(new RoomViewModel());
             Response<Room> Response = await Service.SelectSingleAsync(new RoomSelectDto { Id = Id });

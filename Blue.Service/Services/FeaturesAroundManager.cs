@@ -41,6 +41,8 @@
         public async Task<Response<FeaturesAround>> UpdateAsync(FeaturesAroundUpdateDto Model)
         {
             Collection = await UnitOfWork.FeaturesAround.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+            Collection[0].Name = Model.Name;
+            Collection[0].UpdateDate = DateTime.Now;
             await UnitOfWork.FeaturesAround.UpdateAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 

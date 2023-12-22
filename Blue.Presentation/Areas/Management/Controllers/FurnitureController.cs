@@ -53,7 +53,18 @@
             return View(Model);
         }
 
-        public async Task<IActionResult> Delete(Guid Id)
+		[HttpPost]
+		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] FurnitureViewModel Model)
+		{
+			FurnitureUpdateDto Furniture = new FurnitureUpdateDto();
+            Furniture.Id = Model.Id;
+			Furniture.Name = Model.Name;
+			Response<Furniture> Response = await Service.UpdateAsync(Furniture);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<FurnitureViewModel>(new FurnitureViewModel());
             Response<Furniture> Response = await Service.SelectSingleAsync(new FurnitureSelectDto { Id = Id });

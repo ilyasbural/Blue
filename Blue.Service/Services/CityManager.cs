@@ -41,7 +41,9 @@
         public async Task<Response<City>> UpdateAsync(CityUpdateDto Model)
         {
             Collection = await UnitOfWork.City.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            await UnitOfWork.City.UpdateAsync(Collection[0]);
+			Collection[0].Name = Model.Name;
+			Collection[0].UpdateDate = DateTime.Now;
+			await UnitOfWork.City.UpdateAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<City>
@@ -56,7 +58,7 @@
         public async Task<Response<City>> DeleteAsync(CityDeleteDto Model)
         {
             Collection = await UnitOfWork.City.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            await UnitOfWork.City.DeleteAsync(Collection[0]);
+			await UnitOfWork.City.DeleteAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<City>

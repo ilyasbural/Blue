@@ -53,7 +53,18 @@
             return View(Model);
         }
 
-        public async Task<IActionResult> Delete(Guid Id)
+		[HttpPost]
+		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] SizeViewModel Model)
+		{
+			SizeUpdateDto Size = new SizeUpdateDto();
+            Size.Id = Model.Id;
+			Size.Name = Model.Name;
+			Response<Size> Response = await Service.UpdateAsync(Size);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<SizeViewModel>(new SizeViewModel());
             Response<Size> Response = await Service.SelectSingleAsync(new SizeSelectDto { Id = Id });

@@ -41,7 +41,9 @@
         public async Task<Response<FeaturesInside>> UpdateAsync(FeaturesInsideUpdateDto Model)
         {
             Collection = await UnitOfWork.FeaturesInside.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            await UnitOfWork.FeaturesInside.UpdateAsync(Collection[0]);
+			Collection[0].Name = Model.Name;
+			Collection[0].UpdateDate = DateTime.Now;
+			await UnitOfWork.FeaturesInside.UpdateAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<FeaturesInside>

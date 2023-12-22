@@ -41,7 +41,9 @@
         public async Task<Response<Type>> UpdateAsync(TypeUpdateDto Model)
         {
             Collection = await UnitOfWork.Type.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            await UnitOfWork.Type.UpdateAsync(Collection[0]);
+			Collection[0].Name = Model.Name;
+			Collection[0].UpdateDate = DateTime.Now;
+			await UnitOfWork.Type.UpdateAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Type>

@@ -53,7 +53,18 @@
             return View(Model);
         }
 
-        public async Task<IActionResult> Delete(Guid Id)
+		[HttpPost]
+		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] PriceViewModel Model)
+		{
+			PriceUpdateDto Price = new PriceUpdateDto();
+            Price.Id = Model.Id;
+			Price.Name = Model.Name;
+			Response<Price> Response = await Service.UpdateAsync(Price);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<PriceViewModel>(new PriceViewModel());
             Response<Price> Response = await Service.SelectSingleAsync(new PriceSelectDto { Id = Id });

@@ -48,7 +48,9 @@
         public async Task<Response<RealEstate>> UpdateAsync(RealEstateUpdateDto Model)
         {
             Collection = await UnitOfWork.RealEstate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            await UnitOfWork.RealEstate.UpdateAsync(Collection[0]);
+			Collection[0].Name = Model.Name;
+			Collection[0].UpdateDate = DateTime.Now;
+			await UnitOfWork.RealEstate.UpdateAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<RealEstate>

@@ -41,7 +41,9 @@
         public async Task<Response<Price>> UpdateAsync(PriceUpdateDto Model)
         {
             Collection = await UnitOfWork.Price.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            await UnitOfWork.Price.UpdateAsync(Collection[0]);
+			Collection[0].Name = Model.Name;
+			Collection[0].UpdateDate = DateTime.Now;
+			await UnitOfWork.Price.UpdateAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Price>

@@ -53,7 +53,18 @@
             return View(Model);
         }
 
-        public async Task<IActionResult> Delete(Guid Id)
+		[HttpPost]
+		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] FeaturesInsideViewModel Model)
+		{
+			FeaturesInsideUpdateDto FeaturesInside = new FeaturesInsideUpdateDto();
+            FeaturesInside.Id = Model.Id;
+			FeaturesInside.Name = Model.Name;
+			Response<FeaturesInside> Response = await Service.UpdateAsync(FeaturesInside);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<FeaturesInsideViewModel>(new FeaturesInsideViewModel());
             Response<FeaturesInside> Response = await Service.SelectSingleAsync(new FeaturesInsideSelectDto { Id = Id });

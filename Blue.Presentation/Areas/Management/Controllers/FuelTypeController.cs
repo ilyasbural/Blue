@@ -53,7 +53,18 @@
             return View(Model);
         }
 
-        public async Task<IActionResult> Delete(Guid Id)
+		[HttpPost]
+		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] FuelTypeViewModel Model)
+		{
+			FuelTypeUpdateDto FuelType = new FuelTypeUpdateDto();
+            FuelType.Id = Model.Id;
+			FuelType.Name = Model.Name;
+			Response<FuelType> Response = await Service.UpdateAsync(FuelType);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<FuelTypeViewModel>(new FuelTypeViewModel());
             Response<FuelType> Response = await Service.SelectSingleAsync(new FuelTypeSelectDto { Id = Id });

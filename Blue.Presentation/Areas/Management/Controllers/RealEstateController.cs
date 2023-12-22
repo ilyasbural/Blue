@@ -53,7 +53,18 @@
             return View(Model);
         }
 
-        public async Task<IActionResult> Delete(Guid Id)
+		[HttpPost]
+		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] RealEstateViewModel Model)
+		{
+			RealEstateUpdateDto RealEstate = new RealEstateUpdateDto();
+            RealEstate.Id = Model.Id;
+			RealEstate.Name = Model.Name;
+			Response<RealEstate> Response = await Service.UpdateAsync(RealEstate);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<RealEstateViewModel, RealEstateDetailViewModel>(new RealEstateViewModel(), new RealEstateDetailViewModel());
             Response<RealEstate> Response = await Service.SelectSingleAsync(new RealEstateSelectDto { Id = Id });

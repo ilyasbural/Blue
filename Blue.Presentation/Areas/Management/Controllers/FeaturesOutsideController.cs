@@ -53,7 +53,18 @@
             return View(Model);
         }
 
-        public async Task<IActionResult> Delete(Guid Id)
+		[HttpPost]
+		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] FeaturesOutsideViewModel Model)
+		{
+			FeaturesOutsideUpdateDto FeaturesOutside = new FeaturesOutsideUpdateDto();
+            FeaturesOutside.Id = Model.Id;
+			FeaturesOutside.Name = Model.Name;
+			Response<FeaturesOutside> Response = await Service.UpdateAsync(FeaturesOutside);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+
+		public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<FeaturesOutsideViewModel>(new FeaturesOutsideViewModel());
             Response<FeaturesOutside> Response = await Service.SelectSingleAsync(new FeaturesOutsideSelectDto { Id = Id });

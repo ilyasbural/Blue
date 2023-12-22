@@ -53,7 +53,18 @@
             return View(Model);
         }
 
-        public async Task<IActionResult> Delete(Guid Id)
+		[HttpPost]
+		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] WarmingViewModel Model)
+		{
+			WarmingUpdateDto Warming = new WarmingUpdateDto();
+            Warming.Id = Model.Id;
+			Warming.Name = Model.Name;
+			Response<Warming> Response = await Service.UpdateAsync(Warming);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View();
+		}
+
+		public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<WarmingViewModel>(new WarmingViewModel());
             Response<Warming> Response = await Service.SelectSingleAsync(new WarmingSelectDto { Id = Id });
