@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] RoomViewModel Model)
+		{
+			RoomDeleteDto Room = new RoomDeleteDto();
+			Room.Id = Model.Id;
+			Response<Room> Response = await Service.DeleteAsync(Room);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+	}
 }

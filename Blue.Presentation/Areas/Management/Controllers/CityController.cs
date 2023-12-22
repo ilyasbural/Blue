@@ -76,5 +76,15 @@
 
 			return View(Model);
 		}
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] CityViewModel Model)
+		{
+			CityDeleteDto City = new CityDeleteDto();
+			City.Id = Model.Id;
+			Response<City> Response = await Service.DeleteAsync(City);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
 	}
 }

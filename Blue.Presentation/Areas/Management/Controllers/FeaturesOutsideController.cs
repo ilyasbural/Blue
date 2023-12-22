@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] FeaturesOutsideViewModel Model)
+		{
+			FeaturesOutsideDeleteDto FeaturesOutside = new FeaturesOutsideDeleteDto();
+			FeaturesOutside.Id = Model.Id;
+			Response<FeaturesOutside> Response = await Service.DeleteAsync(FeaturesOutside);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+	}
 }

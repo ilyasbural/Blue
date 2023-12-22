@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] PriceViewModel Model)
+		{
+			PriceDeleteDto Price = new PriceDeleteDto();
+			Price.Id = Model.Id;
+			Response<Price> Response = await Service.DeleteAsync(Price);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+	}
 }

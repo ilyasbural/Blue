@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] FuelTypeViewModel Model)
+		{
+			FuelTypeDeleteDto FuelType = new FuelTypeDeleteDto();
+			FuelType.Id = Model.Id;
+			Response<FuelType> Response = await Service.DeleteAsync(FuelType);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+	}
 }

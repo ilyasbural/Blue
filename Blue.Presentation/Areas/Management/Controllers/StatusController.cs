@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] StatusViewModel Model)
+		{
+			StatusDeleteDto Status = new StatusDeleteDto();
+			Status.Id = Model.Id;
+			Response<Status> Response = await Service.DeleteAsync(Status);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+	}
 }

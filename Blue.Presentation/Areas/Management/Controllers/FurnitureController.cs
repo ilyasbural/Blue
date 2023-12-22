@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] FurnitureViewModel Model)
+		{
+			FurnitureDeleteDto Furniture = new FurnitureDeleteDto();
+			Furniture.Id = Model.Id;
+			Response<Furniture> Response = await Service.DeleteAsync(Furniture);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+	}
 }

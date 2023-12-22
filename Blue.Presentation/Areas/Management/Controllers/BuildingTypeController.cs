@@ -79,5 +79,15 @@
 
 			return View(Model);
 		}
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] BuildingTypeViewModel Model)
+		{
+			BuildingTypeDeleteDto BuildingType = new BuildingTypeDeleteDto();
+			BuildingType.Id = Model.Id;
+			Response<BuildingType> Response = await Service.DeleteAsync(BuildingType);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
 	}
 }

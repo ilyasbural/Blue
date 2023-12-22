@@ -76,5 +76,15 @@
 
 			return View(Model);
 		}
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] BuyingTypeViewModel Model)
+		{
+			BuyingTypeDeleteDto BuyingType = new BuyingTypeDeleteDto();
+			BuyingType.Id = Model.Id;
+			Response<BuyingType> Response = await Service.DeleteAsync(BuyingType);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
 	}
 }

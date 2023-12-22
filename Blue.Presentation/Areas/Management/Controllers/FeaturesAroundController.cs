@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] FeaturesAroundViewModel Model)
+		{
+			FeaturesAroundDeleteDto FeaturesAround = new FeaturesAroundDeleteDto();
+			FeaturesAround.Id = Model.Id;
+			Response<FeaturesAround> Response = await Service.DeleteAsync(FeaturesAround);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+	}
 }

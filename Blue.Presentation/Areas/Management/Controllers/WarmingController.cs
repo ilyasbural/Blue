@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] WarmingViewModel Model)
+		{
+			WarmingDeleteDto Warming = new WarmingDeleteDto();
+			Warming.Id = Model.Id;
+			Response<Warming> Response = await Service.DeleteAsync(Warming);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View();
+		}
+	}
 }

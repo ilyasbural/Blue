@@ -10,3 +10,36 @@
 <div>@Model.Item1.Name</div>
 <div>@Model.Item1.RegisterDate</div>
 <div>@Model.Item1.UpdateDate</div>
+
+<form asp-controller="FeaturesOutside" asp-action="Update" method="post">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title">İçerik</h4>
+	</div>
+	<div class="modal-body">
+		<div class="form-group">
+			@Model.Item1.Id
+			@* @Html.EditorFor(m => m.Item1.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "adı" } }) *@
+		</div>
+		<div class="form-group">
+			@Model.Item1.Name
+			@* @Html.DropDownListFor(Model => Model.Item2.Content.Category.Id, new SelectList(Model.Item1, "Id", "Name"), "Seçilmedi", new { @class = "form-control" }) *@
+		</div>
+		<div class="form-group">
+			@Model.Item1.RegisterDate
+			@* @Html.EditorFor(m => m.Item2.Content.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "adı" } }) *@
+		</div>
+		<div class="form-group">
+			@Model.Item1.UpdateDate
+			@* @Html.TextAreaFor(m => m.Item2.Content.Description, new { @class = "form-control", @placeholder = "açıklama" }) *@
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" data-dismiss="modal" class="btn btn-success"><i class="fa fa-save"></i></button>
+		<button type="submit" class="btn btn-primary">Sil <i class="fa fa-send"></i></button>
+	</div>
+
+	@Html.HiddenFor(x => x.Item1.Id)
+	@Html.HiddenFor(x => x.Item1.RegisterDate)
+	@Html.HiddenFor(x => x.Item1.UpdateDate)
+</form>

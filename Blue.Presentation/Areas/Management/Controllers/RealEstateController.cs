@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] RealEstateViewModel Model)
+		{
+			RealEstateDeleteDto RealEstate = new RealEstateDeleteDto();
+			RealEstate.Id = Model.Id;
+			Response<RealEstate> Response = await Service.DeleteAsync(RealEstate);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+	}
 }

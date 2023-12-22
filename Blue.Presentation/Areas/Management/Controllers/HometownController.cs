@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] HometownViewModel Model)
+		{
+			HometownDeleteDto Hometown = new HometownDeleteDto();
+			Hometown.Id = Model.Id;
+			Response<Hometown> Response = await Service.DeleteAsync(Hometown);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+	}
 }

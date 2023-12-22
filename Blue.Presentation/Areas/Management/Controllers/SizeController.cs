@@ -76,5 +76,15 @@
 
             return View(Model);
         }
-    }
+
+		[HttpPost]
+		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] SizeViewModel Model)
+		{
+			SizeDeleteDto Size = new SizeDeleteDto();
+			Size.Id = Model.Id;
+			Response<Size> Response = await Service.DeleteAsync(Size);
+			if (Response.Success > 0) return RedirectToAction("Index");
+			else return View(Model);
+		}
+	}
 }
