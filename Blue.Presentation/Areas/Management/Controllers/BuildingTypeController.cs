@@ -53,6 +53,20 @@
             return View(Model);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Update([Bind(Prefix = "Item1")] BuildingTypeViewModel Model)
+        {
+			BuildingTypeUpdateDto BuildingType = new BuildingTypeUpdateDto();
+            BuildingType.Id = Model.Id;
+			BuildingType.Name = Model.Name;
+            BuildingType.RegisterDate = Model.RegisterDate;
+            BuildingType.UpdateDate = Model.UpdateDate;
+
+			Response<BuildingType> Response = await Service.UpdateAsync(BuildingType);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
+
         public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<BuildingTypeViewModel>(new BuildingTypeViewModel());
