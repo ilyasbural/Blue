@@ -50,8 +50,6 @@
             Model.Item1.RegisterDate = Response.Collection.First().RegisterDate;
             Model.Item1.UpdateDate = Response.Collection.First().UpdateDate;
 
-            //Response<BuildingType> ResponseRecord = await Service.UpdateAsync(new BuildingTypeUpdateDto { });
-
             return View(Model);
         }
 
@@ -60,6 +58,10 @@
             var Model = Tuple.Create<BuildingTypeViewModel>(new BuildingTypeViewModel());
             Response<BuildingType> Response = await Service.SelectSingleAsync(new BuildingTypeSelectDto { Id = Id });
 
+            Model.Item1.Id = Response.Collection.First().Id;
+            Model.Item1.Name = Response.Collection.First().Name;
+            Model.Item1.RegisterDate = Response.Collection.First().RegisterDate;
+            Model.Item1.UpdateDate = Response.Collection.First().UpdateDate;
 
             return View(Model);
         }
