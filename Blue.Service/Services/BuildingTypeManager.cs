@@ -38,24 +38,24 @@
             };
         }
 
-        public async Task<Response<BuildingType>> UpdateAsync(BuildingTypeUpdateDto Model)
-        {
-            Collection = await UnitOfWork.BuildingType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-            Collection[0].Name = Model.Name;
-            Collection[0].UpdateDate = DateTime.Now;
+		public async Task<Response<BuildingType>> UpdateAsync(BuildingTypeUpdateDto Model)
+		{
+			Collection = await UnitOfWork.BuildingType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
+			Collection[0].Name = Model.Name;
+			Collection[0].UpdateDate = DateTime.Now;
 			await UnitOfWork.BuildingType.UpdateAsync(Collection[0]);
-            Success = await UnitOfWork.SaveChangesAsync();
+			Success = await UnitOfWork.SaveChangesAsync();
 
-            return new Response<BuildingType>
-            {
-                Success = Success,
-                Message = "Success",
-                Collection = Collection,
-                IsValidationError = false
-            };
-        }
+			return new Response<BuildingType>
+			{
+				Success = Success,
+				Message = "Success",
+				Collection = Collection,
+				IsValidationError = false
+			};
+		}
 
-        public async Task<Response<BuildingType>> DeleteAsync(BuildingTypeDeleteDto Model)
+		public async Task<Response<BuildingType>> DeleteAsync(BuildingTypeDeleteDto Model)
         {
             Collection = await UnitOfWork.BuildingType.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
             await UnitOfWork.BuildingType.DeleteAsync(Collection[0]);
