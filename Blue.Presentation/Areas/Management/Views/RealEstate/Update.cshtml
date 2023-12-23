@@ -2,7 +2,7 @@
     ViewData["Title"] = "Update";
     Layout = "~/Areas/Management/Views/Shared/Layout.cshtml";
 }
-@model Tuple<Blue.Presentation.RealEstateViewModel, Blue.Presentation.RealEstateDetailViewModel>
+@model Tuple<Blue.Presentation.RealEstateViewModel, Blue.Presentation.RealEstateDetailViewModel, Blue.Presentation.RealEstateComplexModel>
 
 <h1>Update</h1>
 
@@ -18,20 +18,38 @@
 	</div>
 	<div class="modal-body">
 		<div class="form-group">
-			@Html.EditorFor(m => m.Item1.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "adı" } })
-		</div>
-		@* <div class="form-group">
-		@Html.DropDownListFor(Model => Model.Item2.Content.Category.Id, new SelectList(Model.Item1, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.BuildingTypeViewModel.Id, new SelectList(Model.Item3.BuildingTypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.BuyingTypeViewModel.Id, new SelectList(Model.Item3.BuyingTypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.CityViewModel.Id, new SelectList(Model.Item3.CityDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.DistrictViewModel.Id, new SelectList(Model.Item3.DistrictDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.FeaturesAroundViewModel.Id, new SelectList(Model.Item3.FeaturesAroundDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.FeaturesInsideViewModel.Id, new SelectList(Model.Item3.FeaturesInsideDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.FeaturesOutsideViewModel.Id, new SelectList(Model.Item3.FeaturesOutsideDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.FromWhoViewModel.Id, new SelectList(Model.Item3.FromWhoDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.FuelTypeViewModel.Id, new SelectList(Model.Item3.FuelTypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.FurnitureViewModel.Id, new SelectList(Model.Item3.FurnitureDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.HometownViewModel.Id, new SelectList(Model.Item3.HometownDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.PriceViewModel.Id, new SelectList(Model.Item3.PriceDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.RoomViewModel.Id, new SelectList(Model.Item3.RoomDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.SizeViewModel.Id, new SelectList(Model.Item3.SizeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.StatusViewModel.Id, new SelectList(Model.Item3.StatusDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.TypeViewModel.Id, new SelectList(Model.Item3.TypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@Html.DropDownListFor(Model => Model.Item1.WarmingViewModel.Id, new SelectList(Model.Item3.WarmingDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
+			@* @Html.EditorFor(m => m.Item1.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "adı" } }) *@
 		</div>
 		<div class="form-group">
-		@Html.EditorFor(m => m.Item2.Content.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "adı" } })
+			@Html.EditorFor(m => m.Item1.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "realestate name" } })
+			@* @Html.DropDownListFor(Model => Model.Item2.Content.Category.Id, new SelectList(Model.Item1, "Id", "Name"), "Seçilmedi", new { @class = "form-control" }) *@
 		</div>
 		<div class="form-group">
-		@Html.TextAreaFor(m => m.Item2.Content.Description, new { @class = "form-control", @placeholder = "açıklama" })
-		</div> *@
+			@* @Html.EditorFor(m => m.Item2.Content.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "adı" } }) *@
+		</div>
+		<div class="form-group">
+			@* @Html.TextAreaFor(m => m.Item2.Content.Description, new { @class = "form-control", @placeholder = "açıklama" }) *@
+		</div>
 	</div>
 	<div class="modal-footer">
-		<button type="button" data-dismiss="modal" class="btn btn-success"><i class="fa fa-save"></i></button>
+		<button type="button" class="btn btn-success"><i class="fa fa-save"></i></button>
 		<button type="submit" class="btn btn-primary">Kaydet <i class="fa fa-send"></i></button>
 	</div>
 

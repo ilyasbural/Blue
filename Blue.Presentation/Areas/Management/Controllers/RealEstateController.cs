@@ -1,6 +1,6 @@
 ﻿namespace Blue.Presentation.Areas.Management.Controllers
 {
-    using Core;
+	using Core;
     using Microsoft.AspNetCore.Mvc;
 
     [Area("Management")]
@@ -87,30 +87,65 @@
             (new RealEstateViewModel(), new RealEstateDetailViewModel(), new RealEstateComplexModel());
 
             Response<BuildingType> BuildingTypeResponse = await BuildingTypeService.SelectAsync(new BuildingTypeSelectDto { });
-			await BuyingTypeService.SelectAsync(new BuyingTypeSelectDto { });
-            await CityService.SelectAsync(new CitySelectDto { });
-            await DistrictService.SelectAsync(new DistrictSelectDto { });
-            await FeaturesAroundService.SelectAsync (new FeaturesAroundSelectDto { });
-            await FeaturesInsideService.SelectAsync(new FeaturesInsideSelectDto { });
-            await FeaturesOutsideService.SelectAsync(new FeaturesOutsideSelectDto { });
-            await FromWhoService.SelectAsync(new FromWhoSelectDto { });
-            await FuelTypeService.SelectAsync(new FuelTypeSelectDto { });
-            await FurnitureService.SelectAsync(new FurnitureSelectDto { });
-            await HometownService.SelectAsync(new HometownSelectDto { });
-            await PriceService.SelectAsync(new PriceSelectDto { });
-            await RoomService.SelectAsync(new RoomSelectDto { });
-            await SizeService.SelectAsync(new SizeSelectDto { });
-            await StatusService.SelectAsync(new StatusSelectDto { });
-            await TypeService.SelectAsync(new TypeSelectDto { });
-            await WarmingService.SelectAsync(new WarmingSelectDto { });
+            Response<BuyingType> BuyingTypeResponse = await BuyingTypeService.SelectAsync(new BuyingTypeSelectDto { });
+            Response<City> CityResponse = await CityService.SelectAsync(new CitySelectDto { });
+            Response<District> DistrictResponse = await DistrictService.SelectAsync(new DistrictSelectDto { });
+            Response<FeaturesAround> FeaturesAroundResponse = await FeaturesAroundService.SelectAsync(new FeaturesAroundSelectDto { });
+            Response<FeaturesInside> FeaturesInsideResponse = await FeaturesInsideService.SelectAsync(new FeaturesInsideSelectDto { });
+            Response<FeaturesOutside> FeaturesOutsideResponse = await FeaturesOutsideService.SelectAsync(new FeaturesOutsideSelectDto { });
+            Response<FromWho> FromWhoResponse = await FromWhoService.SelectAsync(new FromWhoSelectDto { });
+            Response<FuelType> FuelTypeResponse = await FuelTypeService.SelectAsync(new FuelTypeSelectDto { });
+            Response<Furniture> FurnitureResponse = await FurnitureService.SelectAsync(new FurnitureSelectDto { });
+            Response<Hometown> HometownResponse = await HometownService.SelectAsync(new HometownSelectDto { });
+            Response<Price> PriceResponse = await PriceService.SelectAsync(new PriceSelectDto { });
+            Response<Room> RoomResponse = await RoomService.SelectAsync(new RoomSelectDto { });
+            Response<Size> SizeResponse = await SizeService.SelectAsync(new SizeSelectDto { });
+            Response<Status> StatusResponse = await StatusService.SelectAsync(new StatusSelectDto { });
+            Response<Type> TypeResponse = await TypeService.SelectAsync(new TypeSelectDto { });
+            Response<Warming> WarmingResponse = await WarmingService.SelectAsync(new WarmingSelectDto { });
 
-            return View(Model);
+            Model.Item3.BuildingTypeDataSource = BuildingTypeResponse.Collection;
+            Model.Item3.BuyingTypeDataSource = BuyingTypeResponse.Collection;
+            Model.Item3.CityDataSource = CityResponse.Collection;
+            Model.Item3.DistrictDataSource = DistrictResponse.Collection;
+            Model.Item3.FeaturesAroundDataSource = FeaturesAroundResponse.Collection;
+            Model.Item3.FeaturesInsideDataSource = FeaturesInsideResponse.Collection;
+            Model.Item3.FeaturesOutsideDataSource = FeaturesOutsideResponse.Collection;
+            Model.Item3.FromWhoDataSource = FromWhoResponse.Collection;
+            Model.Item3.FuelTypeDataSource = FuelTypeResponse.Collection;
+            Model.Item3.FurnitureDataSource = FurnitureResponse.Collection;
+            Model.Item3.HometownDataSource = HometownResponse.Collection;
+            Model.Item3.PriceDataSource = PriceResponse.Collection;
+            Model.Item3.RoomDataSource = RoomResponse.Collection;
+            Model.Item3.SizeDataSource = SizeResponse.Collection;
+            Model.Item3.StatusDataSource = StatusResponse.Collection;
+            Model.Item3.TypeDataSource = TypeResponse.Collection;
+            Model.Item3.WarmingDataSource = WarmingResponse.Collection;
+
+			return View(Model);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([Bind(Prefix = "Item1")] RealEstateViewModel Model)
         {
             RealEstateRegisterDto RealEstate = new RealEstateRegisterDto();
+            RealEstate.BuildingType = Model.BuildingTypeViewModel.Id;
+            RealEstate.BuyingType = Model.BuyingTypeViewModel.Id;
+            RealEstate.City = Model.CityViewModel.Id;
+            RealEstate.District = Model.DistrictViewModel.Id;
+            RealEstate.FeaturesAround = Model.FeaturesAroundViewModel.Id;
+            RealEstate.FeaturesInside = Model.FeaturesInsideViewModel.Id;
+            RealEstate.FeaturesOutside = Model.FeaturesOutsideViewModel.Id;
+            RealEstate.FromWho = Model.FromWhoViewModel.Id;
+            RealEstate.FuelType = Model.FuelTypeViewModel.Id;
+            RealEstate.Furniture = Model.FurnitureViewModel.Id;
+            RealEstate.Hometown = Model.HometownViewModel.Id;
+            RealEstate.Price = Model.PriceViewModel.Id;
+            RealEstate.Room = Model.RoomViewModel.Id;
+            RealEstate.Size = Model.SizeViewModel.Id;
+            RealEstate.Status = Model.StatusViewModel.Id;
+            RealEstate.Type = Model.TypeViewModel.Id;
+            RealEstate.Warming = Model.WarmingViewModel.Id;
             RealEstate.Name = Model.Name;
             Response<RealEstate> Response = await RealEstateService.InsertAsync(RealEstate);
             if (Response.Success > 0) return RedirectToAction("Index");
@@ -119,27 +154,47 @@
 
         public async Task<IActionResult> Update(Guid Id)
         {
-            var Model = Tuple.Create<RealEstateViewModel, RealEstateDetailViewModel>(new RealEstateViewModel(), new RealEstateDetailViewModel());
-            Response<RealEstate> Response = await RealEstateService.SelectSingleAsync(new RealEstateSelectDto { Id = Id });
+			var Model = Tuple.Create<RealEstateViewModel, RealEstateDetailViewModel, RealEstateComplexModel>
+			(new RealEstateViewModel(), new RealEstateDetailViewModel(), new RealEstateComplexModel());
 
-			await BuildingTypeService.SelectAsync(new BuildingTypeSelectDto { });
-			await BuyingTypeService.SelectAsync(new BuyingTypeSelectDto { });
-			await CityService.SelectAsync(new CitySelectDto { });
-			await DistrictService.SelectAsync(new DistrictSelectDto { });
-			await FeaturesAroundService.SelectAsync(new FeaturesAroundSelectDto { });
-			await FeaturesInsideService.SelectAsync(new FeaturesInsideSelectDto { });
-			await FeaturesOutsideService.SelectAsync(new FeaturesOutsideSelectDto { });
-			await FromWhoService.SelectAsync(new FromWhoSelectDto { });
-			await FuelTypeService.SelectAsync(new FuelTypeSelectDto { });
-			await FurnitureService.SelectAsync(new FurnitureSelectDto { });
-			await HometownService.SelectAsync(new HometownSelectDto { });
-			await PriceService.SelectAsync(new PriceSelectDto { });
-			await RoomService.SelectAsync(new RoomSelectDto { });
-			await SizeService.SelectAsync(new SizeSelectDto { });
-			await StatusService.SelectAsync(new StatusSelectDto { });
-			await TypeService.SelectAsync(new TypeSelectDto { });
-			await WarmingService.SelectAsync(new WarmingSelectDto { });
+			Response<RealEstate> Response = await RealEstateService.SelectSingleAsync(new RealEstateSelectDto { Id = Id });
+			Response<BuildingType> BuildingTypeResponse = await BuildingTypeService.SelectAsync(new BuildingTypeSelectDto { });
+			Response<BuyingType> BuyingTypeResponse = await BuyingTypeService.SelectAsync(new BuyingTypeSelectDto { });
+			Response<City> CityResponse = await CityService.SelectAsync(new CitySelectDto { });
+			Response<District> DistrictResponse = await DistrictService.SelectAsync(new DistrictSelectDto { });
+			Response<FeaturesAround> FeaturesAroundResponse = await FeaturesAroundService.SelectAsync(new FeaturesAroundSelectDto { });
+			Response<FeaturesInside> FeaturesInsideResponse = await FeaturesInsideService.SelectAsync(new FeaturesInsideSelectDto { });
+			Response<FeaturesOutside> FeaturesOutsideResponse = await FeaturesOutsideService.SelectAsync(new FeaturesOutsideSelectDto { });
+			Response<FromWho> FromWhoResponse = await FromWhoService.SelectAsync(new FromWhoSelectDto { });
+			Response<FuelType> FuelTypeResponse = await FuelTypeService.SelectAsync(new FuelTypeSelectDto { });
+			Response<Furniture> FurnitureResponse = await FurnitureService.SelectAsync(new FurnitureSelectDto { });
+			Response<Hometown> HometownResponse = await HometownService.SelectAsync(new HometownSelectDto { });
+			Response<Price> PriceResponse = await PriceService.SelectAsync(new PriceSelectDto { });
+			Response<Room> RoomResponse = await RoomService.SelectAsync(new RoomSelectDto { });
+			Response<Size> SizeResponse = await SizeService.SelectAsync(new SizeSelectDto { });
+			Response<Status> StatusResponse = await StatusService.SelectAsync(new StatusSelectDto { });
+			Response<Type> TypeResponse = await TypeService.SelectAsync(new TypeSelectDto { });
+			Response<Warming> WarmingResponse = await WarmingService.SelectAsync(new WarmingSelectDto { });
 
+			Model.Item3.BuildingTypeDataSource = BuildingTypeResponse.Collection;
+			Model.Item3.BuyingTypeDataSource = BuyingTypeResponse.Collection;
+			Model.Item3.CityDataSource = CityResponse.Collection;
+			Model.Item3.DistrictDataSource = DistrictResponse.Collection;
+			Model.Item3.FeaturesAroundDataSource = FeaturesAroundResponse.Collection;
+			Model.Item3.FeaturesInsideDataSource = FeaturesInsideResponse.Collection;
+			Model.Item3.FeaturesOutsideDataSource = FeaturesOutsideResponse.Collection;
+			Model.Item3.FromWhoDataSource = FromWhoResponse.Collection;
+			Model.Item3.FuelTypeDataSource = FuelTypeResponse.Collection;
+			Model.Item3.FurnitureDataSource = FurnitureResponse.Collection;
+			Model.Item3.HometownDataSource = HometownResponse.Collection;
+			Model.Item3.PriceDataSource = PriceResponse.Collection;
+			Model.Item3.RoomDataSource = RoomResponse.Collection;
+			Model.Item3.SizeDataSource = SizeResponse.Collection;
+			Model.Item3.StatusDataSource = StatusResponse.Collection;
+			Model.Item3.TypeDataSource = TypeResponse.Collection;
+			Model.Item3.WarmingDataSource = WarmingResponse.Collection;
+
+            Model.Item1.BuildingTypeViewModel.Id = Response.Collection.First().Id;
 			Model.Item1.Id = Response.Collection.First().Id;
             Model.Item1.Name = Response.Collection.First().Name;
             Model.Item1.RegisterDate = Response.Collection.First().RegisterDate;
@@ -152,7 +207,24 @@
 		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] RealEstateViewModel Model)
 		{
 			RealEstateUpdateDto RealEstate = new RealEstateUpdateDto();
-            RealEstate.Id = Model.Id;
+			RealEstate.BuildingType = Model.BuildingTypeViewModel.Id;
+			RealEstate.BuyingType = Model.BuyingTypeViewModel.Id;
+			RealEstate.City = Model.CityViewModel.Id;
+			RealEstate.District = Model.DistrictViewModel.Id;
+			RealEstate.FeaturesAround = Model.FeaturesAroundViewModel.Id;
+			RealEstate.FeaturesInside = Model.FeaturesInsideViewModel.Id;
+			RealEstate.FeaturesOutside = Model.FeaturesOutsideViewModel.Id;
+			RealEstate.FromWho = Model.FromWhoViewModel.Id;
+			RealEstate.FuelType = Model.FuelTypeViewModel.Id;
+			RealEstate.Furniture = Model.FurnitureViewModel.Id;
+			RealEstate.Hometown = Model.HometownViewModel.Id;
+			RealEstate.Price = Model.PriceViewModel.Id;
+			RealEstate.Room = Model.RoomViewModel.Id;
+			RealEstate.Size = Model.SizeViewModel.Id;
+			RealEstate.Status = Model.StatusViewModel.Id;
+			RealEstate.Type = Model.TypeViewModel.Id;
+			RealEstate.Warming = Model.WarmingViewModel.Id;
+			RealEstate.Id = Model.Id;
 			RealEstate.Name = Model.Name;
 			Response<RealEstate> Response = await RealEstateService.UpdateAsync(RealEstate);
 			if (Response.Success > 0) return RedirectToAction("Index");

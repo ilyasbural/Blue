@@ -11,6 +11,14 @@
 		public List<Core.FeaturesOutside> FeaturesOutsideDataSource { get; set; } = null!;
 		public List<Core.FromWho> FromWhoDataSource { get; set; } = null!;
 		public List<Core.FuelType> FuelTypeDataSource { get; set; } = null!;
+		public List<Core.Furniture> FurnitureDataSource { get; set; } = null!;
+		public List<Core.Hometown> HometownDataSource { get; set; } = null!;
+		public List<Core.Price> PriceDataSource { get; set; } = null!;
+		public List<Core.Room> RoomDataSource { get; set; } = null!;
+		public List<Core.Size> SizeDataSource { get; set; } = null!;
+		public List<Core.Status> StatusDataSource { get; set; } = null!;
+		public List<Core.Type> TypeDataSource { get; set; } = null!;
+		public List<Core.Warming> WarmingDataSource { get; set; } = null!;
 
 		public RealEstateComplexModel() 
 		{
