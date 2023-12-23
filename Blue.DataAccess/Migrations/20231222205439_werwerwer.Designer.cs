@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blue.DataAccess.Migrations
 {
     [DbContext(typeof(BlueContext))]
-    [Migration("20231220103101_kweıfweıfjewcdfd")]
-    partial class kweıfweıfjewcdfd
+    [Migration("20231222205439_werwerwer")]
+    partial class werwerwer
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,6 +57,10 @@ namespace Blue.DataAccess.Migrations
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
@@ -359,6 +363,12 @@ namespace Blue.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("BuildingTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BuyingTypeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
@@ -374,6 +384,10 @@ namespace Blue.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BuildingTypeId");
+
+                    b.HasIndex("BuyingTypeId");
+
                     b.ToTable("RealEstate", (string)null);
                 });
 
@@ -382,10 +396,6 @@ namespace Blue.DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
@@ -519,6 +529,25 @@ namespace Blue.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Warming", (string)null);
+                });
+
+            modelBuilder.Entity("Blue.Core.RealEstate", b =>
+                {
+                    b.HasOne("Blue.Core.BuildingType", "BuildingType")
+                        .WithMany()
+                        .HasForeignKey("BuildingTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.BuyingType", "BuyingType")
+                        .WithMany()
+                        .HasForeignKey("BuyingTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BuildingType");
+
+                    b.Navigation("BuyingType");
                 });
 #pragma warning restore 612, 618
         }

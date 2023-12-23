@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blue.DataAccess.Migrations
 {
     [DbContext(typeof(BlueContext))]
-    [Migration("20231220120908_adaksdaskdl")]
-    partial class adaksdaskdl
+    [Migration("20231222205620_werwerew")]
+    partial class werwerew
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -363,6 +363,39 @@ namespace Blue.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("BuildingTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BuyingTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("DistrictId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FeaturesAroundId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FeaturesInsideId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FeaturesOutsideId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FromWhoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FuelTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FurnitureId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("HometownId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
@@ -370,13 +403,65 @@ namespace Blue.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("PriceId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
+
+                    b.Property<Guid>("RoomId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SizeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("StatusId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TypeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("DATETIME");
 
+                    b.Property<Guid>("WarmingId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("BuildingTypeId");
+
+                    b.HasIndex("BuyingTypeId");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("DistrictId");
+
+                    b.HasIndex("FeaturesAroundId");
+
+                    b.HasIndex("FeaturesInsideId");
+
+                    b.HasIndex("FeaturesOutsideId");
+
+                    b.HasIndex("FromWhoId");
+
+                    b.HasIndex("FuelTypeId");
+
+                    b.HasIndex("FurnitureId");
+
+                    b.HasIndex("HometownId");
+
+                    b.HasIndex("PriceId");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("SizeId");
+
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("TypeId");
+
+                    b.HasIndex("WarmingId");
 
                     b.ToTable("RealEstate", (string)null);
                 });
@@ -458,6 +543,10 @@ namespace Blue.DataAccess.Migrations
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("RegisterDate")
                         .HasColumnType("DATETIME");
 
@@ -515,6 +604,145 @@ namespace Blue.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Warming", (string)null);
+                });
+
+            modelBuilder.Entity("Blue.Core.RealEstate", b =>
+                {
+                    b.HasOne("Blue.Core.BuildingType", "BuildingType")
+                        .WithMany()
+                        .HasForeignKey("BuildingTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.BuyingType", "BuyingType")
+                        .WithMany()
+                        .HasForeignKey("BuyingTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.District", "District")
+                        .WithMany()
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.FeaturesAround", "FeaturesAround")
+                        .WithMany()
+                        .HasForeignKey("FeaturesAroundId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.FeaturesInside", "FeaturesInside")
+                        .WithMany()
+                        .HasForeignKey("FeaturesInsideId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.FeaturesOutside", "FeaturesOutside")
+                        .WithMany()
+                        .HasForeignKey("FeaturesOutsideId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.FromWho", "FromWho")
+                        .WithMany()
+                        .HasForeignKey("FromWhoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.FuelType", "FuelType")
+                        .WithMany()
+                        .HasForeignKey("FuelTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.Furniture", "Furniture")
+                        .WithMany()
+                        .HasForeignKey("FurnitureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.Hometown", "Hometown")
+                        .WithMany()
+                        .HasForeignKey("HometownId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.Price", "Price")
+                        .WithMany()
+                        .HasForeignKey("PriceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.Size", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.Type", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blue.Core.Warming", "Warming")
+                        .WithMany()
+                        .HasForeignKey("WarmingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BuildingType");
+
+                    b.Navigation("BuyingType");
+
+                    b.Navigation("City");
+
+                    b.Navigation("District");
+
+                    b.Navigation("FeaturesAround");
+
+                    b.Navigation("FeaturesInside");
+
+                    b.Navigation("FeaturesOutside");
+
+                    b.Navigation("FromWho");
+
+                    b.Navigation("FuelType");
+
+                    b.Navigation("Furniture");
+
+                    b.Navigation("Hometown");
+
+                    b.Navigation("Price");
+
+                    b.Navigation("Room");
+
+                    b.Navigation("Size");
+
+                    b.Navigation("Status");
+
+                    b.Navigation("Type");
+
+                    b.Navigation("Warming");
                 });
 #pragma warning restore 612, 618
         }

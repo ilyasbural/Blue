@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blue.DataAccess.Migrations
 {
     [DbContext(typeof(BlueContext))]
-    [Migration("20231220105126_sdfsdfsdfrtyrtyrt")]
-    partial class sdfsdfsdfrtyrtyrt
+    [Migration("20231222205330_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -363,6 +363,9 @@ namespace Blue.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("BuildingTypeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
@@ -378,6 +381,8 @@ namespace Blue.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BuildingTypeId");
+
                     b.ToTable("RealEstate", (string)null);
                 });
 
@@ -386,10 +391,6 @@ namespace Blue.DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
@@ -523,6 +524,17 @@ namespace Blue.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Warming", (string)null);
+                });
+
+            modelBuilder.Entity("Blue.Core.RealEstate", b =>
+                {
+                    b.HasOne("Blue.Core.BuildingType", "BuildingType")
+                        .WithMany()
+                        .HasForeignKey("BuildingTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BuildingType");
                 });
 #pragma warning restore 612, 618
         }
