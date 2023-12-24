@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 //builder.Services.AddDbContext<SetlirsContext>(x => x.UseSqlServer(Configuration.GetConnectionString("SqlServer")!));
 builder.Services.LoadServices();
-builder.Services.AddAutoMapper(typeof(CityMapper));
+builder.Services.AddAutoMapper(typeof(BuildingTypeMapper));
 builder.Services.AddSession(options => { options.IdleTimeout = TimeSpan.FromDays(30); options.Cookie.HttpOnly = true; options.Cookie.IsEssential = true; });
 //builder.Services.AddCors(options => options.AddDefaultPolicy(builder => { builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); }));
 //builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);

@@ -8,6 +8,6 @@
         Task InsertAsync(T Entity);
         Task UpdateAsync(T Entity);
         Task DeleteAsync(T Entity);
-        Task<List<T>> SelectAsync(Expression<Func<T, bool>> Predicate);
+        Task<List<T>> SelectAsync(Expression<Func<T, bool>> Predicate, params Expression<Func<T, object>>[] IncludeProperties);
     }
 }

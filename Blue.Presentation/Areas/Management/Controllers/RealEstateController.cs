@@ -194,8 +194,24 @@
 			Model.Item3.TypeDataSource = TypeResponse.Collection;
 			Model.Item3.WarmingDataSource = WarmingResponse.Collection;
 
-            Model.Item1.BuildingTypeViewModel.Id = Response.Collection.First().Id;
-			Model.Item1.Id = Response.Collection.First().Id;
+            Model.Item1.BuildingTypeViewModel.Id = Response.Collection.First().BuildingType.Id;
+            Model.Item1.BuyingTypeViewModel.Id = Response.Collection.First().BuyingType.Id;
+            Model.Item1.CityViewModel.Id = Response.Collection.First().City.Id;
+            Model.Item1.DistrictViewModel.Id = Response.Collection.First().District.Id;
+            Model.Item1.FeaturesAroundViewModel.Id = Response.Collection.First().FeaturesAround.Id;
+            Model.Item1.FeaturesInsideViewModel.Id = Response.Collection.First().FeaturesInside.Id;
+            Model.Item1.FeaturesOutsideViewModel.Id = Response.Collection.First().FeaturesOutside.Id;
+            Model.Item1.FromWhoViewModel.Id = Response.Collection.First().FromWho.Id;
+            Model.Item1.FuelTypeViewModel.Id = Response.Collection.First().FuelType.Id;
+            Model.Item1.FurnitureViewModel.Id = Response.Collection.First().Furniture.Id;
+            Model.Item1.HometownViewModel.Id = Response.Collection.First().Hometown.Id;
+            Model.Item1.PriceViewModel.Id = Response.Collection.First().Price.Id;
+            Model.Item1.RoomViewModel.Id = Response.Collection.First().Room.Id;
+            Model.Item1.SizeViewModel.Id = Response.Collection.First().Size.Id;
+            Model.Item1.StatusViewModel.Id = Response.Collection.First().Status.Id;
+            Model.Item1.TypeViewModel.Id = Response.Collection.First().Type.Id;
+            Model.Item1.WarmingViewModel.Id = Response.Collection.First().Warming.Id;
+            Model.Item1.Id = Response.Collection.First().Id;
             Model.Item1.Name = Response.Collection.First().Name;
             Model.Item1.RegisterDate = Response.Collection.First().RegisterDate;
             Model.Item1.UpdateDate = Response.Collection.First().UpdateDate;
@@ -226,6 +242,7 @@
 			RealEstate.Warming = Model.WarmingViewModel.Id;
 			RealEstate.Id = Model.Id;
 			RealEstate.Name = Model.Name;
+            RealEstate.UpdateDate = DateTime.Now;
 			Response<RealEstate> Response = await RealEstateService.UpdateAsync(RealEstate);
 			if (Response.Success > 0) return RedirectToAction("Index");
 			else return View(Model);
@@ -233,7 +250,8 @@
 
 		public async Task<IActionResult> Delete(Guid Id)
         {
-            var Model = Tuple.Create<RealEstateViewModel, RealEstateDetailViewModel>(new RealEstateViewModel(), new RealEstateDetailViewModel());
+            var Model = Tuple.Create<RealEstateViewModel, RealEstateDetailViewModel>
+            (new RealEstateViewModel(), new RealEstateDetailViewModel());
             Response<RealEstate> Response = await RealEstateService.SelectSingleAsync(new RealEstateSelectDto { Id = Id });
 
             Model.Item1.Id = Response.Collection.First().Id;

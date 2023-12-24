@@ -9,253 +9,49 @@
         <div class="row">
             <div id="content" class="col-lg-9 col-md-6 col-sm-6 col-xs-12 clearfix">
                 <div class="property_wrapper boxes clearfix">
-                    <h3 class="big_title">List Property Form<small>You can submit your property</small></h3>
-
-                    <form action="#" id="property_submit_form">
+                    <form asp-controller="realestate" asp-action="create" method="post">
                         <label for="type">BuildingType</label>
                         @Html.DropDownListFor(Model => Model.Item1.BuildingTypeViewModel.Id, new SelectList(Model.Item3.BuildingTypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
-                        @* <select id="type" class="show-menu-arrow selectpicker">
-                            <option value="apertment">Apertment</option>
-                            <option value="condo">Condo</option>
-                            <option value="villa">Villa</option>
-                            <option value="cottage">Cottage</option>
-                            <option value="house">House</option>
-                        </select> *@
                         <label for="status">Status</label>
-                        <select id="status" class="show-menu-arrow selectpicker">
-                            <option value="rent">For Rent</option>
-                            <option value="sale">For Sale</option>
-                            <option value="sold">Sold Out</option>
-                        </select>
-
+                        @Html.DropDownListFor(Model => Model.Item1.BuyingTypeViewModel.Id, new SelectList(Model.Item3.BuyingTypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
                         <label for="country">Country</label>
-                        <select id="country" class="show-menu-arrow selectpicker">
-                            <option value="usa">United States</option>
-                            <option value="turkei">Turkei</option>
-                            <option value="germany">Germany</option>
-                            <option value="israel">Israel</option>
-                            <option value="holland">Holland</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
-                        <label for="location">Location</label>
-                        <select id="location" class="show-menu-arrow selectpicker">
-                            <option value="miami">Miami</option>
-                            <option value="antalya">Antalya</option>
-                            <option value="bodrum">Bodrum</option>
-                            <option value="hanue">Hanue</option>
-                            <option value="aksa">Aksa</option>
-                            <option value="amsterdam">Amsterdam</option>
-                        </select>
+                        @Html.DropDownListFor(Model => Model.Item1.CityViewModel.Id, new SelectList(Model.Item3.CityDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="district">District</label>
+                        @Html.DropDownListFor(Model => Model.Item1.DistrictViewModel.Id, new SelectList(Model.Item3.DistrictDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="featuresaround">FeaturesAround</label>
+                        @Html.DropDownListFor(Model => Model.Item1.FeaturesAroundViewModel.Id, new SelectList(Model.Item3.FeaturesAroundDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="featuresinside">FeaturesInside</label>
+                        @Html.DropDownListFor(Model => Model.Item1.FeaturesInsideViewModel.Id, new SelectList(Model.Item3.FeaturesInsideDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="featuresoutside">FeaturesOutside</label>
+                        @Html.DropDownListFor(Model => Model.Item1.FeaturesOutsideViewModel.Id, new SelectList(Model.Item3.FeaturesOutsideDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="fromwho">FromWho</label>
+                        @Html.DropDownListFor(Model => Model.Item1.FromWhoViewModel.Id, new SelectList(Model.Item3.FromWhoDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="fueltype">FuelType</label>
+                        @Html.DropDownListFor(Model => Model.Item1.FuelTypeViewModel.Id, new SelectList(Model.Item3.FuelTypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="furniture">Furniture</label>
+                        @Html.DropDownListFor(Model => Model.Item1.FurnitureViewModel.Id, new SelectList(Model.Item3.FurnitureDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="homwtown">Hometown</label>
+                        @Html.DropDownListFor(Model => Model.Item1.HometownViewModel.Id, new SelectList(Model.Item3.HometownDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="price">Price</label>
+                        @Html.DropDownListFor(Model => Model.Item1.PriceViewModel.Id, new SelectList(Model.Item3.PriceDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="room">Room</label>
+                        @Html.DropDownListFor(Model => Model.Item1.RoomViewModel.Id, new SelectList(Model.Item3.RoomDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="size">Size</label>
+                        @Html.DropDownListFor(Model => Model.Item1.SizeViewModel.Id, new SelectList(Model.Item3.SizeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="status">Status</label>
+                        @Html.DropDownListFor(Model => Model.Item1.StatusViewModel.Id, new SelectList(Model.Item3.StatusDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="type">Type</label>
+                        @Html.DropDownListFor(Model => Model.Item1.TypeViewModel.Id, new SelectList(Model.Item3.TypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="warming">Warming</label>
+                        @Html.DropDownListFor(Model => Model.Item1.WarmingViewModel.Id, new SelectList(Model.Item3.WarmingDataSource, "Id", "Name"), "Seçilmedi", new { @class = "show-menu-arrow selectpicker" })
+                        <label for="status">Name</label>
+                        @Html.EditorFor(m => m.Item1.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "realestate name" } })
 
-
-
-
-
-
-
-                        <label for="title">Title</label>
-                        <input type="text" id="title" class="form-control" placeholder="Title">
-                        <label for="address">Address</label>
-                        <input id="address" type="text" class="form-control" placeholder="Address">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" name="description" id="description" rows="6" placeholder="Add property details goes here"></textarea>
-                        
-                        <hr>
-                        <div class="clearfix">
-                            <label>Amenities</label><br>
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <label class="checkbox"><input id="conditioning" value="option1" type="checkbox"> Air conditioning</label>
-                                <label class="checkbox"><input id="Bedding" value="option2" type="checkbox"> Bedding</label>
-                                <label class="checkbox"><input id="Heating" value="option3" type="checkbox"> Heating</label>
-                                <label class="checkbox"><input id="Internet" value="option4" type="checkbox"> Internet</label>
-                                <label class="checkbox"><input id="Microwave" value="option5" type="checkbox"> Microwave</label>
-                                <label class="checkbox"><input id="Smooking" value="option6" type="checkbox"> Smoking allowed</label>
-                                <label class="checkbox"><input id="Pool" value="option7" type="checkbox"> Use of pool</label>
-                                <label class="checkbox"><input id="Toaster" value="option8" type="checkbox"> Toaster</label>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <label class="checkbox"><input id="Cofee" value="option9" type="checkbox"> Cofee pot</label>
-                                <label class="checkbox"><input id="Cable" value="option10" type="checkbox"> Cable TV</label>
-                                <label class="checkbox"><input id="Parquet" value="option11" type="checkbox"> Parquet</label>
-                                <label class="checkbox"><input id="terrace" value="option12" type="checkbox"> Roof terrace</label>
-                                <label class="checkbox"><input id="Terrace" value="option13" type="checkbox"> Terrace</label>
-                                <label class="checkbox"><input id="Towelwes" value="option14" type="checkbox"> Towelwes</label>
-                                <label class="checkbox"><input id="iron" value="option15" type="checkbox"> Iron</label>
-                                <label class="checkbox"><input id="hifi" value="option16" type="checkbox"> Hi-Fi</label>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <label class="checkbox"><input id="Beach" value="option17" type="checkbox"> Beach</label>
-                                <label class="checkbox"><input id="Garage" value="option18" type="checkbox"> Garage</label>
-                                <label class="checkbox"><input id="Child" value="option19" type="checkbox"> Child Room</label>
-                                <label class="checkbox"><input id="Drawing" value="option20" type="checkbox"> Drawing room</label>
-                                <label class="checkbox"><input id="Security" value="option21" type="checkbox"> Security</label>
-                                <label class="checkbox"><input id="Surveillance" value="option22" type="checkbox"> Camera Surveillance</label>
-                                <label class="checkbox"><input id="Nature" value="option23" type="checkbox"> Nature</label>
-                                <label class="checkbox"><input id="Route" value="option24" type="checkbox"> Route path</label>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row clearfix">
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <label>Price</label><br>
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-addon">.00</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <label>Area</label><br>
-                                <div class="input-group">
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-addon">m<sup>2</sup></span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <label>Submit Screenshot</label>
-                        <div class="fileupload fileupload-new" data-provides="fileupload">
-                            <div class="fileupload-preview thumbnail"></div>
-                            <div>
-                                <span class="btn btn-primary btn-file">
-                                    <span class="fileupload-new">Select image</span>
-                                    <span class="fileupload-exists">Change</span>
-                                    <input type="file">
-                                </span>
-                                <a href="#" class="btn btn-primary fileupload-exists" data-dismiss="fileupload">Remove</a>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <hr>
-
-                        <label for="geocomplete">Location Search</label>
-                        <input id="geocomplete" type="text" class="form-control" placeholder="Type in an address">
-                        <input id="find" type="button" class="btn btn-primary" value="Find Address" />
-
-                        <div class="map_canvas"></div>
-                        <hr>
-                        <button type="submit" class="btn btn-primary">SEND DETAILS</button>
-                    </form><!-- end search form -->
-                </div><!-- end property_wrapper -->
-            </div><!-- end content -->
+                        <button type="button" class="btn btn-success"><i class="fa fa-save"></i></button>
+                        <button type="submit" class="btn btn-primary">Kaydet <i class="fa fa-send"></i></button>
+                    </form>
+                </div>
+            </div>
 
             <div id="right_sidebar" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 last clearfix">
                 <div class="widget clearfix">
@@ -263,113 +59,59 @@
                         <div class="title"><h3><i class="fa fa-search"></i> Search For Property</h3></div>
                         <form action="#" id="search_form">
                             <input type="text" class="form-control" placeholder="Search by ID or property name...">
-                        </form><!-- end search form -->
-                    </div><!-- end search_widget -->
-                </div><!-- end widget -->
-
+                        </form>
+                    </div>
+                </div>
                 <div class="widget clearfix">
                     <div class="agents_widget">
                         <div class="title"><h3><i class="fa fa-users"></i> Our Agents</h3></div>
                         <div class="agent boxes clearfix">
                             <div class="image">
                                 <img class="img-circle img-responsive img-thumbnail" src="demos/01_team.png" alt="">
-                            </div><!-- image -->
+                            </div>
                             <div class="agent_desc">
                                 <h3 class="title">Mustapha COLLIENS</h3>
                                 <p><span><i class="fa fa-envelope"></i> info@yoursite.com</span></p>
                                 <p><span><i class="fa fa-phone-square"></i> +90 333 444 55 66</span></p>
-                            </div><!-- agento desc -->
+                            </div>
                         </div>
                         <div class="agent boxes clearfix">
                             <div class="image">
                                 <img class="img-circle img-responsive img-thumbnail" src="demos/02_team.png" alt="">
-                            </div><!-- image -->
+                            </div>
                             <div class="agent_desc">
                                 <h3 class="title">Stephania JOHNSON</h3>
                                 <p><span><i class="fa fa-envelope"></i> info@yoursite.com</span></p>
                                 <p><span><i class="fa fa-phone-square"></i> +90 333 444 55 66</span></p>
-                            </div><!-- agento desc -->
+                            </div>
                         </div>
                         <div class="agent boxes clearfix">
                             <div class="image">
                                 <img class="img-circle img-responsive img-thumbnail" src="demos/03_team.png" alt="">
-                            </div><!-- image -->
+                            </div>
                             <div class="agent_desc">
                                 <h3 class="title">Mark ANTHONY</h3>
                                 <p><span><i class="fa fa-envelope"></i> info@yoursite.com</span></p>
                                 <p><span><i class="fa fa-phone-square"></i> +90 333 444 55 66</span></p>
-                            </div><!-- agento desc -->
+                            </div>
                         </div>
                         <div class="agent boxes clearfix">
                             <div class="image">
                                 <img class="img-circle img-responsive img-thumbnail" src="demos/04_team.png" alt="">
-                            </div><!-- image -->
+                            </div>
                             <div class="agent_desc">
                                 <h3 class="title">Jenny ANTHONY</h3>
                                 <p><span><i class="fa fa-envelope"></i> info@yoursite.com</span></p>
                                 <p><span><i class="fa fa-phone-square"></i> +90 333 444 55 66</span></p>
-                            </div><!-- agento desc -->
+                            </div>
                         </div>
-                    </div><!-- end of agents_widget -->
-                </div><!-- end of widget -->
+                    </div>
+                </div>
                 <div class="widget clearfix">
                     <div class="title"><h3>Banner Ads</h3></div>
                     <img data-effect="fade" class="text-center img-thumbnail img-responsive" src="demos/01_banner.png" alt="">
-                </div><!-- end of widget -->
-            </div><!-- end sidebar -->
+                </div>
+            </div>
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-<form asp-controller="RealEstate" asp-action="Create" method="post">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<h4 class="modal-title">Emlak Bilgileri</h4>
-	</div>
-	<div class="modal-body">
-		<div class="form-group">
-			
-			@Html.DropDownListFor(Model => Model.Item1.BuyingTypeViewModel.Id, new SelectList(Model.Item3.BuyingTypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.CityViewModel.Id, new SelectList(Model.Item3.CityDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.DistrictViewModel.Id, new SelectList(Model.Item3.DistrictDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.FeaturesAroundViewModel.Id, new SelectList(Model.Item3.FeaturesAroundDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.FeaturesInsideViewModel.Id, new SelectList(Model.Item3.FeaturesInsideDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.FeaturesOutsideViewModel.Id, new SelectList(Model.Item3.FeaturesOutsideDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.FromWhoViewModel.Id, new SelectList(Model.Item3.FromWhoDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.FuelTypeViewModel.Id, new SelectList(Model.Item3.FuelTypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.FurnitureViewModel.Id, new SelectList(Model.Item3.FurnitureDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.HometownViewModel.Id, new SelectList(Model.Item3.HometownDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.PriceViewModel.Id, new SelectList(Model.Item3.PriceDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.RoomViewModel.Id, new SelectList(Model.Item3.RoomDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.SizeViewModel.Id, new SelectList(Model.Item3.SizeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.StatusViewModel.Id, new SelectList(Model.Item3.StatusDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.TypeViewModel.Id, new SelectList(Model.Item3.TypeDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@Html.DropDownListFor(Model => Model.Item1.WarmingViewModel.Id, new SelectList(Model.Item3.WarmingDataSource, "Id", "Name"), "Seçilmedi", new { @class = "form-control" })
-			@* @Html.EditorFor(m => m.Item1.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "adı" } }) *@
-		</div>
-		<div class="form-group">
-			@Html.EditorFor(m => m.Item1.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "realestate name" } })
-			@* @Html.DropDownListFor(Model => Model.Item2.Content.Category.Id, new SelectList(Model.Item1, "Id", "Name"), "Seçilmedi", new { @class = "form-control" }) *@
-		</div>
-		<div class="form-group">
-			@* @Html.EditorFor(m => m.Item2.Content.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "adı" } }) *@
-		</div>
-		<div class="form-group">
-			@* @Html.TextAreaFor(m => m.Item2.Content.Description, new { @class = "form-control", @placeholder = "açıklama" }) *@
-		</div>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-success"><i class="fa fa-save"></i></button>
-		<button type="submit" class="btn btn-primary">Kaydet <i class="fa fa-send"></i></button>
-	</div>
-</form>
