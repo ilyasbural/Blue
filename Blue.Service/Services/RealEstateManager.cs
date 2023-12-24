@@ -175,8 +175,8 @@
 
         public async Task<Response<RealEstate>> SelectSingleAsync(RealEstateSelectDto Model)
         {
-            Collection = await UnitOfWork.RealEstate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true, 
-            x => x.BuildingType, x => x.BuyingType, x => x.City, x => x.District, x => x.FeaturesAround, x => x.FeaturesInside, 
+            Collection = await UnitOfWork.RealEstate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true,
+            x => x.BuildingType, x => x.BuyingType, x => x.City, x => x.District, x => x.FeaturesAround, x => x.FeaturesInside,
             x => x.FeaturesOutside, x => x.FromWho, x => x.FuelType, x => x.Furniture, x => x.Hometown);
             return new Response<RealEstate>
             {

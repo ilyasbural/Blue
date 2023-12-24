@@ -53,18 +53,18 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] RoomViewModel Model)
-		{
-			RoomUpdateDto Room = new RoomUpdateDto();
+        [HttpPost]
+        public async Task<IActionResult> Update([Bind(Prefix = "Item1")] RoomViewModel Model)
+        {
+            RoomUpdateDto Room = new RoomUpdateDto();
             Room.Id = Model.Id;
-			Room.Name = Model.Name;
-			Response<Room> Response = await Service.UpdateAsync(Room);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
+            Room.Name = Model.Name;
+            Response<Room> Response = await Service.UpdateAsync(Room);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
 
-		public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<RoomViewModel>(new RoomViewModel());
             Response<Room> Response = await Service.SelectSingleAsync(new RoomSelectDto { Id = Id });
@@ -77,14 +77,14 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] RoomViewModel Model)
-		{
-			RoomDeleteDto Room = new RoomDeleteDto();
-			Room.Id = Model.Id;
-			Response<Room> Response = await Service.DeleteAsync(Room);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
-	}
+        [HttpPost]
+        public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] RoomViewModel Model)
+        {
+            RoomDeleteDto Room = new RoomDeleteDto();
+            Room.Id = Model.Id;
+            Response<Room> Response = await Service.DeleteAsync(Room);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
+    }
 }

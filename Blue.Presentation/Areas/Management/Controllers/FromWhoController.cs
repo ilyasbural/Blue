@@ -53,18 +53,18 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] FromWhoViewModel Model)
-		{
-			FromWhoUpdateDto FromWho = new FromWhoUpdateDto();
+        [HttpPost]
+        public async Task<IActionResult> Update([Bind(Prefix = "Item1")] FromWhoViewModel Model)
+        {
+            FromWhoUpdateDto FromWho = new FromWhoUpdateDto();
             FromWho.Id = Model.Id;
-			FromWho.Name = Model.Name;
-			Response<FromWho> Response = await Service.UpdateAsync(FromWho);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
+            FromWho.Name = Model.Name;
+            Response<FromWho> Response = await Service.UpdateAsync(FromWho);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
 
-		public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<FromWhoViewModel>(new FromWhoViewModel());
             Response<FromWho> Response = await Service.SelectSingleAsync(new FromWhoSelectDto { Id = Id });
@@ -77,14 +77,14 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] FromWhoViewModel Model)
-		{
-			FromWhoDeleteDto FromWho = new FromWhoDeleteDto();
-			FromWho.Id = Model.Id;
-			Response<FromWho> Response = await Service.DeleteAsync(FromWho);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
-	}
+        [HttpPost]
+        public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] FromWhoViewModel Model)
+        {
+            FromWhoDeleteDto FromWho = new FromWhoDeleteDto();
+            FromWho.Id = Model.Id;
+            Response<FromWho> Response = await Service.DeleteAsync(FromWho);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
+    }
 }

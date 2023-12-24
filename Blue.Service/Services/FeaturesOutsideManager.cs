@@ -41,9 +41,9 @@
         public async Task<Response<FeaturesOutside>> UpdateAsync(FeaturesOutsideUpdateDto Model)
         {
             Collection = await UnitOfWork.FeaturesOutside.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			Collection[0].Name = Model.Name;
-			Collection[0].UpdateDate = DateTime.Now;
-			await UnitOfWork.FeaturesOutside.UpdateAsync(Collection[0]);
+            Collection[0].Name = Model.Name;
+            Collection[0].UpdateDate = DateTime.Now;
+            await UnitOfWork.FeaturesOutside.UpdateAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<FeaturesOutside>

@@ -53,18 +53,18 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] FeaturesOutsideViewModel Model)
-		{
-			FeaturesOutsideUpdateDto FeaturesOutside = new FeaturesOutsideUpdateDto();
+        [HttpPost]
+        public async Task<IActionResult> Update([Bind(Prefix = "Item1")] FeaturesOutsideViewModel Model)
+        {
+            FeaturesOutsideUpdateDto FeaturesOutside = new FeaturesOutsideUpdateDto();
             FeaturesOutside.Id = Model.Id;
-			FeaturesOutside.Name = Model.Name;
-			Response<FeaturesOutside> Response = await Service.UpdateAsync(FeaturesOutside);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
+            FeaturesOutside.Name = Model.Name;
+            Response<FeaturesOutside> Response = await Service.UpdateAsync(FeaturesOutside);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
 
-		public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<FeaturesOutsideViewModel>(new FeaturesOutsideViewModel());
             Response<FeaturesOutside> Response = await Service.SelectSingleAsync(new FeaturesOutsideSelectDto { Id = Id });
@@ -77,14 +77,14 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] FeaturesOutsideViewModel Model)
-		{
-			FeaturesOutsideDeleteDto FeaturesOutside = new FeaturesOutsideDeleteDto();
-			FeaturesOutside.Id = Model.Id;
-			Response<FeaturesOutside> Response = await Service.DeleteAsync(FeaturesOutside);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
-	}
+        [HttpPost]
+        public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] FeaturesOutsideViewModel Model)
+        {
+            FeaturesOutsideDeleteDto FeaturesOutside = new FeaturesOutsideDeleteDto();
+            FeaturesOutside.Id = Model.Id;
+            Response<FeaturesOutside> Response = await Service.DeleteAsync(FeaturesOutside);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
+    }
 }

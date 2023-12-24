@@ -58,7 +58,6 @@
             var Model = Tuple.Create<DistrictViewModel>(new DistrictViewModel());
             Response<District> Respomse = await Service.SelectSingleAsync(new DistrictSelectDto { Id = Id });
 
-
             return View(Model);
         }
     }

@@ -53,18 +53,18 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] FeaturesInsideViewModel Model)
-		{
-			FeaturesInsideUpdateDto FeaturesInside = new FeaturesInsideUpdateDto();
+        [HttpPost]
+        public async Task<IActionResult> Update([Bind(Prefix = "Item1")] FeaturesInsideViewModel Model)
+        {
+            FeaturesInsideUpdateDto FeaturesInside = new FeaturesInsideUpdateDto();
             FeaturesInside.Id = Model.Id;
-			FeaturesInside.Name = Model.Name;
-			Response<FeaturesInside> Response = await Service.UpdateAsync(FeaturesInside);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
+            FeaturesInside.Name = Model.Name;
+            Response<FeaturesInside> Response = await Service.UpdateAsync(FeaturesInside);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
 
-		public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<FeaturesInsideViewModel>(new FeaturesInsideViewModel());
             Response<FeaturesInside> Response = await Service.SelectSingleAsync(new FeaturesInsideSelectDto { Id = Id });
@@ -77,14 +77,14 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] FeaturesInsideViewModel Model)
-		{
-			FeaturesInsideDeleteDto FeaturesInside = new FeaturesInsideDeleteDto();
-			FeaturesInside.Id = Model.Id;
-			Response<FeaturesInside> Response = await Service.DeleteAsync(FeaturesInside);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
-	}
+        [HttpPost]
+        public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] FeaturesInsideViewModel Model)
+        {
+            FeaturesInsideDeleteDto FeaturesInside = new FeaturesInsideDeleteDto();
+            FeaturesInside.Id = Model.Id;
+            Response<FeaturesInside> Response = await Service.DeleteAsync(FeaturesInside);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
+    }
 }

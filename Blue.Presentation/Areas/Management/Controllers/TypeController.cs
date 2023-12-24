@@ -53,18 +53,18 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] TypeViewModel Model)
-		{
-			TypeUpdateDto Type = new TypeUpdateDto();
+        [HttpPost]
+        public async Task<IActionResult> Update([Bind(Prefix = "Item1")] TypeViewModel Model)
+        {
+            TypeUpdateDto Type = new TypeUpdateDto();
             Type.Id = Model.Id;
-			Type.Name = Model.Name;
-			Response<Type> Response = await Service.UpdateAsync(Type);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
+            Type.Name = Model.Name;
+            Response<Type> Response = await Service.UpdateAsync(Type);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
 
-		public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<TypeViewModel>(new TypeViewModel());
             Response<Type> Response = await Service.SelectSingleAsync(new TypeSelectDto { Id = Id });
@@ -77,14 +77,14 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] TypeViewModel Model)
-		{
-			TypeDeleteDto Type = new TypeDeleteDto();
-			Type.Id = Model.Id;
-			Response<Type> Response = await Service.DeleteAsync(Type);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
-	}
+        [HttpPost]
+        public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] TypeViewModel Model)
+        {
+            TypeDeleteDto Type = new TypeDeleteDto();
+            Type.Id = Model.Id;
+            Response<Type> Response = await Service.DeleteAsync(Type);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
+    }
 }

@@ -53,18 +53,18 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] SizeViewModel Model)
-		{
-			SizeUpdateDto Size = new SizeUpdateDto();
+        [HttpPost]
+        public async Task<IActionResult> Update([Bind(Prefix = "Item1")] SizeViewModel Model)
+        {
+            SizeUpdateDto Size = new SizeUpdateDto();
             Size.Id = Model.Id;
-			Size.Name = Model.Name;
-			Response<Size> Response = await Service.UpdateAsync(Size);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
+            Size.Name = Model.Name;
+            Response<Size> Response = await Service.UpdateAsync(Size);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
 
-		public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<SizeViewModel>(new SizeViewModel());
             Response<Size> Response = await Service.SelectSingleAsync(new SizeSelectDto { Id = Id });
@@ -77,14 +77,14 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] SizeViewModel Model)
-		{
-			SizeDeleteDto Size = new SizeDeleteDto();
-			Size.Id = Model.Id;
-			Response<Size> Response = await Service.DeleteAsync(Size);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
-	}
+        [HttpPost]
+        public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] SizeViewModel Model)
+        {
+            SizeDeleteDto Size = new SizeDeleteDto();
+            Size.Id = Model.Id;
+            Response<Size> Response = await Service.DeleteAsync(Size);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
+    }
 }

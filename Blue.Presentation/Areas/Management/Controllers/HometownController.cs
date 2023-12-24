@@ -53,18 +53,18 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Update([Bind(Prefix = "Item1")] HometownViewModel Model)
-		{
-			HometownUpdateDto Hometown = new HometownUpdateDto();
+        [HttpPost]
+        public async Task<IActionResult> Update([Bind(Prefix = "Item1")] HometownViewModel Model)
+        {
+            HometownUpdateDto Hometown = new HometownUpdateDto();
             Hometown.Id = Model.Id;
-			Hometown.Name = Model.Name;
-			Response<Hometown> Response = await Service.UpdateAsync(Hometown);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
+            Hometown.Name = Model.Name;
+            Response<Hometown> Response = await Service.UpdateAsync(Hometown);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
 
-		public async Task<IActionResult> Delete(Guid Id)
+        public async Task<IActionResult> Delete(Guid Id)
         {
             var Model = Tuple.Create<HometownViewModel>(new HometownViewModel());
             Response<Hometown> Response = await Service.SelectSingleAsync(new HometownSelectDto { Id = Id });
@@ -77,14 +77,14 @@
             return View(Model);
         }
 
-		[HttpPost]
-		public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] HometownViewModel Model)
-		{
-			HometownDeleteDto Hometown = new HometownDeleteDto();
-			Hometown.Id = Model.Id;
-			Response<Hometown> Response = await Service.DeleteAsync(Hometown);
-			if (Response.Success > 0) return RedirectToAction("Index");
-			else return View(Model);
-		}
-	}
+        [HttpPost]
+        public async Task<IActionResult> Delete([Bind(Prefix = "Item1")] HometownViewModel Model)
+        {
+            HometownDeleteDto Hometown = new HometownDeleteDto();
+            Hometown.Id = Model.Id;
+            Response<Hometown> Response = await Service.DeleteAsync(Hometown);
+            if (Response.Success > 0) return RedirectToAction("Index");
+            else return View(Model);
+        }
+    }
 }

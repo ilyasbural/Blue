@@ -41,9 +41,9 @@
         public async Task<Response<Hometown>> UpdateAsync(HometownUpdateDto Model)
         {
             Collection = await UnitOfWork.Hometown.SelectAsync(x => x.Id == Model.Id && x.IsActive == true);
-			Collection[0].Name = Model.Name;
-			Collection[0].UpdateDate = DateTime.Now;
-			await UnitOfWork.Hometown.UpdateAsync(Collection[0]);
+            Collection[0].Name = Model.Name;
+            Collection[0].UpdateDate = DateTime.Now;
+            await UnitOfWork.Hometown.UpdateAsync(Collection[0]);
             Success = await UnitOfWork.SaveChangesAsync();
 
             return new Response<Hometown>
