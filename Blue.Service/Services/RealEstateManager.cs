@@ -119,7 +119,7 @@
             List<Type> Type = await UnitOfWork.Type.SelectAsync(x => x.Id == Model.Type);
             List<Warming> Warming = await UnitOfWork.Warming.SelectAsync(x => x.Id == Model.Warming);
 
-            Collection = await UnitOfWork.RealEstate.SelectAsync(x => x.Id == Model.Id, x => x.BuildingType);
+            Collection = await UnitOfWork.RealEstate.SelectAsync(x => x.Id == Model.Id);
             Collection[0].BuildingType = BuildingType.First();
             Collection[0].BuyingType = BuyingType.First();
             Collection[0].City = City.First();
@@ -131,6 +131,12 @@
             Collection[0].FuelType = FuelType.First();
             Collection[0].Furniture = Furniture.First();
             Collection[0].Hometown = Hometown.First();
+            Collection[0].Price = Price.First();
+            Collection[0].Room = Room.First();
+            Collection[0].Size = Size.First();
+            Collection[0].Status = Status.First();
+            Collection[0].Type = Type.First();
+            Collection[0].Warming = Warming.First();
             Collection[0].Name = Model.Name;
             Collection[0].UpdateDate = DateTime.Now;
 
@@ -163,7 +169,10 @@
 
         public async Task<Response<RealEstate>> SelectAsync(RealEstateSelectDto Model)
         {
-            Collection = await UnitOfWork.RealEstate.SelectAsync(x => x.IsActive == true);
+            Collection = await UnitOfWork.RealEstate.SelectAsync(x => x.IsActive == true, 
+            x => x.BuildingType, x => x.BuyingType, x => x.City, x => x.District, x => x.FeaturesAround, x => x.FeaturesInside,
+            x => x.FeaturesOutside, x => x.FromWho, x => x.FuelType, x => x.Furniture, x => x.Hometown, x => x.Price, x => x.Room,
+            x => x.Size, x => x.Status, x => x.Type, x => x.Warming);
             return new Response<RealEstate>
             {
                 Success = 1,
@@ -177,7 +186,8 @@
         {
             Collection = await UnitOfWork.RealEstate.SelectAsync(x => x.Id == Model.Id && x.IsActive == true,
             x => x.BuildingType, x => x.BuyingType, x => x.City, x => x.District, x => x.FeaturesAround, x => x.FeaturesInside,
-            x => x.FeaturesOutside, x => x.FromWho, x => x.FuelType, x => x.Furniture, x => x.Hometown);
+            x => x.FeaturesOutside, x => x.FromWho, x => x.FuelType, x => x.Furniture, x => x.Hometown, x => x.Price, x => x.Room, 
+            x => x.Size, x => x.Status, x => x.Type, x => x.Warming);
             return new Response<RealEstate>
             {
                 Success = 1,
